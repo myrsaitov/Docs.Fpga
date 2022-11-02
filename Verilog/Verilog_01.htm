@@ -1,0 +1,528 @@
+<html lang="RU">
+<head>
+
+<link rel=stylesheet href="http://www.gaw.ru/tutor.css" type="text/css">
+
+<title>Verilog — инструмент разработки цифровых электронных схем</title>
+
+<meta name="description" content="Справочные данные по электронным компонентам">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1251">
+<meta NAME="Author" CONTENT="Гаврилюк Сергей">
+<meta name="Keywords" lang="RU" content="микроэлектроника, микросхема, транзистор, диод, микроконтроллер, память">
+<meta html.cgi="Template  www.gaw.ru">
+
+<meta name="description" content="Справочные данные - микросхемы и электронные компоненты">
+<meta name="Keywords" lang="RU" content="микроэлектроника, микросхема, транзистор, диод, микроконтроллер, память, msp430, Atmel, Maxim, LCD, hd44780, t6963, sed1335, atmega128, avr, электронные компоненты">
+<meta http-equiv="pragma" content="no-cache">
+<meta name="language" content="Russian">
+<meta name="charset" content="Windows-1251">
+<meta name="MSSmartTagsPreventParsing" content="TRUE">
+<meta name="distribution" content="Global">
+<meta name="rating" content="General">
+<meta name="expires" content="">
+<meta name="robots" content="Index, Follow">
+<meta name="revisit-after" content="2 Days">
+<META http-equiv=Content-Type content="text/html; charset=windows-1251">
+<link rel="shortcut icon" href="favicon.ico">
+<link rel="stylesheet" href="/style.css">
+</head>
+<body bgcolor=#647786 text="#4C5A66" link="#4C5A66" vlink="#4C5A66" alink="#4C5A66" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+
+<a name="#top">
+<!--LiveInternet counter--><script language="JavaScript"><!--
+document.write('<img src="http://counter.yadro.ru/hit?r'+
+escape(document.referrer)+((typeof(screen)=='undefined')?'':
+';s'+screen.width+'*'+screen.height+'*'+(screen.colorDepth?
+screen.colorDepth:screen.pixelDepth))+';u'+escape(document.URL)+
+';i'+escape('Жж'+document.title.substring(0,80))+';'+Math.random()+
+'" width=1 height=1 alt="">')//-->
+</script><!--/LiveInternet-->
+
+<!--bigmir)net TOP 100 Part 1-->
+<script type="text/javascript" language="javascript"><!--
+bmN=navigator,bmD=document,bmD.cookie='b=b',i=0,bs=[],bm={o:1,v:157406,s:157406,t:6,c:bmD.cookie?1:0,n:Math.round((Math.random()* 1000000)),w:0};
+for(f=self;f!=f.parent;f=f.parent)bm.w++;
+try{if(bmN.plugins&&bmN.mimeTypes.length&&(x=bmN.plugins['Shockwave Flash']))bm.m=parseInt(x.description.replace(/([a-zA-Z]|s)+/,''));
+else for(f=3;f<20;f++)if(eval('new ActiveXObject("ShockwaveFlash.ShockwaveFlash.'+f+'")'))bm.m=f}catch(e){}
+try{bm.y=bmN.javaEnabled()?1:0}catch(e){}
+try{bmS=screen;bm.v^=bm.d=bmS.colorDepth||bmS.pixelDepth;bm.v^=bm.r=bmS.width}catch(e){}
+r=bmD.referrer.slice(7);if(r&&r.split('/')[0]!=window.location.host){bm.f=escape(r);bm.v^=r.length}
+bm.v^=window.location.href.length;for(x in bm)bs[i++]=x+bm[x];
+bmD.write('<sc'+'ript type="text/javascript" language="javascript" src="http://c.bigmir.net/?'+bs.join('&')+'"></sc'+'ript>');
+//--></script>
+<!--bigmir)net TOP 100 Part 1-->
+
+<table width="780" border="0" cellspacing="0" cellpadding="0" align="center">
+  <tr> 
+	<td width="2" bgcolor="#4C5A66"><img src="/images/spacer.gif" width="2" height="2"></td>
+	<td width="768"> 
+	  <table border=0 cellpadding=0 cellspacing=0 width="768" align="center">
+		<tr> 
+		  <td width=768 height=76> 
+			<table width="768" border="0" cellspacing="0" cellpadding="0">
+			  <tr> 
+				<td width="174"><img src="/images/header1.gif" width="172" height="75"></td>
+				<td width="202"><img src="/images/header2.gif" width="372" height="75"></td>
+				<td width="234"><img src="/images/header3.gif" width="232" height="75"></td>
+			  </tr>
+			</table>
+		  </td>
+		</tr>
+		<tr> 
+		  <td width=768> 
+			<table width="776" border="0" cellspacing="0" cellpadding="0">
+			  <tr> 
+				<td width="140" bgcolor="#9C4B4B"> 
+				  <p class="data" align="left">19.10.2000</p>
+				</td>
+				<td bgcolor="#9C4B4B" width="634"> 
+				  <div align="right"><img src="/images/online.gif" width="141" height="18"></div>
+				</td>
+			  </tr>
+			</table>
+		  </td>
+		</tr>
+		<tr> 
+		  <td width=768> 
+			<table width="768" border="0" cellspacing="0" cellpadding="0" bgcolor="#4C5A66">
+			  <tr> 
+				<td width="140" bgcolor="#C9CDD1" valign="top"> 
+				  <table width="100%" border="0" cellspacing="5" cellpadding="0">
+					<tr> 
+					  <td>
+<table border=0 cellspacing=0 cellpadding=0 align="center">
+  <tr>
+    <td>
+<p><b>Разделы:</b><br>
+<img src="/images/vline.gif" width="130" height="4"><br>
+</p>
+<p><img src="/images/dot1.gif" width="9" height="9" hspace="3"><b><a href="/">Главная</a></b><br>
+<img src="/images/vline.gif" width="130" height="4"><br>
+<img src="/images/dot1.gif" width="9" height="9" hspace="3"><b><a href="/html.cgi/about/index.htm">О журнале</b></a><br>
+<img src="/images/vline.gif" width="130" height="4"><br>
+<img src="/images/dot1.gif" width="9" height="9" hspace="3"><b>Тема номера</b><br>
+<img src="/images/vline.gif" width="130" height="4"><br>
+<img src="/images/dot1.gif" width="9" height="9" hspace="3"><b><a href="/html.cgi/arhiv/index.htm">Архив</a></b><br>
+<img src="/images/vline.gif" width="130" height="4"><br>
+<img src="/images/dot1.gif" width="9" height="9" hspace="3"><b><a href="/html.cgi/rubrikator/index.htm">Рубрикатор</a></b><br>
+<img src="/images/vline.gif" width="130" height="4"><br>
+<img src="/images/dot1.gif" width="9" height="9" hspace="3"><a href="http://www.compitech.ru/html.cgi/about/shop.htm"><b>Где купить</b></a>
+<br><img src="/images/vline.gif" width="130" height="4"><br>
+<img src="/images/dot1.gif" width="9" height="9" hspace="3"><a href="#" onclick="javascript: window.open('/reg.html','','toolbar=0,location=0,directories=0,menuBar=0,scrollbars=1,resizable=0,width=500,height=350,left=150,top=150');"><b>Подписка</b></a><br>
+<!-- <img src="/images/vline.gif" width="130" height="4"></p> 
+<p><b>Журнал<br>Схемотехника:</b><br>
+<img src="/images/vline.gif" width="130" height="4"><br>
+</p>
+<p><img src="/images/dot1.gif" width="9" height="9" hspace="3"><b>О журнале</b><br>
+<img src="/images/vline.gif" width="130" height="4"><br>
+<img src="/images/dot1.gif" width="9" height="9" hspace="3"><b><a href="/html.cgi/arhiv_s/index.htm">Архив</a></b><br> -->
+<img src="/images/vline.gif" width="130" height="4"><br>
+</td>
+  </tr>
+</table>
+					  </td>
+					</tr>
+					<tr> 
+					  <td valign="top"> <p>&nbsp;</p>
+						<p> <b>  Поиск:</b><br>
+						<img src="/images/vline.gif" width="130" height="4"><br><br>
+							 <form method ="get" action="http://www.compitech.ru/html.cgi/look.cgi">  
+							 <INPUT NAME="for" size=12>
+				 <input type="Hidden" name="seck" value="html">
+							 <input type="image" border="0" src="/images/ok.gif" width="19" height="11">
+							 </form> 
+							 <a href="http://www.compitech.ru/html.cgi/look_ext.cgi"> расширенный поиск </a>
+							<img src="/images/vline.gif" width="130" height="4"> 
+
+						  </p>
+<form action="http://sub.chipdoc.ru/addsub.php" method="post" name="addsub">
+<input type="hidden" name="fid" value="5">
+<input type="hidden" name="list" value="11">
+Подпишись на новости<br>
+<strong>Редакции</strong><br><br>
+
+<table align="center" cellspacing="0" cellpadding="0" border="0">
+<tr>
+	<td><p class="sub">Имя</td>
+	<td><input type="text" name="uname" size=11 maxlength=50 class="win"></td>
+</tr>
+<tr>
+	<td><p class="sub">E-mail</td>
+	<td><input type="text" name="umail" size=11 maxlength=50 class="win"></td>
+</tr>
+<tr>
+	<td colspan="2" align="center"><input type="submit" value="Подписаться" class="button">
+</form>
+	</td>
+</table>
+<br><br>
+<div align="center">
+
+<script type="text/javascript"><!--
+google_ad_client = "pub-4585385300578666";
+google_ad_width = 120;
+google_ad_height = 90;
+google_ad_format = "120x90_0ads_al_s";
+//2007-03-28: links
+google_ad_channel = "9895613298";
+google_color_border = "FFFFFF";
+google_color_bg = "CCCCCC";
+google_color_link = "0000FF";
+google_color_text = "000000";
+google_color_url = "008000";
+//-->
+</script>
+<script type="text/javascript"
+  src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+
+
+<br><br>
+<a href="http://www.sestudio.ru">комплексное продвижение сайтов Екатеринбург</a>
+<br><br>
+Оптовые поставки источников бесперебойного питания. Импортные <a href="http://www.oc.ru/" target="_blank">источники бесперебойного питания</a>. создание сайтов <a href="http://www.inclouds.ru" target="_blank">на сайте www.inclouds.ru</a>. Мы занимаемся <a href="http://wellsell.ru/" target="_blank">продажей домашних кинотеатров</a> для кинотеатров.<br><br>
+<noindex>
+<!--LiveInternet logo--><a href="http://www.liveinternet.ru/click" target=_blank><img
+src="http://counter.yadro.ru/logo?24.6" border=0
+title="LiveInternet: показано число посетителей за сегодня"
+width=88 height=15></a><!--/LiveInternet-->
+
+<!--bigmir)net TOP 100 Part 2-->
+<script type="text/javascript" language="javascript"><!--
+function BM_Draw(oBM_STAT){
+document.write('<div style="margin:0px;padding:0px;font-size:1px;width:88px;"><div style="background:url(\'http://i.bigmir.net/cnt/samples/diagonal/b60_top.gif\') no-repeat bottom;">&nbsp;</div><div style="font:10px Tahoma;background:url(\'http://i.bigmir.net/cnt/samples/diagonal/b60_center.gif\');"><div style="text-align:center;"><a href="http://www.bigmir.net/" target="_blank" style="color:#0000ab;text-decoration:none;">bigmir<span style="color:#ff0000;">)</span>net</a></div><div style="margin-top:3px;padding: 0px 6px 0px 6px;color:#426ed2;"><div style="float:left;">'+oBM_STAT.hosts+'</div><div style="float:right;">'+oBM_STAT.hits+'</div></div><br clear="all"/></div><div style="background:url(\'http://i.bigmir.net/cnt/samples/diagonal/b60_bottom.gif\') no-repeat top;">&nbsp;</div></div>');
+}
+//--></script>
+<script type="text/javascript" language="javascript" src="http://c.bigmir.net/?s157406&t0&l1&o1"></script>
+<!--bigmir)net TOP 100 Part 2-->
+</noindex>
+</div>
+					  </td>
+					</tr>
+				  </table>
+				</td>
+				<td width="2"><img src="/images/spacer1.gif" width="2" height="18"></td>
+				<td bgcolor="#FFFFFF"  valign="top" width="634"> 
+				  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+					<tr> 
+					  <td><img src="/images/spacer1.gif" width="634" height="2"></td>
+					</tr>
+					<tr> 
+					  <td align="center">
+					  </td>
+					</tr>
+					<tr> 
+					  <td><img src="/images/spacer1.gif" width="634" height="2"></td>
+					</tr>
+				  </table>
+				  <table width="100%" border="0" cellspacing="5" cellpadding="0">
+					<tr> 
+					  <td>
+<div align="center">
+<script type="text/javascript"><!--
+
+
+// Размер шрифтов
+var yandex_ad_fontSize = 1;
+
+// Настройки объявлений Директа
+var yandex_direct_showType = 1;
+var yandex_direct_fontColor = '000000';
+var yandex_direct_BorderColor = 'FBE5C0';
+var yandex_direct_BgColor = 'FFF9F0';
+var yandex_direct_headerBgColor = 'FEEAC7';
+var yandex_direct_titleColor = '0000CC';
+var yandex_direct_siteurlColor = '006600';
+var yandex_direct_linkColor = '0000CC';
+function yandex_direct_print(){ }
+
+var yandex_r = Math.round(Math.random() * 100000);
+document.write('<sc'+'ript type="text/javascript" src="http://an.yandex.ru/code/11598?rnd=' + yandex_r + '&direct-style=1&direct-limit=4&market-limit=0"></'+'sc'+'ript>');
+
+
+//--></script>
+
+<!-- Вставьте эту строчку туда, где планируется показывать рекламный блок Яндекс.Директа -->
+<script type="text/javascript">yandex_direct_print()</script>
+
+
+</div>
+ 
+<strong>Сергей Емец</strong>
+
+<h1 class="titl">Verilog — 
+инструмент разработки цифровых электронных схем</h1>
+
+<strong>Введение</strong><br><br>
+
+<p align="justify">&nbsp;&nbsp;&nbsp;Язык Verilog был разработан фирмой Gateway Design Automaton как внутренний язык симуляции. Cadence приобрела Gateway в 1989 г. и открыла Verilog для общественного использования. В 1995 г. был определен стандарт языка — Verilog LRM (Language Reference Manual), IEEE1364-1995. Таким образом, датой появления языка Verilog следует считать 1995 г. К этому времени уже успел получить широкое распространение другой язык высокого уровня для описания принципиальных схем — VHDL (Very high-speed IC Hardware Description Language), появившийся еще в 1987 г. Несмотря на похожие названия, Verilog HDL и VHDL — различные языки. В статье сравниваются конструкции этих языков, предполагая, что читателю известен VHDL, но данный материал будет также полезен и для начинающих изучение HDL с языка Verilog. По мнению автора, Verilog — достаточно простой язык, сходный с языком программирования С как по синтаксису, так и по «идеологии». Малое количество служебных слов и простота основных конструкций упрощают изучение и позволяют использовать Verilog в целях обучения. Но в то же время это эффективный и специализированный язык. VHDL обладает большей универсальностью и может быть использован не только для описания моделей цифровых электронных схем, но и для других моделей (например, модели экосистемы). Однако из-за своих расширенных возможностей VHDL проигрывает в эффективности и простоте, то есть на описание одной и той же конструкции в Verilog потребуется в 
+3–4 раза меньше символов (ASCII), чем в VHDL.<br>
+&nbsp;&nbsp;&nbsp;В Verilog существуют специфические объекты (UDP, Specify-блоки), не имеющие аналогов в VHDL. Также следует упомянуть стандарт PLI (Program Language Interface), который позволяет включать функции, написанные пользователем (например, на С), в код симулятора. В настоящее время важным недостатком Verilog является отсутствие документации, особенно на русском языке. Данная статья является попыткой улучшить эту ситуацию.<br><br>
+
+<strong>Основы синтаксиса</strong><br><br>
+
+&nbsp;&nbsp;&nbsp;Для иллюстрации примеров будет использоваться Verilog-XL симулятор от Cadence (www.cadence. com). Это наиболее стандартный, если так можно выразиться, симулятор. Существует несколько проектов бесплатных симуляторов Verilog. Автору известны 
+<a href="http://www.flex.com/~jching" target="_blank">Veribest</a> и 
+<a href="http://www.icarus.com/eda/verilog/index.html" target="_blank">Icarus Verilog</a>. Однако в настоящее время данные продукты не являются завершенными, и их работоспособность на больших проектах, полнота и правильность поддержки стандарта являются неудовлетворительными. Но для примеров, рассмотренных в статье, эти программы вполне подходят. Еще одним неприятным моментом является то, что собрать эти симуляторы для работы под Windows автору не удалось (пакеты поставляются в исходном коде и в скомпилированном виде для ОС Solaris и Linux). Большинство производителей также предлагают бесплатные демонстрационные версии симуляторов Verilog. Неплохой список ссылок на страницы с подобным программным обеспечением находится по адресу <a href="http://sal.kachinatech.com/Z/1/index.shtml" target="_blank">http://sal.kachinatech.com/Z/1/index.shtml</a>. Для Windows-платформы весьма популярен <a href="http://www.model.com" target="_blank">ModelSim</a>. Под Linux хорошо зарекомендовал себя <a href="http://www.fintronic.com" target="_blank">finsim </a>, для которого существует и Windows-версия. Также в большинстве современных продуктов, предназначенных для синтеза и верификации проектов на 
+FPGA или ASIC, существует поддержка Verilog HDL и VHDL как для синтеза, так и для симуляции.
+Симуляторы можно условно разбить на две группы: интерпретирующие и компилирующие в «родной код». Так, Verilog-XL является интерпретирующим симулятором, NC-Verilog — компилирующим, а finsim может работать как в том, так и в другом режиме. Для работы компилирующих симуляторов обычно требуется, чтобы в системе был установлен С-компилятор.<br>
+&nbsp;&nbsp;&nbsp;Запуск симулятора может производиться из командной строки или из графической оболочки, которая формирует строку для запуска. Часть параметров, передаваемая в командной строке, уникальна для конкретного симулятора, но есть основной стандартный набор. Так, вызов симулятора со списком файлов вызовет их исполнение (Verilog Test.V Modul.V). Список файлов можно поместить в отдельный файл и вызывать симулятор с опцией -f (Verilog -f FileList).<br>
+&nbsp;&nbsp;&nbsp;Все приводимые в тексте статьи примеры можно загрузить по адресу <a href="http://chat.ru/ ~verilog_intro" target="_blank">http://chat.ru/ ~verilog_intro</a>.
+Внимание: данное описание не является полным изложением синтаксиса языка; в статье рассмотрены только основные конструкции, необходимые для понимания структуры и принципов языка.<br><br>
+
+<strong>Типы данных</strong><br><br>
+
+&nbsp;&nbsp;&nbsp;Verilog поддерживает следующие «стандартные» типы данных: целое — integer (32-битовое со знаком) и real — число с плавающей точкой.<br>
+&nbsp;&nbsp;&nbsp;Для моделирования также используются time (время), специфический тип, применяемый встроенными функциями для моделирования времени, обычно 64-битовое целое; event (событие) — в языке существует ряд операторов и конструкций для работы с событиями.<br>
+&nbsp;&nbsp;&nbsp;Создавать свои типы данных, как в VHDL, нельзя. При разработке синтезируемых моделей из перечисленных типов используется только integer.<br>
+&nbsp;&nbsp;&nbsp;Сигналы, в отличие от VHDL, бывают двух основных типов: «цепи» и «регистры». Самые распространенные из них описываются ключевыми словами wire и reg соответственно. Однако следует помнить, что средство синтеза не всегда реализует reg в виде триггера. Отличие wire от reg состоит в том, что reg способен сохранять присвоенное значение (работает как переменная в языках программирования), а к wire требуется прилагать непрерывное воздействие (driver). То есть wire моделирует провод, который переходит в неопределенное состояние при отключении драйвера.<br> &nbsp;&nbsp;&nbsp;Существуют также wand, wor, tri0, tri1, triand, trior и trireg (это цепь, а не регистр!) для моделирования различных типов цепей (wand — wired and, tri0 — резистор к 0, trireg — емкость и т. п.), но такие цепи встречаются редко и потому в статье не рассматриваются.<br>
+&nbsp;&nbsp;&nbsp;Идентификаторы в Verilog являются чувствительными к регистру написания и подчиняются обычным правилам: не могут начинаться с цифры или знака $ и могут содержать буквы, цифры, «$», «_». Существуют так называемые escaped-идентификаторы (в основном в структурных моделях, полученных после синтеза), которые начинаются с «\», содержат любые символы и заканчиваются пробелом или переводом строки.<br><br>
+
+Пример:<br><br>
+
+<font size="-1">// — это комментарий<br>
+/* — и это комментарий<br>
+*/<br>
+integer i, j, k;   // объявление переменных i, j и k типа integer<br>
+time start, duration;<br>
+real freq_div;<br>
+event start_process;<br>
+/* далее следуют объявления<br>
+однобитовых сигналов */<br>
+wire a, b, c;<br>
+wire d;<br>
+reg store, ff, A;  // reg A не совпадает с wire a (case sensitive vs VHDL)<br>
+reg \dut/cntr/reg_s ; // escaped идентификатор (пробел перед «;»)</font>
+<br><br>
+
+&nbsp;&nbsp;&nbsp;Для описания шин или регистров неединичной ширины используются диапазоны (range) вида [n:m], где m и n — целые числа или параметры. В языке допускается как m>n, так и наоборот. Но это имеет значение в операциях, для которых важен порядок битов (например, сложение или присвоение целого). Поэтому принято располагать индексы в убывающем порядке:<br><br>
+
+<font size="-1">wire [7:0] data_bus;<br>
+reg [3:0] high_nibble, low_nibble; // два 4-битовых регистра <br>
+reg [0:5] a_reg; // регистр с обратным порядком битов не рекомендуется</font>
+<br><br>
+
+&nbsp;&nbsp;&nbsp;Массивы в Verilog не поддерживаются, но существуют «памяти», собственно одномерный массив или модель памяти:<br><br>
+
+<font size="-1">reg [8:0] Fifo [31:0]; // 32 слова 9-битовой памяти</font><br><br>
+
+&nbsp;&nbsp;&nbsp;В отличие от VHDL в Verilog представление сигналов реализовано в самом языке (а не в библиотеке). Всего существуют четыре типа значений, которые могут принимать сигналы «цепь» и «регистр»: 0, 1, z, x. Первые три соответствуют логическим уровням и состоянию с высоким импедансом. Четвертый (х) означает неопределенное состояние и используется при моделировании неинициализированных сигналов, конфликтов (два выхода с противоположными состояниями соединены вместе), метастабильных состояний триггеров (при нарушении временных соотношений между входами данных и тактовым входом), иными словами, во всех случаях, когда симулятор не может определить значение данного сигнала. В реальном приборе такого сигнала, конечно, не бывает.<br>
+&nbsp;&nbsp;&nbsp;Для записи многоразрядных сигналов (констант) используются следующие конструкции: 1'bz — одноразрядный высокоимпедансный сигнал, 10'd1_000 — десятиразрядное число 1000, записанное в десятичной системе (символ «_» игнорируется), 4'bx01z — четырехразрядный сигнал с неопределенным старшим битом, высокоимпедансным младшим и вторым и третьим, равными 1 и 0 соответственно. То есть запись многоразрядного сигнала представляет собой разрядность, одинарную кавычку «'» (не путать с апострофом «`», использующимся в директивах), основание системы счисления (b, o, d, h) и цифры, использующиеся в данной системе счисления. В двоичной системе допустимо использование символов z и x. Символ подчеркивания служит для облегчения записи и игнорируется. Использование констант без указания разрядности не желательно, так как по умолчанию константа воспринимается с длиной 32 бита. Данные типа integer также могут присваиваться регистрам.<br><br>
+
+<strong>Структурное описание</strong><br><br>
+
+&nbsp;&nbsp;&nbsp;Основной структурной единицей Verilog описания является module. Модуль соответствует entity в VHDL. Модуль описывается ключевыми словами module — endmodule. В файле может быть описано несколько модулей. Другие модули могут подключаться к цепям модуля, образуя иерархическую структуру. При запуске Verilog симулятор строит иерархическое дерево из всех модулей, которые обнаружены в файлах, поданных на вход симулятора, и находит модуль верхнего уровня. Если таких модулей несколько, то происходит ошибка. Как правило, модуль содержит список портов — интерфейсных сигналов, которые служат для подключения его в других модулях. Порты бывают трех типов input — входы, output — выходы, inout — двунаправленные. Входы и двунаправленные порты должны иметь тип wire, а выходы могут быть как wire, так и reg. <br>
+&nbsp;&nbsp;&nbsp;Синтаксис модуля рассмотрим на примере накопительного сумматора:<br><br>
+
+<font size="-1">module NCO (FC, CO, C); // имя модуля и список портов<br>
+input FC, C;	// входы<br>
+output CO;	// выход<br>
+// описание используемых сигналов<br>
+wire [3:0] FC;<br>
+wire C; // не обязательно, так как по умолчанию вход является однобитовым проводом<br>
+reg [3:0] acc;<br>
+reg CO;<br>
+// описание поведения системы<br>
+initial<br>
+ begin<br>
+ acc=0;<br>
+ CO=0;<br>
+ end<br>
+always @(posedge C)	// событие — фронт С<br>
+	{CO,acc}={CO, acc}+FO;<br>
+endmodule</font>
+<br><br>
+
+&nbsp;&nbsp;&nbsp;Модуль NCO не включает в себя другие модули и является модулем нижнего уровня иерархии. В модуле присутствуют две «поведенческие» конструкции: initial и always. Initial служит для описания действий, которые выполняются один раз (при запуске модели), а always обозначает действия, которые выполняются постоянно. Ключевые слова begin/end имеют такое же значение, как в процедурном языке Паскаль (соответствуют {} в С). Для того чтобы always имело смысл, используется событийный контроль — конструкция @(posedge C), означает «по положительному фронту сигнала С». То есть операция {CO,acc}={CO,acc}+FO выполняется по каждому положительному фронту С. Фигурные скобки обозначают объединение сигналов с различными именами в шину. Объединение может находиться как слева, так и справа от знака «=» в операции присвоения.<br>
+&nbsp;&nbsp;&nbsp;В качестве простейшего модуля верхнего уровня (который можно исполнить на симуляторе) возьмем пример, использующийся при описании процедурных языков:<br><br>
+
+<font size="-1">module hello_word;	// интерфейсные порты отсутствуют<br>
+initial<br>
+     $display(«HELLO, WORLD !!!»);  // вызов системной функции<br>
+endmodule<br>
+После запуска симулятора должно получиться приблизительно следующее:<br>
+Highest level modules:<br>
+hello_word<br>
+ HELLO, WORLD!!!<br>
+0 simulation events</font>
+<br><br>
+
+&nbsp;&nbsp;&nbsp;В данном примере была использована системная функция $display, которая используется для печати либо форматированной строки (как функция printf из библиотеки stdio в языке C), либо своих аргументов (как writeln в Паскале). Все системные функции и функции, написанные пользователем и подключенные через PLI-интерфейс, начинаются со знака $.<br>
+&nbsp;&nbsp;&nbsp;Немного забегая вперед, следует сказать, что язык Verilog (так же, как и VHDL) изначально предназначался для моделирования и средства синтеза появились позже. Поэтому часть конструкций языка не поддерживается синтезом. Одной из таких конструкций является initial. Для того чтобы осуществить начальную инициализацию, в синтезируемой модели следует предусмотреть специальный сигнал сброса.<br><br>
+
+<font size="-1">module NCO_syn (FC, CO, C, Rst);  // имя модуля и список портов<br>
+input FC, C, Rst;  // входы<br>
+output CO;	// выход<br>
+// описание используемых сигналов<br>
+wire [3:0] FC;<br>
+wire C, Rst; // не обязательно, так как по умолчанию вход является однобитным проводом<br>
+reg [3:0] acc;<br>
+reg CO;<br>
+// описание поведения системы<br>
+always @(posedge C or posedge Rst)  // событие — фронт С или Rst<br>
+ if (Rst)<br>
+ {CO,acc}=5'b0;<br>
+ else<br>
+ {CO,acc}={CO, acc}+FO;<br>
+endmodule</font>
+<br><br>
+
+&nbsp;&nbsp;&nbsp;В данном примере добавлена процедурная конструкция if. Как можно видеть, она подобна конструкции if в языке C, нулевое значение в скобках соответствует false, ненулевое — true. Подробно о процедурных конструкциях будет рассказано позже, но следует заметить, что если в скобках стоит выражение, имеющее после вычисления биты со значением z или х, то выполняется ветвь else.<br>
+&nbsp;&nbsp;&nbsp;Для проверки работоспособности модуля используются испытательные стенды (testbench). Это модуль верхнего уровня, в котором могут использоваться несинтезируемые конструкции (initial) и типы данных (event, time, real). Также испытательные стенды содержат системные функции для вывода информации ($display, $write, $monitor), записи файлов изменения сигналов (vcd — value change dump) для последующего анализа, исследования статистических свойств сигналов и т. п.<br>
+&nbsp;&nbsp;&nbsp;Предположим, что модуль NCO будет использоваться для генерации частот 33 и 
+40 МГц при тактовой частоте 100 МГц. Для этого в накопительный сумматор на вход FC (frequency code) следует подать 11 и 13 соответственно. При этом полученные частоты будут 34,375 МГц (ошибка 1,375 МГц) и 40,9125 МГц (ошибка 0,9125 МГц), что, предположим, и требуется. В модуле testbench будут использоваться временные задержки — конструкции вида #NN, где NN — время в наносекундах.<br> &nbsp;&nbsp;&nbsp;Более подробно различные виды задержек (delay) будут рассмотрены ниже. Оба модуля (NCO и testbench) могут быть записаны либо в один, либо в разные файлы.<br><br>
+
+<font size="-1">`timescale 1ns/10ps   //директива симулятора — установка шага времени<br> (необязательно, так как 1ns/10ps — значения по умолчанию)<br>
+module testbench;<br>
+// объявление сигналов<br>
+reg clk, rst;<br>
+reg [3:0] fc1,fc2<br>
+wire f1, f2;<br>
+// объявление переменных<br>
+integer clk_cnt, f1_cnt, f2_cnt;<br>
+real ratio;<br>
+//построение иерархии<br>
+NCO_syn nco1(.Rst(rst), .C(clk), .FC(fc1), .CO(f1));  //подключение по имени<br>
+NCO_syn nco2(fc2, f2, clk, rst);  //подключение по расположению<br>
+initial <br>
+ begin<br>
+ clk=0;<br>
+ rst=0;<br>
+ fc1=4'd11;<br>
+ fc2=4'd13;<br>
+ clk_cnt=0;<br>
+ f1_cnt=0;<br>
+ f2_cnt=0;<br>
+ end<br>
+always #5 clk=~clk;  // генератор тактовой частоты 100 МГц<br>
+// управление<br>
+initial<br>
+ #1 rst=1'b1;  // формирование сброса<br>
+ #2 rst=1'b0;<br>
+ #1200;  //время симуляции<br>
+ $display(«toggle: clk «, clk_cnt, « , f1 «, f1_cnt, « , f2», f2_cnt); //вывод результатов<br>
+ ratio=100.0*$itor(f1_cnt)/$itor(clk_cnt);	// $itor — преобразование integer в real<br>
+ $write(«freqv @ clk=100MHz f1=%f», ratio);<br>
+ ratio=100.0*$itor(f2_cnt)/$itor(clk_cnt);<br>
+ $display(« f2=%f», ratio); <br>
+ $finish;	// завершение симуляции<br>
+end<br>
+// сбор статистики<br>
+always @(posedge clk)<br>
+	clk_cnt=clk_cnt+1;<br>
+always @(posedge f1)<br>
+	f1_cnt=f1_cnt+1;<br>
+always @(posedge f2)<br>
+	f2_cnt=f2_cnt+1;<br>
+//два метода индикации (выбрать один, чтобы не засорять выход)<br>
+// 1<br>
+// печатает при изменении одного из сигналов<br>
+//initial $monitor(«Time %t clk %b rst %b f1 %b f2 %b»,$time,clk,rst,f1,f2);<br>
+// 2<br>
+//печатает по срезу clk<br>
+always @(negedge clk) $write(«Time %t clk %b rst %b f1 %b f2 %b \n», $time, clk, rst, f1, f2);<br>
+endmodule.</font>
+<br><br>
+
+&nbsp;&nbsp;&nbsp;Как можно видеть из приведенного примера, блоков initial и always может быть сколько угодно, исполнение происходит одновременно (о том, как работает симулятор, будет рассказано при рассмотрении операции присваивания). Порядок исполнения различных конструкций определяется только по времени исполнения.<br>
+&nbsp;&nbsp;&nbsp;Построение иерархии (подключение модулей) возможно двумя способами: по имени (указываются имена портов, использованные при описании модуля) или по расположению (порядок сигналов такой же, как в описании модуля).<br>
+&nbsp;&nbsp;&nbsp;После запуска со вторым вариантом печати будет выдано следующее:<br><br>
+
+<font size="-1">Compiling source file «testbench.v»<br>
+Compiling source file «nco.v»<br>
+Highest level modules:<br>
+testbench<br>
+Time 1000 clk 0 rst 0 f1 0 f2 0 <br>
+Time 2000 clk 0 rst 0 f1 1 f2 1 <br>
+Time 3000 clk 0 rst 0 f1 0 f2 0 <br>
+Time 4000 clk 0 rst 0 f1 0 f2 1 <br>
+Time 5000 clk 0 rst 0 f1 1 f2 0 <br>
+Time 6000 clk 0 rst 0 f1 0 f2 0 <br>
+Time 7000 clk 0 rst 0 f1 0 f2 1 <br>
+Time 8000 clk 0 rst 0 f1 1 f2 0 <br>
+Time 9000 clk 0 rst 0 f1 0 f2 1<br>
+[…]<br>
+Time 118000 clk 0 rst 0 f1 1 f2 1 <br>
+Time 119000 clk 0 rst 0 f1 1 f2 0 <br>
+Time 120000 clk 0 rst 0 f1 0 f2 1 <br>
+toggle: clk 120 , f1 41 , f2 49<br>
+freqv @ clk=100MHz f1=34.166667 f2=40.833333<br>
+L41 «testbench.v»: $finish at simulation time 120300</font>
+<br><br>
+
+&nbsp;&nbsp;&nbsp;Время измеряется в единицах, заданных вторым параметром директивы timescale (10 ps), и, соответственно, time 7000 означает 70 нс после старта симуляции. Общее время симуляции составило 1+2+1200=1203 нс. Размерность временных параметров, задаваемых в исходном коде модуля, определяется первым параметром директивы timescale (1 нс).<br>
+&nbsp;&nbsp;&nbsp;Вычисленные значения f1 и f2 отличаются от полученных моделированием. При увеличении длины выборки (времени моделирования) разница будет уменьшаться.	 <br><br>
+  
+<em>Продолжение следует</em>
+<br><br>
+
+
+
+<p align="right"><a href="mailto:yemets@javad.ru">yemets@javad.ru</a>
+
+
+
+<hr>
+<div align="center">
+<script type="text/javascript"><!--
+google_ad_client = "pub-4585385300578666";
+google_ad_width = 468;
+google_ad_height = 60;
+google_ad_format = "468x60_as";
+google_ad_type = "text_image";
+google_ad_channel ="2247381549";
+google_color_border = "FFFFFF";
+google_color_bg = "FFFFFF";
+google_color_link = "0000FF";
+google_color_url = "008000";
+google_color_text = "000000";
+//--></script>
+<script type="text/javascript"
+  src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div>
+						</td>
+					</tr>
+				  </table>
+				  <table width="100%" border="0" cellspacing="4" cellpadding="0">
+					<tr> 
+					  <td><img src="/images/spacer1.gif" width="626" height="2"></td>
+					</tr>
+					<tr> 
+					  <td> 
+<p class="pe">Статьи по: <a href="/html.cgi/rubrikator/micros.htm">ARM PIC AVR MSP430</a>, <a href="/html.cgi/rubrikator/processor.htm">DSP</a>, <a href="/html.cgi/rubrikator/priem.htm">RF компоненты</a>, <a href="/html.cgi/rubrikator/trans.htm">Преобразование и коммутация речевых сигналов</a>, <a href="/html.cgi/rubrikator/analog.htm">Аналоговая техника, ADC, DAC</a>, <a href="/html.cgi/rubrikator/logic.htm">PLD, FPGA</a>, <a href="/html.cgi/rubrikator/force.htm">MOSFET, IGBT</a>, <a href="/html.cgi/rubrikator/discrete.htm">Дискретные полупрoводниковые приборы. Sensor</a>, <a href="/html.cgi/rubrikator/design.htm">Проектирование и технология</a>, <a href="/html.cgi/rubrikator/opto.htm">LCD, LCM, LED. Оптоэлектроника и ВОЛС</a>, <a href="/html.cgi/rubrikator/distr.htm">Дистрибуция электронных компонентов</a>, <a href="/html.cgi/rubrikator/obor.htm">Оборудование и измерительная техника</a>, <a href="/html.cgi/rubrikator/passive.htm">Пассивные элементы и коммутационные устройства</a>, <a href="/html.cgi/rubrikator/sistems.htm">Системы идентификации и защиты информации</a>, <a href="/html.cgi/rubrikator/korpus.htm">Корпуса</a>, <a href="/html.cgi/rubrikator/plati.htm">Печатные платы</a>
+					  </td>
+					</tr>
+					<tr> 
+					  <td><img src="/images/spacer1.gif" width="626" height="2"></td>
+					</tr>
+				  </table>
+				</td>
+			  </tr>
+			</table>
+		  </td>
+		</tr>
+		<tr> 
+		  <td width=768> 
+			<table width="776" border="0" cellspacing="0" cellpadding="0">
+			  <tr> 
+				<td width="140" bgcolor="#9C4B4B"> 
+				  <p class="data" align="left"><a href="mailto:web@chipdoc.ru"><img src="/images/email.gif" width="9" height="9" hspace="5" border="0"></a><a href="#top"><img src="/images/top.gif" width="9" height="9" border="0"></a></p>
+				</td>
+				<td bgcolor="#9C4B4B" width="634"> 
+				  <p class="copy" align="right">Design by <noindex><a href="http://www.gaw.ru" target="_blank"><font color="#FFFFFF">GAW.RU<img src="/images/copy.gif" width="9" height="9" hspace="5" border="0"></a></noindex></p>
+				</td>
+			  </tr>
+			</table>
+		  </td>
+		</tr>
+	  </table>
+	</td>
+	<td width="2" bgcolor="#4C5A66"><img src="/images/spacer.gif" width="2" height="2"></td>
+  </tr>
+</table>
+</body>
+</html>
+
+</html>
+

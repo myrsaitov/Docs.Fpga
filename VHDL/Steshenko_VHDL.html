@@ -1,0 +1,1329 @@
+<html>
+<HEAD><TITLE>СМ5  :  Глава 4. Язык описания аппаратуры VHDL</TITLE>
+<style type="text/css">
+<!--
+A:link { text-decoration: none;  font-weight: bold;}
+A:active { text-decoration: none;  font-weight: bold;}
+A:visited { text-decoration: none;  font-weight: bold;}
+#s0 { font-family:  arial cyr, verdana ; color: #ffffff;   font-size: 10pt; }
+#s1 { font-family: helvetica, arial cyr, verdana ; color: #ffffff;  text-align: center; font-size: 8pt; }
+#na { font-family: helvetica, arial cyr, verdana ; color: #ffffff;  text-align: center; font-size: 8pt;   font-weight: bold; }
+#p1 {  }
+.center {font-family: arial cyr; color: #000000;  text-align: justify; font-size: 10pt;  }
+.my { font-family: verdana, arial cyr; color: #ffffff;  text-align: center; font-size: 8pt; }
+.cr { font-family: arial cyr; color: #000000; font-size: 10pt; }
+.na { font-family: arial cyr; color: #000000; font-size: 11pt; }
+
+.head { font-family: arial, verdana, helvetica; color: #000000;  font-size: 12pt;  line-height: 16pt; font-weight: 200;}
+.body { font-family: arial, verdana, helvetica; color: #000000; text-align: justify; font-size: 10pt; margin-right: 1%; margin-left: 2%; }
+
+.inhead { margin-right: 1%;}
+-->
+</style>
+</HEAD><a name=top> </a>
+<BODY link=#000000 VLINK=#000000 alink=#ffffff text=#000000 bgcolor=#ffffff rightmargin=0 leftmargin=0 topmargin=0 bottommargin=0 marginheight=0 marginwidth=0>
+<MAP NAME="map_up">
+<AREA SHAPE="CIRCLE" COORDS="26, 45, 12" HREF="http://www.sm.bmstu.ru/sm5/n4/oba.html" target=_top>
+<AREA SHAPE="CIRCLE" COORDS="53, 45, 12" HREF="http://www.sm.bmstu.ru/sm5/contents.htm" target=_top>
+<AREA SHAPE="CIRCLE" COORDS="80, 45, 12" HREF="http://www.sm.bmstu.ru/sm5/n4/map.html" target=_top>
+<AREA SHAPE="CIRCLE" COORDS="107, 45, 12" HREF="http://www.sm.bmstu.ru/sm5/n4/copy.html" target=_top>
+<AREA SHAPE="CIRCLE" COORDS="134, 45, 12" HREF="mailto:steshenk@sm.bmstu.ru">
+</MAP>
+<center>
+<TABLE CELLSPACING=0 CELLPADDING=0  BORDER=0  align=center width=750>
+<TR>
+	<TD valign=top background="../i/m5_upbg.gif" WIDTH=182  align=left><IMG SRC="../i/m5logo.gif" hspace=0 vspace=0 WIDTH=182 HEIGHT=70 BORDER=0 align=left></TD>
+	<TD valign=top background="../i/m5_upbg.gif" WIDTH=* align=center><IMG SRC="../i/m5name.gif" hspace=0 vspace=0 WIDTH=272 HEIGHT=59 BORDER=0></TD>
+	<TD valign=top background="../i/m5_upbg.gif"                         align=right><IMG SRC="../i/m5nav_up.gif" hspace=0 vspace=0 WIDTH=161 HEIGHT=70 BORDER=0 align=right  usemap="#map_up"></TD>
+</TR>
+<TR>
+	<TD WIDTH=* colspan=3 background="../i/oba_l_up.gif" >&#160;</TD>
+</TR>
+<TR>
+	<TD  class=head width=* colspan=3 bgcolor=#fff4e5>
+<P  class=inhead ALIGN=RIGHT>
+Глава 4. Язык описания аппаратуры VHDL<br>
+<A HREF="mailto:steshenk@sm.bmstu.ru"><font  size=2>Стешенко В.Б.</font></a></P>
+</P>
+</TD>
+</TR></TABLE>
+<br>
+
+<TABLE CELLSPACING=0 CELLPADDING=0  BORDER=0  align=center width=750>
+<TR>
+	<TD class=body width=750>
+
+
+
+<B>
+<FONT FACE="Times New Roman"><P>4.1.Общие сведения</P>
+</font></B><FONT SIZE=2><P ALIGN="JUSTIFY"></P>
+</FONT><P ALIGN="JUSTIFY"><FONT FACE="Times New Roman" SIZE=2>Языки описания аппаратуры (</font><FONT SIZE=2>Hardware Description Language</FONT><FONT FACE="Times New Roman" SIZE=2>), является формальной записью, которая может быть использована на всех этапах разработки цифровых электронных систем. Это возможно вследствие того, что язык легко воспринимается как машиной, так и человеком он может использоваться на этапах проектирования, верификации, синтеза и тестирования аппаратуры также как и для передачи данных о проекте, модификации и сопровождения. Наиболее универсальным и распространенным языком описания аппаратуры является VHDL. На этом языке возможно как поведенческое, так структурное и потоковое описание цифровых схем.</font></P><P ALIGN="JUSTIFY">
+<FONT FACE="Times New Roman" SIZE=2>Язык </font><FONT SIZE=2>VHDL</FONT><FONT FACE="Times New Roman" SIZE=2> используется во многих системах для моделирования цифровых схем, проектирования программируемых логических интегральных микросхем, базовых матричных кристаллов, заказных интегральных микросхем</font></P><P ALIGN="JUSTIFY">
+<FONT FACE="Times New Roman" SIZE=2>С точки зрения программиста язык </font><FONT SIZE=2>VHDL</FONT><FONT FACE="Times New Roman" SIZE=2> состоит как бы из двух компонент – общеалгоритмической  и проблемно-ориентированной.</font></P><P ALIGN="JUSTIFY">
+<FONT FACE="Times New Roman" SIZE=2>Общеалгоритмическая компонента </font><FONT SIZE=2>VHDL- </FONT><FONT FACE="Times New Roman" SIZE=2>это язык</FONT><FONT SIZE=2>, </FONT><FONT FACE="Times New Roman" SIZE=2>близкий по синтаксису и семантике к современным языкам программирования типа Паскаль</FONT><FONT SIZE=2>, C </FONT><FONT FACE="Times New Roman" SIZE=2>и др. Язык относится к классу строго типизированных. Помимо встроенных (пакет </FONT><FONT SIZE=2>STANDART</FONT><FONT FACE="Times New Roman" SIZE=2>) простых (скалярных) типов данных: целый, вещественный, булевский, битовый, данных типа время, данных типа ссылка (указатель) пользователь может вводить свои типы данных (перечислимый, диапазонный и др.). </font></P><P>
+<FONT FACE="Times New Roman" SIZE=2>Помимо скалярных данных можно использовать агрегаты: массивы </font><FONT SIZE=2>array</FONT><FONT FACE="Times New Roman" SIZE=2>, в том числе и битовые векторы </FONT><FONT SIZE=2>bit_vector</FONT><FONT FACE="Times New Roman" SIZE=2>, и символьные строки </FONT><FONT SIZE=2>string</FONT><FONT FACE="Times New Roman" SIZE=2>, записи </FONT><FONT SIZE=2>record</FONT><FONT FACE="Times New Roman" SIZE=2>, файлы </FONT><FONT SIZE=2>file.</font></P>
+<P><FONT FACE="Times New Roman" SIZE=2>Последовательно выполняемые (последовательные) операторы </font><FONT SIZE=2>VHDL</FONT><FONT FACE="Times New Roman" SIZE=2> могут использоваться в описании процессов, процедур и функций. Их состав включает:</font></P><UL>
+
+<FONT FACE="Times New Roman" SIZE=2>
+<LI>оператор присваивания переменной (:=);</LI>
+</font><LI><FONT FACE="Times New Roman" SIZE=2>последовательный оператор назначения сигналу (</font><FONT SIZE=2>&lt;=);</font></LI>
+<LI><FONT FACE="Times New Roman" SIZE=2>последовательный оператор утверждения (</font><FONT SIZE=2>assert);</font></LI>
+<LI><FONT FACE="Times New Roman" SIZE=2>условный (</font><FONT SIZE=2>if);</font></LI>
+<LI><FONT FACE="Times New Roman" SIZE=2>выбора (</font><FONT SIZE=2>case);</font></LI>
+<LI><FONT FACE="Times New Roman" SIZE=2>цикла (</font><FONT SIZE=2>loop);</font></LI>
+<LI><FONT FACE="Times New Roman" SIZE=2>пустой оператор (</font><FONT SIZE=2>null);</font></LI>
+<LI><FONT FACE="Times New Roman" SIZE=2>оператор возврата процедуры- функции (</font><FONT SIZE=2>return);</font></LI>
+<FONT FACE="Times New Roman" SIZE=2><LI>оператор последовательного вызова процедуры.</LI></font></UL><P>
+
+<FONT FACE="Times New Roman" SIZE=2>Язык поддерживает концепции пакетного и структурного программирования. Сложные операторы заключены в операторные скобки:</font><FONT SIZE=2> if- end if; process- end process; case- end case; loop- end loop</FONT><FONT FACE="Times New Roman" SIZE=2> и т. д. </font></P><FONT FACE="Times New Roman" SIZE=2>
+<P>Различаются локальные и глобальные переменные. Область “видимости” локальных переменных ограничена пределами блока (процессного, процедурного, оператора блока, оператора описания архитектуры).</P>
+</FONT><P><FONT FACE="Times New Roman" SIZE=2>Фрагменты описаний, которые могут независимо анализироваться компилятором  и при отсутствии ошибок помещаться в библиотеку проекта (рабочую библиотеку </font><FONT SIZE=2>Work</FONT><FONT FACE="Times New Roman" SIZE=2>),называются проектными пакетами </FONT><FONT SIZE=2>design unit</FONT><FONT FACE="Times New Roman" SIZE=2>. Такими пакетами могут быть объявление интерфейса объекта проекта </FONT><FONT SIZE=2>entity</FONT><FONT FACE="Times New Roman" SIZE=2>, объявление архитектуры </FONT><FONT SIZE=2>architecture</FONT><FONT FACE="Times New Roman" SIZE=2>, объявление конфигурации </FONT><FONT SIZE=2>configuration</FONT><FONT FACE="Times New Roman" SIZE=2>, объявление интерфейса пакета </FONT><FONT SIZE=2>package</FONT><FONT FACE="Times New Roman" SIZE=2> и объявление тела пакета </FONT><FONT SIZE=2>package body.</font></P>
+<P><FONT FACE="Times New Roman" SIZE=2>Модули проекта, в свою очередь, можно разбить на две категории: первичные и вторичные. К первичным пакетам относятся объявления пакета, объекта проекта, конфигурации. К вторичным- объявление архитектуры, тела пакета. Один или несколько модулей проекта могут быть помещены в один файл, называемый файлом проекта (</font><FONT SIZE=2>design file).</font></P>
+<P><FONT FACE="Times New Roman" SIZE=2>Каждый проанализированный модуль проекта помещается в библиотеку проекта (</font><FONT SIZE=2>design library)</FONT><FONT FACE="Times New Roman" SIZE=2> и становится библиотечным модулем (</FONT><FONT SIZE=2>library unit).</font></P>
+<P><FONT FACE="Times New Roman" SIZE=2>Каждая библиотека проекта в языке </font><FONT SIZE=2>VHDL </FONT><FONT FACE="Times New Roman" SIZE=2>имеет логическое имя (идентификатор).</font></P><P>
+<FONT FACE="Times New Roman" SIZE=2>По отношению к сеансу работы с </font><FONT SIZE=2>VHDL</FONT><FONT FACE="Times New Roman" SIZE=2>- системой существует два класса рабочих библиотек проекта: рабочие библиотеки и библиотеки ресурсов.</font></P><P>
+<FONT FACE="Times New Roman" SIZE=2>Рабочая библиотека- это библиотека </font><FONT SIZE=2>WORK</FONT><FONT FACE="Times New Roman" SIZE=2>, с которой в данном сеансе работает пользователь и в которую помещается пакет, полученный в результате анализа пакета проекта.</font></P><FONT FACE="Times New Roman" SIZE=2>
+<P>Библиотека ресурсов - это библиотека, содержащая библиотечные модули, ссылка на которые имеется в анализируемом модуле проекта.</P>
+<P> В каждый конкретный момент времени пользователь работает с одной рабочей библиотекой и произвольным количеством библиотек ресурсов.</P>
+<P>Модули, как и в обычных алгоритмических языках, - это средство выделения из ряда программ и подпрограмм общих типов данных, переменных, процедур и функций, позволяющее упростить, в частности, процесс их замены.</P>
+</FONT><P><FONT FACE="Times New Roman" SIZE=2>Так же, как в описаниях проектируемых систем разделяются описания интерфейсов и тел, в </font><FONT SIZE=2>VHDL</FONT><FONT FACE="Times New Roman" SIZE=2> у пакета разделяются описание интерфейса и тела пакета. По умолчанию предусмотрено подключение стандартных пакетов </FONT><FONT SIZE=2>STANDART</FONT><FONT FACE="Times New Roman" SIZE=2> и </FONT><FONT SIZE=2>TEXT 10</FONT><FONT FACE="Times New Roman" SIZE=2>. Пакет </FONT><FONT SIZE=2>STANDART</FONT><FONT FACE="Times New Roman" SIZE=2>, в частности, содержит описание булевских операций над битовыми данными и битовыми векторами. Нестандартные пакеты реализуются пользователями, желающими более точно отобразить свойства описываемых ими объектов. Например, можно в пользовательском пакете переопределить логические операции И, ИЛИ и НЕ и перейти от булевского (0, 1) к многозначному (1, 0, </FONT><FONT SIZE=2>X? Z)</FONT><FONT FACE="Times New Roman" SIZE=2> алфавиту моделирования.</font></P>
+<FONT SIZE=2>
+</FONT><FONT FACE="Times New Roman" SIZE=2><P>Проблемно- ориентированная компонента позволяет описывать цифровые системы в привычных, разработчику понятиях и терминах. Сюда можно отнести: </P>
+
+</FONT><UL><LI>
+<FONT FACE="Times New Roman" SIZE=2>понятие модельного времени </font><FONT SIZE=2>now.</font></LI>
+<LI><FONT FACE="Times New Roman" SIZE=2>данные типа </font><FONT SIZE=2>time</FONT><FONT FACE="Times New Roman" SIZE=2>, позволяющие указывать время задержки в физических единицах</font></LI><LI>
+<FONT FACE="Times New Roman" SIZE=2>данные вида сигнал </font><FONT SIZE=2>signal</FONT><FONT FACE="Times New Roman" SIZE=2>, значение которых изменяется не мгновенно, как у обычных переменных, а с указанной задержкой, а также специальные операции и функции над ними</font></LI><LI>
+<FONT FACE="Times New Roman" SIZE=2>Средства объявления объектов </font><FONT SIZE=2>entity</FONT><FONT FACE="Times New Roman" SIZE=2> и их архитектур </FONT><FONT SIZE=2>architecture.</font></LI></UL>
+
+
+<P><FONT FACE="Times New Roman" SIZE=2>Если говорить про операторную часть проблемно- ориентированной компоненты, то условно ее можно разделить на средства поведенческого описания аппаратуры (параллельные процессы и средства их взаимодействия); средства потокового описания (описание на уровне межрегистровых передач) – параллельные операторы назначения сигнала (</font><FONT SIZE=2>&lt;=</FONT><FONT FACE="Times New Roman" SIZE=2>) с транспортной </FONT><FONT SIZE=2>transport </FONT><FONT FACE="Times New Roman" SIZE=2>или инерциальной задержкой передачи сигналов и средства структурного описания объектов (операторы конкретизации компонент с заданием карт портов </FONT><FONT SIZE=2>port map</FONT><FONT FACE="Times New Roman" SIZE=2> и карт настройки </FONT><FONT SIZE=2>generic map</FONT><FONT FACE="Times New Roman" SIZE=2>, объявление конфигурации и т. д.).</font></P><P>
+<FONT FACE="Times New Roman" SIZE=2>Параллельные операторы </font><FONT SIZE=2>VHDL</FONT><FONT FACE="Times New Roman" SIZE=2> включают:</font></P><UL>
+
+<LI>
+<FONT FACE="Times New Roman" SIZE=2>оператор процесса </font><FONT SIZE=2>process;</font></LI>
+<LI><FONT FACE="Times New Roman" SIZE=2>оператор блока </font><FONT SIZE=2>block;</font></LI>
+<LI><FONT FACE="Times New Roman" SIZE=2>параллельный оператор назначения сигналу </font><FONT SIZE=2>&lt;=;</font></LI>
+<LI><FONT FACE="Times New Roman" SIZE=2>оператор условного назначения сигналу </font><FONT SIZE=2>when;</font></LI>
+<LI><FONT FACE="Times New Roman" SIZE=2>оператор селективного назначения сигналу </font><FONT SIZE=2>select;</font></LI>
+<LI><FONT FACE="Times New Roman" SIZE=2>параллельный оператор утверждения</font><FONT SIZE=2> assert;</font></LI>
+<FONT FACE="Times New Roman" SIZE=2><LI>параллельный оператор вызова процедуры;</LI>
+</FONT><LI><FONT FACE="Times New Roman" SIZE=2>оператор конкретизации компоненты </font><FONT SIZE=2>port map;</font></LI>
+<LI><FONT FACE="Times New Roman" SIZE=2>оператор генерации конкретизации </font><FONT SIZE=2>generate;</font></LI></UL>
+
+
+<FONT FACE="Times New Roman" SIZE=2><P>Как видно из этого перечня, последовательные и параллельные операции назначения, вызова процедуры и утверждения различаются контекстно, то есть внутри процессов и процедур они последовательные, вне- параллельные.</P>
+</FONT><P><FONT FACE="Times New Roman" SIZE=2>Базовым элементом описания систем на языке </font><FONT SIZE=2>VHDL</FONT><FONT FACE="Times New Roman" SIZE=2> является блок. Блок содержит раздел описаний данных и раздел параллельно исполняемых операторов. Частным случаем блока является описание архитектуры объекта. В рамках описания архитектуры могут использоваться внутренние, вложенные блоки. Наряду со всеми преимуществами блочной структуры программы и ее соответствия естественному иерархическому представлению структуры проекта операторы блока языка </FONT><FONT SIZE=2>VHDL</FONT><FONT FACE="Times New Roman" SIZE=2> позволяют устанавливать,  условия охраны (запреты) входа в блок. Только при истинности значения охранного выражения управление передается в блок и инициирует выполнение операторов его тела.</font></P>
+<FONT SIZE=2>
+</FONT><B><FONT FACE="Times New Roman"><P>4.2. Алфавит языка</P>
+</font></B><FONT SIZE=2>
+</FONT><FONT FACE="Times New Roman" SIZE=2><P ALIGN="JUSTIFY">Как и любой другой язык программирования, VHDL имеет свой алфавит – набор символов, разрешенных к использованию и воспринимаемых компилятором. В алфавит языка входят:</P>
+<OL>
+
+<P ALIGN="JUSTIFY"><LI>Латинские строчные и прописные буквы:</LI><p></P>
+<P ALIGN="CENTER">A, B, . . . , Z и a, b, . . . , z</P>
+<P ALIGN="JUSTIFY"><LI>Цифры от 0 до 9.</LI><p></P>
+<P ALIGN="JUSTIFY"><LI>Символ подчеркивания “_” (код ASCII номер 95).</LI><p></P></OL>
+
+<P ALIGN="JUSTIFY">Из символов, перечисленных в пп.1–3 (и только из них!) могут конструироваться идентификаторы в программе. Кроме того, написание идентификаторов должно подчиняться следующим правилам:</P>
+
+<UL>
+<LI>идентификатор не может быть зарезервированным словом языка;</LI>
+<LI>идентификатор должен начинаться с буквы;</LI>
+<LI>идентификатор не может заканчиваться символом подчеркивания “_”;</LI>
+<LI>идентификатор не может содержать двух последовательных символов подчеркивания “__”;</LI></UL>
+
+<P ALIGN="JUSTIFY">Примеры корректных идентификаторов:</P>
+</FONT><FONT SIZE=2><P ALIGN="CENTER">cont, clock2, full_add</P>
+</FONT><FONT FACE="Times New Roman" SIZE=2><P ALIGN="JUSTIFY">Примеры некорректных идентификаторов:</P>
+</FONT><FONT SIZE=2><P ALIGN="CENTER">1clock, _adder, add__sub, entity</P>
+</FONT><FONT FACE="Times New Roman" SIZE=2><P ALIGN="JUSTIFY">Следует отметить что прописные и строчные буквы не различаются, т.е. идентификаторы clock и CLOCK являются эквивалентными.</P>
+</FONT><OL><FONT FACE="Times New Roman" SIZE=2>
+
+<P ALIGN="JUSTIFY"><LI>Символ “пробел” (код 32), символ табуляции (код 9), символ новой строки (коды 10 и 13).</LI><p></P>
+<P ALIGN="JUSTIFY">Данные символы являются разделителями слов в конструкциях языка. Количество разделителей не имеет значения. Т.о. следующие выражения для компилятора будут эквивалентны:</P>
+</font><FONT FACE="Courier New" SIZE=2><P ALIGN="JUSTIFY">count:=2+2;</P>
+<P ALIGN="JUSTIFY">count := 2 + 2  ;</P>
+<P ALIGN="JUSTIFY">count :=&#9;2</P>
+<P ALIGN="JUSTIFY">&#9;+</P>
+<P ALIGN="JUSTIFY">&#9;2;</P>
+</FONT><FONT FACE="Times New Roman" SIZE=2><P ALIGN="JUSTIFY"><LI>Специальные символы, участвующие в построении конструкций языка:</LI><p></P>
+</FONT><FONT SIZE=2><P ALIGN="CENTER">+ – * / = &lt; &gt; . , ( ) : ; # ' " |</P>
+</FONT><FONT FACE="Times New Roman" SIZE=2><P ALIGN="JUSTIFY"><LI>Составные символы, воспринимаемые компилятором как один символ:</LI><p></P></font></OL>
+
+<FONT SIZE=2><P ALIGN="CENTER">&lt;= &gt;= =&gt; := /=</P>
+</FONT><FONT FACE="Times New Roman" SIZE=2><P ALIGN="JUSTIFY">Разделители между элементами составных символов недопустимы.</P>
+</FONT><FONT SIZE=2>
+</FONT><B><FONT FACE="Times New Roman"><P>4.2.1.Комментарии</P>
+</font></B><P ALIGN="JUSTIFY"><FONT FACE="Times New Roman" SIZE=2>Признаком комментария являются два символа тире ("</font><FONT SIZE=2>––").</FONT><FONT FACE="Times New Roman" SIZE=2> Компилятор игнорирует текст начиная с символов "</FONT><FONT SIZE=2>––</FONT><FONT FACE="Times New Roman" SIZE=2>" до конца строки, т.е. комментарий может включать в себя символы, не входящие в алфавит языка (в частности русские буквы).</font></P>
+<B><U><FONT SIZE=2>
+</font></U><FONT FACE="Times New Roman"><P>4.2.2.Числа</P>
+</font></B><FONT FACE="Times New Roman" SIZE=2><P ALIGN="JUSTIFY">В стандарте языка определены числа как целого, так и вещественного типа. Однако средства синтеза ПЛИС допускают применение только целых чисел. Целое число в VHDL может быть представлено в одной из четырех систем счисления: двоичной, десятичной, восьмеричной и шестнадцатеричной. Конкретные форматы написания числовых значений будут описаны далее при рассмотрении различных типов языка.</P>
+<P ALIGN="JUSTIFY">К разновидности числовых значений можно отнести также битовые строки.</P>
+</FONT><U><FONT SIZE=2><P ALIGN="JUSTIFY"></P>
+</font></U><B><FONT FACE="Times New Roman"><P>4.2.3. Символы</P>
+</font></B><FONT FACE="Times New Roman" SIZE=2><P ALIGN="JUSTIFY">Запись символа представляет собой собственно символ, заключенный в одиночные кавычки. Например:</P>
+</FONT><FONT SIZE=2><P ALIGN="CENTER">'A', '*', ' '</P>
+</FONT><FONT FACE="Times New Roman" SIZE=2><P ALIGN="JUSTIFY">В средствах синтеза ПЛИС область применения символов ограничена использованием их в качестве элементов перечислимых типов. </P>
+</FONT><FONT SIZE=2><P ALIGN="JUSTIFY"></P>
+</FONT><B><FONT FACE="Times New Roman"><P>4.2.4. Строки</P>
+</font></B><FONT FACE="Times New Roman" SIZE=2><P ALIGN="JUSTIFY">Строки представляют собой набор символов, заключенных в двойные кавычки. Чтобы включить двойную кавычку в строку, необходимо ввести две двойных кавычки. Например:</P>
+</FONT><FONT SIZE=2><P ALIGN="CENTER">" A string"</P>
+<P ALIGN="CENTER">"A string in a string ""A string"" "</P>
+</FONT><B>
+<FONT FACE="Times New Roman"><P>4.3. Типы данных.</P>
+</font></B><FONT SIZE=2>
+</FONT><FONT FACE="Times New Roman" SIZE=2><P ALIGN="JUSTIFY">Подобно высокоуровневым языкам программирования, VHDL является языком со строгой типизацией. Каждый тип данных в VHDL имеет определенный набор принимаемых значений и набор допустимых операций. В языке предопределено достаточное количество простых и сложных типов, а также имеются средства для образования типов, определяемых пользователем.</P>
+<P ALIGN="JUSTIFY">Необходимо отметить, что в данном пособии рассматриваются не все типы данных, определенные в стандарте, а только те, которые поддерживаются средствами синтеза ПЛИС.</P>
+</FONT><FONT SIZE=2><P ALIGN="JUSTIFY"></P>
+</FONT><B><FONT FACE="Times New Roman"><P>4.3.1. Простые типы</P>
+</font></B><FONT FACE="Times New Roman" SIZE=2><P ALIGN="JUSTIFY">Следующие простые типы являются предопределенными:</P>
+</FONT><OL><FONT FACE="Times New Roman" SIZE=2>
+
+<P ALIGN="JUSTIFY"><LI>BOOLEAN (логический) – объекты данного типа могут принимать значения FALSE (ложь) и TRUE (истина).</LI><p></P>
+<P ALIGN="JUSTIFY"></font><LI><FONT FACE="Times New Roman" SIZE=2>INTEGER (целый) – значения данного типа представляют собой 32-разрядные числа со знаком. Объекты типа INTEGER могут содержать значения из диапазона –(2</font><SUP><FONT SIZE=2>31</font></SUP><FONT SIZE=2>–1)…2<SUP>31</SUP>–1 (-2147483647 … 2147483647).</font></LI><FONT SIZE=2><p></P>
+</FONT><FONT FACE="Times New Roman" SIZE=2><P ALIGN="JUSTIFY"><LI>BIT (битовый) – представляет один логический бит. Объекты данного типа могут содержать значение '0' или '1'.</LI><p></P>
+<P ALIGN="JUSTIFY"></FONT><LI><FONT FACE="Times New Roman" SIZE=2>STD_LOGIC (битовый) – представляет один бит данных. Объекты данного типа могут принимать 9 состояний. Данный тип определен стандартом IEEE 1164 для замены типа BI</font><FONT SIZE=2>T.</font></LI><FONT SIZE=2><p></P>
+</FONT><FONT FACE="Times New Roman" SIZE=2><P ALIGN="JUSTIFY"><LI>STD_ULOGIC (битовый) – представляет один бит данных. Объекты данного типа могут принимать 9 состояний. Данный тип определен стандартом IEEE 1164 для замены типа BIT (см. Примечание).</LI><p></P>
+<P ALIGN="JUSTIFY"><LI>ENUMERATED (перечислимый) – используется для задания пользовательских типов.</LI><p></P>
+<P ALIGN="JUSTIFY"><LI>SEVERITY_LEVEL – перечислимый тип, используется только в операторе ASSERT.</LI><p></P>
+<P ALIGN="JUSTIFY"><LI>CHARACTER – символьный тип.</LI><p></P></font></OL><FONT FACE="Times New Roman" SIZE=2>
+
+<B><P ALIGN="JUSTIFY">Примечание</P>
+</B><P ALIGN="JUSTIFY">В действительности тип STD_ULOGIC является базовым типом для типа STD_LOGIC, т.е. объекты обеих типов могут принимать одно и то же множество значений и имеют одинаковый набор допустимых операций. Единственное различие между типами заключается в том, что для типа STD_ULOGIC не определена функция разрешения (resolving function). В языке VHDL функция разрешения используется для определения значения сигнала, имеющего несколько источников (драйверов). </P>
+<P ALIGN="JUSTIFY">Пример: Выходы двух буферов с тремя состояниями подключены к одной цепи X. Пусть выход одного буфера установился в состояние 'Z', а выход другого – в состояние '1'. Функция разрешения определяет, что в этом случае значение сигнала X будет равно '1'.</P>
+<P ALIGN="JUSTIFY">Поскольку для типа STD_ULOGIC не определена функция разрешения, сигналы этого типа могут иметь только один источник.</P>
+<P ALIGN="JUSTIFY">Далее рассматривается только тип STD_LOGIC, однако все сказанное будет справедливо и для типа STD_ULOGIC. На практике, в подавляющем большинстве случаев достаточно использования типа STD_LOGIC.</P>
+</FONT><FONT SIZE=2><P ALIGN="JUSTIFY"></P>
+</FONT><B><FONT FACE="Times New Roman"><P>4.3.2. Сложные типы</P>
+</font></B><FONT FACE="Times New Roman" SIZE=2><P ALIGN="JUSTIFY">Из всей совокупности сложных типов, определенных в стандарте языка, для синтеза логических схем используются только массивы (тип ARRAY) и записи (тип RECORD). Однако тип RECORD поддерживается не всеми средствами синтеза и в данном пособии рассмотрен не будет.</P>
+<P ALIGN="JUSTIFY">Следующие типы-массивы являются предопределенными:</P>
+</FONT><OL><FONT FACE="Times New Roman" SIZE=2>
+
+<P ALIGN="JUSTIFY"><LI>BIT_VECTOR – одномерный массив элементов типа BIT;</LI><p></P>
+</font><FONT SIZE=2><P ALIGN="JUSTIFY"></FONT><LI><FONT SIZE=2>STD_LOGIC_VECTOR – </font><FONT FACE="Times New Roman" SIZE=2>одномерный массив элементов типа STD_LOGIC;</font></LI><FONT FACE="Times New Roman" SIZE=2><p></P>
+<P ALIGN="JUSTIFY"><LI>STD_ULOGIC_VECTOR – одномерный массив элементов типа STD_ULOGIC;</LI><p></P>
+</FONT><FONT SIZE=2><P ALIGN="JUSTIFY"></FONT><LI><FONT SIZE=2>STRING – </font><FONT FACE="Times New Roman" SIZE=2>одномерный массив элементов типа </FONT><FONT SIZE=2>CHARACTER;</font></LI><FONT SIZE=2><p></P></font></OL>
+
+<FONT FACE="Times New Roman" SIZE=2><P ALIGN="JUSTIFY">Направление и границы диапазона индексов не содержатся в определении указанных типов,  и должны быть указаны непосредственно при объявлении объектов данных типов.</P>
+</FONT><FONT SIZE=2><P ALIGN="JUSTIFY"></P>
+</FONT><B><FONT FACE="Times New Roman"><P>4.3.3. Описание простых типов</P>
+</font></B><FONT SIZE=2>
+</FONT><U><FONT FACE="Times New Roman" SIZE=2><P ALIGN="JUSTIFY">Тип BOOLEAN</P>
+</font></U><FONT FACE="Times New Roman" SIZE=2><P ALIGN="JUSTIFY">Тип BOOLEAN является перечислимым типом. Объект данного типа может принимать значения FALSE (ложь) и TRUE (истина), причем FALSE эквивалентно 0, а TRUE эквивалентно 1.</P>
+<P ALIGN="JUSTIFY">Все три типа объектов в VHDL (константы, переменные и сигналы) могут иметь тип BOOLEAN. Таким объектам может быть присвоено только значение типа BOOLEAN.</P>
+</FONT><FONT FACE="Courier New" SIZE=2><P ALIGN="JUSTIFY">Пример</P>
+</FONT>
+<FONT FACE="Courier New" SIZE=2><P ALIGN="JUSTIFY">PROCESS (a, b)</P>
+<P ALIGN="JUSTIFY">&#9;VARIABLE cond : BOOLEAN;</P>
+<P ALIGN="JUSTIFY">BEGIN</P>
+<P ALIGN="JUSTIFY">&#9;cond := a &gt; b;</P>
+<P ALIGN="JUSTIFY">&#9;IF cond THEN</P>
+<P ALIGN="JUSTIFY">&#9;&#9;output &lt;= '1';</P>
+<P ALIGN="JUSTIFY">&#9;ELSE</P>
+<P ALIGN="JUSTIFY">&#9;&#9;output &lt;= '0';</P>
+<P ALIGN="JUSTIFY">END IF;</P>
+<P ALIGN="JUSTIFY">END PROCESS;</P>
+</FONT><FONT SIZE=2><P ALIGN="JUSTIFY"></P>
+<P ALIGN="JUSTIFY">&nbsp;</P>
+</FONT><U><FONT FACE="Times New Roman" SIZE=2><P ALIGN="JUSTIFY">Операторы отношения</P>
+</font></U><FONT FACE="Times New Roman" SIZE=2><P ALIGN="JUSTIFY">Значения типа BOOLEAN могут участвовать в выражениях. Операторы отношения (=, /=, &lt;, &lt;=, &gt;, &gt;=) определены для операндов типа BOOLEAN и одномерных массивов, содержащих элементы типа BOOLEAN. Результат выражения также имеет тип BOOLEAN.</P>
+<P ALIGN="JUSTIFY">(Как для всех перечислимых типов, операции сравнения над одномерными массивами типа BOOLEAN производятся поэлементно, начиная с крайнего левого элемента).</P>
+<U><P ALIGN="JUSTIFY">Логические операторы</P>
+</U><P ALIGN="JUSTIFY">Для операндов типа BOOLEAN и одномерных массивов, содержащих элементы типа BOOLEAN определены все логические операции (AND, OR, NAND, NOR, XOR и NOT). Тип и размер операндов должны быть одинаковыми. Тип и размер результата такой же как тип и размер операндов.</P>
+<U><P ALIGN="JUSTIFY">Оператор конкатенации</P>
+</U><P ALIGN="JUSTIFY">Оператор конкатенации также определен для операндов типа BOOLEAN и одномерных массивов, содержащих элементы типа BOOLEAN. Результат выражения представляет собой одномерный массив, содержащий элементы типа BOOLEAN; размер массива равен сумме размеров операндов.</P>
+<U><P ALIGN="JUSTIFY">Другие операторы</P>
+</U><P ALIGN="JUSTIFY">Другие операции над операндами типа BOOLEAN не определены.</P>
+</FONT><FONT SIZE=2><P ALIGN="JUSTIFY"></P>
+</FONT><U><FONT FACE="Times New Roman" SIZE=2><P ALIGN="JUSTIFY">Тип INTEGER</P>
+</font></U><P ALIGN="JUSTIFY"><FONT FACE="Times New Roman" SIZE=2>Стандарт VHDL определяет тип INTEGER для использования в арифметических выражениях. По умолчанию объекты типа INTEGER имею размерность 32 бита и представляют целое число в интервале –(2</font><SUP><FONT SIZE=2>31</font></SUP><FONT SIZE=2>-1) . . . 2<SUP>31</SUP></FONT><FONT FACE="Times New Roman" SIZE=2>-1 (-2147483647 . . . 2147483647). Стандарт языка позволяет также объявлять объекты типа INTEGER, имеющие размер меньше 32 бит, используя ключевое слово RANGE, ограничивающее диапазон возможных значений:</font></P>
+<FONT SIZE=2><P ALIGN="CENTER">SIGNAL X : INTEGER RANGE –127 TO 127</P>
+</FONT><FONT FACE="Times New Roman" SIZE=2><P ALIGN="JUSTIFY">Данная конструкция определяет X как 8-битное число.</P>
+</FONT><FONT SIZE=2><P ALIGN="JUSTIFY"></P>
+</FONT><FONT FACE="Times New Roman" SIZE=2><P ALIGN="JUSTIFY">Кроме того, можно определить ограниченный целый тип, используя следующую конструкцию:</P>
+</FONT><B></B><P ALIGN="CENTER"><FONT SIZE=2><B>TYPE</b></font> <I><FONT FACE="Times New Roman" SIZE=2>имя_типа</font></I><FONT SIZE=2> <B>IS RANGE</B> </FONT><I><FONT FACE="Times New Roman" SIZE=2>диапазон_индексов</font></I><B><FONT SIZE=2>;</font></b></P>
+<I></I><P ALIGN="JUSTIFY"><FONT FACE="Times New Roman" SIZE=2><I>диапазон_индексов</i></font><FONT FACE="Times New Roman" SIZE=2> определяется следующим образом:</font></P>
+<I></I><P ALIGN="CENTER"><FONT SIZE=2><I>m</i></font><FONT SIZE=2> <B>TO</B> <I>n</I> </font></P><FONT SIZE=2>
+<P ALIGN="CENTER"><I>n</i> <B>DOWNTO</B> <I>m</I> </P>
+</FONT><P ALIGN="JUSTIFY"><FONT FACE="Times New Roman" SIZE=2>где </font><I><FONT SIZE=2>m</font></I><FONT SIZE=2>, <I>n</I> – </FONT><FONT FACE="Times New Roman" SIZE=2>целочисленные константы, </FONT><I><FONT SIZE=2>m</font></I><FONT SIZE=2> &lt;= <I>n</I>.</font></P><FONT SIZE=2>
+<P ALIGN="JUSTIFY"></P>
+</FONT><B><FONT FACE="Times New Roman" SIZE=2><P ALIGN="JUSTIFY">Пример</P>
+</font></B><FONT FACE="Courier New" SIZE=2><P ALIGN="JUSTIFY"></P>
+<P ALIGN="JUSTIFY">TYPE byte_int 0 TO 255;</P>
+<P ALIGN="JUSTIFY">TYPE signed_word_int is range –32768 TO 32768;</P>
+<P ALIGN="JUSTIFY">TYPE bit_index is range 31 DOWNTO 0;</P>
+</FONT><FONT SIZE=2><P ALIGN="JUSTIFY"></P>
+</FONT><FONT FACE="Times New Roman" SIZE=2><P ALIGN="JUSTIFY">Значения типа INTGER записываются в следующей форме:</P>
+<I><P ALIGN="CENTER">[ основание # ] разряд { [_ ] разряд} [ # ]</P>
+</I><P ALIGN="JUSTIFY">По умолчанию "основание" принимается равным 10. Допустимыми также являются значения 2, 8, 16.</P>
+<P ALIGN="JUSTIFY">При записи числа допускается использование одиночных символов подчеркивания, которые не влияют на результирующее значение.</P>
+</FONT><FONT FACE="Courier New" SIZE=2><P ALIGN="JUSTIFY">Пример</P>
+</FONT>
+<FONT SIZE=2><P ALIGN="JUSTIFY">CONSTANT min : INTEGER := 0;</P>
+</FONT><FONT FACE="Times New Roman" SIZE=2><P ALIGN="JUSTIFY">CONSTANT group : INTEGER := 13_452; – – эквивалентно 13452</P>
+</FONT><FONT SIZE=2><P ALIGN="JUSTIFY">CONSTANT max : INTEGER := 16#FF#;</P>
+</FONT><FONT FACE="Courier New" SIZE=2><P ALIGN="JUSTIFY"></P>
+</FONT><B><FONT FACE="Times New Roman" SIZE=2><P ALIGN="JUSTIFY">Допустимое использование</P>
+</font></B><FONT FACE="Times New Roman" SIZE=2><U><P ALIGN="JUSTIFY">Операторы отношения </P>
+</U><P ALIGN="JUSTIFY">Значения типа INTEGER могут участвовать в выражениях. Операторы отношения (=, /=, &lt;, &lt;=, &gt;, &gt;=) определены для операндов типа INTEGER и одномерных массивов, содержащих элементы типа INTEGER. Результат выражения имеет тип BOOLEAN.</P>
+<U><P ALIGN="JUSTIFY">Арифметические операторы</P>
+</U><P ALIGN="JUSTIFY">Операторы +, –, ABS допустимы для операндов типа INTEGER. Результат выражения имеет тип INTEGER.</P>
+</FONT><FONT FACE="Times New Roman" SIZE=2 COLOR="#ff0000"><P ALIGN="JUSTIFY">Операторы *, /, MOD, REM допустимы в следующих случаях:</P>
+
+</FONT><UL><FONT FACE="Times New Roman" SIZE=2 COLOR="#ff0000">
+</font><FONT FACE="Times New Roman" SIZE=2><P ALIGN="JUSTIFY"><LI>если оба операнда являются константами (CONSTANT);</LI><p></P>
+<P ALIGN="JUSTIFY"></FONT><LI><FONT FACE="Times New Roman" SIZE=2>если второй операнд является константой и его значение равно 2</font><I><SUP><FONT SIZE=2>n</font></sup></I><FONT FACE="Times New Roman" SIZE=2>, где </FONT><I><FONT SIZE=2>n</font></I><FONT SIZE=2> = 0, 1, 2, 3….</font></LI><FONT SIZE=2><p></P></font></UL>
+
+<FONT FACE="Times New Roman" SIZE=2><P ALIGN="JUSTIFY">Применение операторов *, /, MOD, REM недопустимо если оба операнда являются сигналами (SIGNAL) или переменными (VARIABLE).</P>
+<P ALIGN="JUSTIFY">Оператор возведения в степень (Оператор возведения в степень (**) как правило не поддерживается средствами синтеза.</P>
+<U><P ALIGN="JUSTIFY">Другие операторы</P>
+</U><P ALIGN="JUSTIFY">Другие операции над операндами типа INTEGER не определены.</P>
+</FONT><FONT SIZE=2><P ALIGN="JUSTIFY"></P>
+</FONT><U><FONT FACE="Times New Roman" SIZE=2><P ALIGN="JUSTIFY">Тип BIT</P>
+</font></U><FONT FACE="Times New Roman" SIZE=2><P ALIGN="JUSTIFY">Объект данного типа может принимать значение '0' (лог.0) или '1' (лог.1).</P>
+<B><P ALIGN="JUSTIFY">Примечание</P>
+</B><P ALIGN="JUSTIFY">Стандартом IEEE 1164 определена замена типа BIT на более гибкий тип STD_LOGIC. Поэтому использование типа BIT в новых разработках не рекомендуется.</P>
+</FONT><FONT SIZE=2><P ALIGN="JUSTIFY"> </P>
+</FONT><B><FONT FACE="Times New Roman" SIZE=2><P ALIGN="JUSTIFY">Допустимое использование</P>
+</font></B><FONT FACE="Times New Roman" SIZE=2><U><P ALIGN="JUSTIFY">Операторы отношения</P>
+</U><P ALIGN="JUSTIFY">Значения типа BIT могут участвовать в выражениях. Операторы отношения (=, /=, &lt;, &lt;=, &gt;, &gt;=) определены для операндов типа BIT и одномерных массивов, содержащих элементы типа BIT. Результат выражения имеет тип BOOLEAN.</P>
+<P ALIGN="JUSTIFY">(Как для всех перечислимых типов, операции сравнения над одномерными массивами типа BIT производятся поэлементно, начиная с крайнего левого элемента).</P>
+<U><P ALIGN="JUSTIFY">Логические операторы</P>
+</U><P ALIGN="JUSTIFY">Для операндов типа BIT и одномерных массивов, содержащих элементы типа BIT определены все логические операции (AND, OR, NAND, NOR, XOR и NOT). Тип и размер операндов должны быть одинаковыми. Тип и размер результата такой же как тип и размер операндов.</P>
+<U><P ALIGN="JUSTIFY">Оператор конкатенации</P>
+</U><P ALIGN="JUSTIFY">Оператор конкатенации также определен для операндов типа BIT и одномерных массивов, содержащих элементы типа BIT. Результат выражения представляет собой одномерный массив, содержащий элементы типа BIT; размер массива равен сумме размеров операндов.</P>
+<U><P ALIGN="JUSTIFY">Другие операторы</P>
+</U><P ALIGN="JUSTIFY">Другие операции над операндами типа BIT не определены.</P>
+</FONT><FONT SIZE=2><P ALIGN="JUSTIFY"></P>
+</FONT><U><FONT FACE="Times New Roman" SIZE=2><P ALIGN="JUSTIFY">Тип STD_LOGIC</P>
+</font></U><FONT FACE="Times New Roman" SIZE=2><P ALIGN="JUSTIFY">Типы STD_LOGIC является перечислимым типом. Объекты типа STD_LOGIC могут принимать 9 значений: '0', '1', 'Z', '–', 'L', 'H', 'U', 'X', 'W'. </P>
+<P ALIGN="JUSTIFY">Для синтеза логических схем используются только первые четыре:</P>
+<P ALIGN="JUSTIFY">&#9;'0' – логический "0";</P>
+<P ALIGN="JUSTIFY">&#9;'1' – логическая "1";</P>
+<P ALIGN="JUSTIFY">&#9;'Z' – третье состояние;</P>
+<P ALIGN="JUSTIFY">&#9;'–' – не подключен.</P>
+<B><P ALIGN="JUSTIFY">Допустимое использование</P>
+</B><U><P ALIGN="JUSTIFY">Операторы отношения</P>
+</U><P ALIGN="JUSTIFY">Значения типа STD_LOGIC могут участвовать в выражениях. Операторы отношения (=, /=, &lt;, &lt;=, &gt;, &gt;=) определены для операндов типа STD_LOGIC и одномерных массивов, содержащих элементы типа STD_LOGIC. Результат выражения имеет тип BOOLEAN.</P>
+<P ALIGN="JUSTIFY">(Как для всех перечислимых типов, операции сравнения над одномерными массивами типа STD_LOGIC производятся поэлементно, начиная с крайнего левого элемента).</P>
+<U><P ALIGN="JUSTIFY">Логические операторы</P>
+</U><P ALIGN="JUSTIFY">Для операндов типа STD_LOGIC и одномерных массивов, содержащих элементы типа STD_LOGIC определены все логические операции (AND, OR, NAND, NOR, XOR и NOT). Тип и размер операндов должны быть одинаковыми. Тип и размер результата такой же как тип и размер операндов.</P>
+<U><P ALIGN="JUSTIFY">Оператор конкатенации</P>
+</U><P ALIGN="JUSTIFY">Оператор конкатенации также определен для операндов типа STD_LOGIC и одномерных массивов, содержащих элементы типа STD_LOGIC. Результат выражения представляет собой одномерный массив, содержащий элементы типа STD_LOGIC; размер массива равен сумме размеров операндов.</P>
+<U><P ALIGN="JUSTIFY">Другие операторы</P>
+</U><P>Другие операции над операндами типа STD_LOGIC не определены.</P>
+</FONT><FONT SIZE=2><P ALIGN="JUSTIFY"></P>
+</FONT><U><FONT FACE="Times New Roman" SIZE=2><P ALIGN="JUSTIFY">Перечислимый тип</P>
+</font></U><FONT FACE="Times New Roman" SIZE=2><P ALIGN="JUSTIFY">Перечислимый тип – это такой тип данных, при котором количество всех возможных значений конечно. Строго говоря, все описанные выше типы являются перечислимыми.</P>
+<P ALIGN="JUSTIFY">Применение перечислимых типов преследует две цели:</P>
+
+<UL>
+<P ALIGN="JUSTIFY"><LI>улучшение смысловой читаемости программы;</LI><p></P>
+<P ALIGN="JUSTIFY"><LI>более четкий  и простой визуальный контроль значений.</LI><p></P></UL>
+
+<P ALIGN="JUSTIFY">Наиболее часто перечислимый тип используется для обозначения состояний конечных автоматов.</P>
+<P ALIGN="JUSTIFY">Перечислимый тип объявляется путем перечисления названий элементов-значений. Объекты, тип которых объявлен как перечислимый, могут содержать только те значения, которые указаны при перечислении. </P>
+<P ALIGN="JUSTIFY">Элементы перечислимого типа должны быть идентификаторами или символами, которые должны быть уникальными в пределах одного типа. Повторное использование названий элементов в других перечислимых типах разрешается.</P>
+<P ALIGN="JUSTIFY">Объявление перечислимого типа имеет вид:</P>
+</FONT><P ALIGN="JUSTIFY"><FONT SIZE=2>&#9;&#9;<B>TYPE</B> </font><I><FONT FACE="Times New Roman" SIZE=2>имя_типа</font></I><FONT SIZE=2> <B>IS</B> <B>( </B></FONT><I><FONT FACE="Times New Roman" SIZE=2>название_элемента</font></I><FONT SIZE=2> [<B><I>,</i></B> </FONT><I><FONT FACE="Times New Roman" SIZE=2>название_элемента</font></I><FONT SIZE=2>] <B>);</b></font></P>
+<B><FONT FACE="Times New Roman" SIZE=2><P ALIGN="JUSTIFY">Пример</P>
+</font></B><FONT FACE="Courier New" SIZE=2><P ALIGN="JUSTIFY">Type State_type IS (stateA, stateB, stateC);</P>
+<P ALIGN="JUSTIFY">VARIABLE State : State_type;</P>
+<P ALIGN="JUSTIFY">.</P>
+<P ALIGN="JUSTIFY">.</P>
+<P ALIGN="JUSTIFY">.</P>
+<P ALIGN="JUSTIFY">State := stateB</P>
+</FONT><P ALIGN="JUSTIFY"><FONT FACE="Times New Roman" SIZE=2>В данном примере объявляется переменная </font><I><FONT SIZE=2>State</font></I><FONT FACE="Times New Roman" SIZE=2>, допустимыми значениями которой являются </FONT><I><FONT SIZE=2>stateA</font></I><FONT SIZE=2>, <I>stateB</I>, <I>stateC</I>.</font></P><FONT SIZE=2>
+<P ALIGN="JUSTIFY"></P>
+</FONT><FONT FACE="Times New Roman" SIZE=2><P ALIGN="JUSTIFY">Примеры предопределенных перечислимых типов:</P>
+</FONT><FONT SIZE=2><P ALIGN="JUSTIFY"></P>
+</FONT><FONT FACE="Courier New" SIZE=2><P ALIGN="JUSTIFY">TYPE SEVERITY_LEVEL IS (NOTE, WARNING, ERROR, FAILURE);</P>
+<P ALIGN="JUSTIFY">TYPE BOOLEAN IS (FALSE, TRUE);</P>
+<P ALIGN="JUSTIFY">TYPE BIT IS ('0', '1');</P>
+<P ALIGN="JUSTIFY">TYPE STD_LOGIC IS ('U', 'X', '0', '1', 'Z', 'W', 'L', 'H', '–'); </P>
+</FONT><B><FONT SIZE=2><P ALIGN="JUSTIFY"></P>
+</font></B><FONT FACE="Times New Roman" SIZE=2><P ALIGN="JUSTIFY">Любой перечислимый тип имеет внутреннюю нумерацию: первый элемент всегда имеет номер 0, второй – номер 1 и т.д. Порядок нумерации соответствует порядку перечисления.</P>
+</FONT><FONT SIZE=2>
+</FONT><B><FONT FACE="Times New Roman" SIZE=2><P ALIGN="JUSTIFY">Допустимое использование</P>
+</font></B><FONT FACE="Times New Roman" SIZE=2><U><P ALIGN="JUSTIFY">Операторы отношения</P>
+</U><P ALIGN="JUSTIFY">Значения определенных пользователем перечислимых типов могут участвовать в выражениях. Операторы отношения (=, /=, &lt;, &lt;=, &gt;, &gt;=) определены как для перечислимых типов, так и для одномерных массивов, содержащих элементы этих типов. Результат выражения имеет тип BOOLEAN.</P>
+<U><P ALIGN="JUSTIFY">Оператор конкатенации</P>
+</U><P ALIGN="JUSTIFY">Оператор конкатенации определен для операндов имеющих перечислимый тип и одномерных массивов, содержащих элементы перечислимого типа. При этом оба операнда должны быть одного типа. Результат выражения представляет собой одномерный массив, тип элементов которого равен типу операндов; размер массива равен сумме размеров операндов.</P>
+<U><P ALIGN="JUSTIFY">Другие операторы</P>
+</U><P ALIGN="JUSTIFY">К операндами перечислимых типов применим оператор указания типа. Данный оператор используется для уточнения типа объекта в случае если одно и то же название элемента используется различными типами.</P>
+<B><P ALIGN="JUSTIFY">Пример</P>
+</B></FONT><FONT FACE="Courier New" SIZE=2><P ALIGN="JUSTIFY">TYPE COLOR IS (green, red, tellow, orange);</P>
+<P ALIGN="JUSTIFY">TYPE FRUIT IS (orange, apple, pear);</P>
+<P ALIGN="JUSTIFY">VARIABLE VC : COLOR;</P>
+<P ALIGN="JUSTIFY">VARIABLE VF : FRUIT;</P>
+<P ALIGN="JUSTIFY"></P>
+<P ALIGN="JUSTIFY">VC := COLOR'orange;</P>
+<P ALIGN="JUSTIFY">VF := FRUIT'orange;</P>
+</FONT><FONT SIZE=2><P ALIGN="JUSTIFY"></P>
+</FONT><FONT FACE="Times New Roman" SIZE=2><P ALIGN="JUSTIFY">Другие операции над операндами перечислимых типов определенных пользователем не определены.</P>
+</FONT><U><FONT SIZE=2><P ALIGN="JUSTIFY"></P>
+</FONT><FONT FACE="Times New Roman" SIZE=2><P ALIGN="JUSTIFY">Тип SEVERITY_LEVEL</P>
+</font></U><FONT FACE="Times New Roman" SIZE=2><P ALIGN="JUSTIFY">Переменные этого типа используются только в операторе ASSERT и игнорируются при синтезе логических схем.</P>
+<P ALIGN="JUSTIFY">Переменные типа SEVERITY_LEVEL могут принимать следующие значения: NOTE, WARNING, ERROR и FAILURE.</P>
+</FONT><FONT SIZE=2><P ALIGN="JUSTIFY"></P>
+</FONT><U><FONT FACE="Times New Roman" SIZE=2><P ALIGN="JUSTIFY">Тип CHARACTER</P>
+</font></U><P ALIGN="JUSTIFY"><FONT FACE="Times New Roman" SIZE=2>Перечислимый тип. Значением объекта данного типа может быть любой символ из набора ASCII (128 первых символов)</font><FONT SIZE=2>.</font></P><FONT SIZE=2>
+<P ALIGN="JUSTIFY"></P>
+</FONT><U><FONT FACE="Times New Roman" SIZE=2><P ALIGN="JUSTIFY">Массивы</P>
+</font></U><P ALIGN="JUSTIFY"><FONT FACE="Times New Roman" SIZE=2>Массив (тип "массив") является сложным типом. Массив представляет собой упорядоченную структуру однотипных данных. Массив имеет диапазон индексов, который может быть возрастающим либо убывающим. На любой элемент массива можно сослаться, используя его индекс. Несмотря на то, что стандартом языка допускается использование массивов любой размерности, для синтеза ПЛИС используются только одномерные </font><FONT FACE="Times New Roman" SIZE=2 COLOR="#ff0000">(поддерживаются всеми средствами синтеза) и двумерные (поддерживаются ограниченным числом средств синтеза)</FONT><FONT FACE="Times New Roman" SIZE=2> массивы.</font></P><FONT FACE="Times New Roman" SIZE=2>
+<P ALIGN="JUSTIFY">Также можно сослаться на часть одномерного массива, используя вместо индекса диапазон индексов.</P>
+</FONT><P ALIGN="JUSTIFY"><FONT FACE="Times New Roman" SIZE=2>Существуют две разновидности типа "массив": ограниченный (</font><I><FONT SIZE=2>constrained</font></I><FONT SIZE=2>)</FONT><FONT FACE="Times New Roman" SIZE=2> и неограниченный </FONT><FONT SIZE=2>(<I>unconstrained</I>).</font></P><UL>
+
+<FONT SIZE=2>
+</font><FONT FACE="Times New Roman" SIZE=2><P ALIGN="JUSTIFY"><LI>Объявление ограниченного типа определяет границы диапазона индексов (число элементов массива) в каждом измерении при определении типа.</LI><p></P>
+<P ALIGN="JUSTIFY"><LI>Объявление неограниченного типа не определяет границы диапазона индексов. В этом случае границы диапазона устанавливаются при объявлении конкретного экземпляра объекта данного типа.</LI><p></P></font></UL>
+
+<FONT SIZE=2><P ALIGN="JUSTIFY"></P>
+</FONT><FONT FACE="Times New Roman" SIZE=2><P ALIGN="JUSTIFY">Объявление ограниченного типа "массив" имеет вид:</P></FONT><DIR><DIR>
+<DIR>
+<DIR>
+<DIR>
+<FONT FACE="Times New Roman" SIZE=2>
+
+</font><B></B><P ALIGN="JUSTIFY"><FONT SIZE=2><B>TYPE</b></font> <I><FONT FACE="Times New Roman" SIZE=2>имя_типа</font></I><FONT SIZE=2> <B>IS</B> </font></P><P ALIGN="JUSTIFY">
+<FONT SIZE=2>&#9;&#9;<B>ARRAY</B> <B>(</B></font><I><FONT FACE="Times New Roman" SIZE=2>диапазон_индексов</font></I><FONT SIZE=2> [ <B>,</B> </FONT><I><FONT FACE="Times New Roman" SIZE=2>диапазон_индексов</font></I><FONT SIZE=2>] <B>)</b></font></P><P ALIGN="JUSTIFY">
+<FONT SIZE=2>&#9;&#9;&#9;<B>OF</B> </font><I><FONT FACE="Times New Roman" SIZE=2>тип_элемента</font></I><B><FONT SIZE=2>;</font></b></P></DIR>
+</DIR>
+</DIR>
+</DIR>
+</DIR>
+
+<I></I><P ALIGN="JUSTIFY"><FONT FACE="Times New Roman" SIZE=2><I>диапазон_индексов</i></font><FONT FACE="Times New Roman" SIZE=2> может определяться двумя способами:</font></P><FONT FACE="Times New Roman" SIZE=2>
+<P>1) явным заданием границ диапазона</P>
+</FONT><I></I><P ALIGN="CENTER"><FONT SIZE=2><I>m</i></font><FONT SIZE=2> <B>TO</B> <I>n</I> </font></P><FONT SIZE=2>
+<P ALIGN="CENTER"><I>n</i> <B>DOWNTO</B> <I>m</I> </P>
+</FONT><P ALIGN="JUSTIFY"><FONT FACE="Times New Roman" SIZE=2>где </font><I><FONT SIZE=2>m</font></I><FONT SIZE=2>, <I>n</I> – </FONT><FONT FACE="Times New Roman" SIZE=2>целочисленные константы, </FONT><I><FONT SIZE=2>m</font></I><FONT SIZE=2> &lt;= <I>n</I>.</font></P>
+<FONT FACE="Times New Roman" SIZE=2><P ALIGN="JUSTIFY">2) с использованием идентификатора ограниченного подтипа. В этом случае значения границ подтипа являются значениями границ индекса массива. Описание подтипов см. далее.</P>
+</FONT><FONT SIZE=2><P ALIGN="JUSTIFY"></P>
+</FONT><FONT FACE="Times New Roman" SIZE=2><P ALIGN="JUSTIFY">Объявление неограниченного типа "массив" имеет вид:</P></FONT><DIR><DIR>
+<DIR>
+<DIR>
+<DIR>
+<FONT FACE="Times New Roman" SIZE=2>
+
+</font><B></B><P ALIGN="JUSTIFY"><FONT SIZE=2><B>TYPE</b></font> <I><FONT FACE="Times New Roman" SIZE=2>имя_типа</font></I><FONT SIZE=2> <B>IS</B> </font></P><P ALIGN="JUSTIFY">
+<FONT SIZE=2>&#9;&#9;<B>ARRAY</B> <B>(</B></font><I><FONT FACE="Times New Roman" SIZE=2>тип_индекса</font></i></P><I></I><DIR><FONT FACE="Times New Roman" SIZE=2></font><DIR>
+<FONT FACE="Times New Roman" SIZE=2></font><DIR>
+<FONT FACE="Times New Roman" SIZE=2></font><DIR>
+<FONT FACE="Times New Roman" SIZE=2></font><DIR>
+<FONT FACE="Times New Roman" SIZE=2></font><DIR>
+<FONT FACE="Times New Roman" SIZE=2><I>
+
+</i></font><P ALIGN="JUSTIFY"><FONT SIZE=2>[ <B>,</B> </font><I><FONT FACE="Times New Roman" SIZE=2>тип_индекса</font></I><FONT SIZE=2>] <B>)</b></font></P></DIR>
+</DIR>
+</DIR>
+</DIR>
+</DIR>
+</DIR><P ALIGN="JUSTIFY">
+
+<FONT SIZE=2>&#9;&#9;&#9;<B>OF</B> </font><I><FONT FACE="Times New Roman" SIZE=2>тип_элемента</font></I><B><FONT SIZE=2>;</font></b></P></DIR>
+</DIR>
+</DIR>
+</DIR>
+</DIR>
+
+<I></I><P ALIGN="JUSTIFY"><FONT FACE="Times New Roman" SIZE=2><I>тип_индекса</i></font><FONT FACE="Times New Roman" SIZE=2> определяется следующим образом:</font></P><P ALIGN="CENTER">
+<FONT FACE="Times New Roman" SIZE=2><I>подтип</i></font><FONT SIZE=2> <B>RANGE &lt;&gt;</b></font></P>
+<FONT FACE="Times New Roman" SIZE=2><P ALIGN="JUSTIFY">где <I>подтип</I> может быть:</P>
+</FONT><B></B><P ALIGN="JUSTIFY"><FONT SIZE=2><B>INTEGER</b></font><FONT SIZE=2>  – </FONT><FONT FACE="Times New Roman" SIZE=2>индекс находится в диапазоне –(2</FONT><SUP><FONT SIZE=2>31</font></SUP><FONT SIZE=2>-1) . . . 2<SUP>31</SUP>-1;</font></P><P ALIGN="JUSTIFY">
+<FONT SIZE=2><B>NATURAL</b> – </font><FONT FACE="Times New Roman" SIZE=2>индекс находится в диапазоне 0 . . . 2</FONT><SUP><FONT SIZE=2>31</font></SUP><FONT SIZE=2>-1;</font></P><P ALIGN="JUSTIFY">
+<FONT SIZE=2><B>POSITIVE</b> – </font><FONT FACE="Times New Roman" SIZE=2>индекс находится в диапазоне 1 . . . 2</FONT><SUP><FONT SIZE=2>31</font></SUP><FONT SIZE=2>-1;</font></P><FONT SIZE=2>
+<P ALIGN="JUSTIFY"></P>
+</FONT><B><FONT FACE="Times New Roman" SIZE=2><P ALIGN="JUSTIFY">Примеры</P>
+</font></B><FONT FACE="Times New Roman" SIZE=2><P ALIGN="JUSTIFY">1) Объявление ограниченного массивного типа:</P>
+</FONT><FONT SIZE=2><P ALIGN="JUSTIFY">TYPE word IS ARRAY (31 DOWNTO 0) OF STD_LOGIC;</P>
+<P ALIGN="JUSTIFY">TYPE register_bank IS ARRAY (byte RANGE 0 TO 132) OF INTEGER;</P>
+</FONT><P ALIGN="JUSTIFY"><FONT SIZE=2>TYPE memory IS ARRAY (address) OF word; -- </font><FONT FACE="Times New Roman" SIZE=2>двумерный массив</font></P><FONT FACE="Times New Roman" SIZE=2>
+<P ALIGN="JUSTIFY">2) Объявление неограниченного массивного типа:</P>
+</FONT><FONT SIZE=2><P ALIGN="JUSTIFY">TYPE logic IS ARRAY (INTEGER RANGE &lt;&gt;) OF BOOLEAN;</P>
+</FONT><FONT FACE="Times New Roman" SIZE=2><P ALIGN="JUSTIFY">3) Объявление двумерного массива:</P>
+</FONT><FONT SIZE=2><P ALIGN="JUSTIFY">TYPE Reg IS ARRAY (3 DOWNTO 0) OF STD_LOGIC_VECTOR(7 DOWNTO 0);</P>
+<P ALIGN="JUSTIFY">TYPE transform IS ARRAY (1 TO 4, 1 TO 4) OF BIT;</P>
+<P ALIGN="JUSTIFY"></P>
+</FONT><FONT FACE="Times New Roman" SIZE=2><P ALIGN="JUSTIFY">Как было сказано, в языке имеется несколько предопределенных типов "массив". Их объявления выглядят следующим образом: </P>
+</FONT><FONT SIZE=2><P ALIGN="JUSTIFY">TYPE STRING IS ARRAY (POSITIVE RANGE &lt;&gt;) OF CHARACTER;</P>
+<P ALIGN="JUSTIFY">TYPE BIT_VECTOR IS ARRAY (NATURAL RANGE &lt;&gt;) OF BIT;</P>
+<P ALIGN="JUSTIFY">TYPE STD_LOGIC_VECTOR IS ARRAY (NATURAL RANGE &lt;&gt;) OF STD_LOGIC;</P>
+<P ALIGN="JUSTIFY">TYPE STD_ULOGIC_VECTOR IS ARRAY (NATURAL RANGE &lt;&gt;) OF STD_ULOGIC;</P>
+<P ALIGN="JUSTIFY"></P>
+</FONT><FONT FACE="Times New Roman" SIZE=2><P ALIGN="JUSTIFY">Объявление объекта типа "неограниченный массив" должно содержать ограничения на индекс. Диапазон изменения индексов может быть ограничен:</P>
+</FONT><OL><FONT FACE="Times New Roman" SIZE=2>
+
+<P ALIGN="JUSTIFY"></font><LI><FONT FACE="Times New Roman" SIZE=2>с использованием ключевых слов </font><FONT SIZE=2>TO </FONT><FONT FACE="Times New Roman" SIZE=2>или </FONT><FONT SIZE=2>DOWNTO:</font></LI><FONT SIZE=2><p></P>
+<P ALIGN="JUSTIFY">TYPE data_memory_type IS ARRAY (INTEGER RANGE &lt;&gt;) OF BIT;</P>
+<P ALIGN="JUSTIFY">. . .</P>
+<P ALIGN="JUSTIFY">VARIABLE data_ memory : data_memory_type(0 TO 255);</P>
+</FONT><FONT FACE="Times New Roman" SIZE=2><P ALIGN="JUSTIFY"><LI>путем использования диапазона начального значения:</LI><p></P></font></OL>
+
+<FONT SIZE=2><P ALIGN="JUSTIFY">CONSTANT part_id : STRING :="M38006";</P>
+
+</FONT><FONT FACE="Times New Roman" SIZE=2><P>СТРОКИ, БИТОВЫЕ СТРОКИ И АГРЕГАТЫ </P>
+</FONT><FONT SIZE=2>
+</FONT><P ALIGN="JUSTIFY"><FONT FACE="Times New Roman" SIZE=2>Строки,битовые строки,агрегаты (</font><I><FONT SIZE=2>strings</font></I><FONT SIZE=2>, <I>bit</I> <I>strings</I>, <I>aggregates</I></FONT><FONT FACE="Times New Roman" SIZE=2>) используются для конструирования значений обьектов массивных типов. Они могут использоваться в любом месте, где допускается значение типа массив, например, как начальное значение константы или операнд в выражении. </font></P><P ALIGN="JUSTIFY">
+<FONT FACE="Times New Roman" SIZE=2>Строковая запись может быть использована для представления значений как объектов некоторых предопределенных типов (</font><I><FONT SIZE=2>string</font></I><FONT SIZE=2>, <I>bit_vector</I>, <I>std_logic_vector</I>)</FONT><FONT FACE="Times New Roman" SIZE=2>, так и для любого одномерного массива, элементы которого имеют тип </FONT><I><FONT SIZE=2>character</font></I><FONT FACE="Times New Roman" SIZE=2>; например: </font></P>
+<FONT SIZE=2><P ALIGN="JUSTIFY"></P>
+<P ALIGN="JUSTIFY">TYPE bit6 IS ('U', '0', '1', 'F', 'R', 'X');&#9;</P>
+<P ALIGN="JUSTIFY">TYPE bit6_data IS ARRAY (POSITIVE RANGE&lt;&gt;) OF bit6;</P>
+<P ALIGN="JUSTIFY">. . . </P>
+<P ALIGN="JUSTIFY">SIGNAL data_bus : bit6_data(15 DOWNTO 0);</P>
+<P ALIGN="JUSTIFY">.</P>
+<P ALIGN="JUSTIFY">.</P>
+<P ALIGN="JUSTIFY">data_bus &lt;= "UUUUUUUUFFFFFFFF";</P>
+
+</FONT><P ALIGN="JUSTIFY"><FONT FACE="Times New Roman" SIZE=2>VHDL позволяет компактно описывать битовые строки (значение типа </font><I><FONT SIZE=2>bit_vector</font></I> <FONT FACE="Times New Roman" SIZE=2>или </FONT><I><FONT SIZE=2>std_logic_vector</font></I><FONT FACE="Times New Roman" SIZE=2>) в базисе 2,</FONT><FONT SIZE=2> </FONT><FONT FACE="Times New Roman" SIZE=2>8 и 16. Например:</font></P>
+<FONT SIZE=2>
+<P ALIGN="JUSTIFY">CONSTANT clear : bit_vector := B"00_101_010";</P>
+<P ALIGN="JUSTIFY">CONSTANT empty : bit_vector := O"052";</P>
+<P ALIGN="JUSTIFY">CONSTANT null  : bit_vector := X"2A";</P>
+
+</FONT><FONT FACE="Times New Roman" SIZE=2><P ALIGN="JUSTIFY">Все три константы имеют одно и то же значение. Отметим, что символы подчеркивания могут использоваться в любом месте битовой строки для облегчения чтения. Расширенными цифрами (extended digits) для шестнадцатеричного представления являются буквы от A до F, причем могут использоваться как прописные, так и строчные буквы.</P>
+<P ALIGN="JUSTIFY">Массивные агрегаты используются для присваивания объектам типа массив значений. Массивные агрегаты формируются при помощи позиционной (positional) записи, поименованной (named) записи или комбинации этих двух форм. Рассмотрим пример. </P>
+<P>Предположим, что имеются следующие описания</P>
+</FONT><FONT SIZE=2><P ALIGN="JUSTIFY">TYPE ArayType IS ARRAY (1 TO 4) OF CHARACTER;</P>
+<P ALIGN="JUSTIFY">. . .</P>
+<P ALIGN="JUSTIFY">VARIABLE Test : ArrayType;</P>
+</FONT><P ALIGN="JUSTIFY"><FONT FACE="Times New Roman" SIZE=2>и требуется, чтобы переменная </font><I><FONT SIZE=2>Test</font></I> <FONT FACE="Times New Roman" SIZE=2>содержала элементы </FONT><FONT SIZE=2>'f', 'o', 'o', 'd' </FONT><FONT FACE="Times New Roman" SIZE=2>в указанном порядке. </font></P><FONT FACE="Times New Roman" SIZE=2>
+<P>Позиционная запись имеет вид:</P>
+</FONT><FONT SIZE=2><P ALIGN="CENTER">Test := ('f', 'o', 'o', 'd');</P>
+</FONT><FONT FACE="Times New Roman" SIZE=2><P ALIGN="JUSTIFY">Агрегат в данном случае записывается как список значений элементов, разделенных запятыми. Первое значение назначается элементу с наименьшим значением индекса (крайнему левому).</P>
+<P>Поименованная запись имеет вид:</P>
+</FONT><FONT SIZE=2><P ALIGN="CENTER">Test := (1=&gt;'f', 3=&gt;'o', 4=&gt;'d', 2=&gt;'o');</P>
+</FONT><FONT FACE="Times New Roman" SIZE=2><P ALIGN="JUSTIFY">В этом случае агрегат также является списком, элементы которого разделены запятыми, однако элементы списка имеют формат:</P>
+</FONT><P ALIGN="CENTER"><FONT FACE="Times New Roman" SIZE=2><I>позиция </i></font><FONT SIZE=2>=&gt;</FONT><I><FONT FACE="Times New Roman" SIZE=2> значение</font></i></P>
+<FONT FACE="Times New Roman" SIZE=2><P ALIGN="JUSTIFY">Порядок перечисления элементов при поименованной записи не имеет значения.</P>
+<P>Комбинированная запись имеет вид:</P>
+</FONT><FONT SIZE=2><P ALIGN="CENTER">Test := ('f', 'o', 4=&gt;'d', 3=&gt;'o');</P>
+</FONT><FONT FACE="Times New Roman" SIZE=2><P ALIGN="JUSTIFY">В этом случае сначала записываются элементы, присваиваемые с использованием позиционной записи, а оставшиеся элементы присваиваются с использованием поименованной записи. </P>
+</FONT><P ALIGN="JUSTIFY"><FONT FACE="Times New Roman" SIZE=2>При формировании агрегата с использованием поименованной (или комбинированной) записи вместо номера позиции можно указывать ключевое слово </font><B><FONT SIZE=2>OTHERS</font></B><FONT FACE="Times New Roman" SIZE=2>, которое определяет значение для всех элементов, которые еще не были описаны в агрегате. Например</font></P>
+<FONT SIZE=2><P ALIGN="CENTER">Test := ('f', 4=&gt;'d', OTHERS=&gt;'0');</P>
+<P ALIGN="JUSTIFY"></P>
+</FONT><U><FONT FACE="Times New Roman" SIZE=2><P>Подтипы</P>
+</font></U><FONT FACE="Times New Roman" SIZE=2><P>Использование подтипов позволяет объявлять объекты, принимающие <U>ограниченный</U> набор значений из диапазона, допустимого для базового типа.</P>
+<P>Подтипы применяются в двух случаях:</P></FONT><DIR><P>
+
+<FONT FACE="Times New Roman" SIZE=2>1) Подтип может ограничить диапазон значений базового скалярного типа </font><FONT SIZE=2>(</FONT><FONT FACE="Times New Roman" SIZE=2>ограничение по диапазону).</FONT><FONT SIZE=2> </FONT><FONT FACE="Times New Roman" SIZE=2>В этом случае объявление подтипа выглядит следующим образом</font></P>
+</DIR><P ALIGN="CENTER">
+
+<FONT SIZE=2><B>SUBTYPE</b> </font><I><FONT FACE="Times New Roman" SIZE=2>имя_подтипа</font></I><FONT SIZE=2> <B>IS</B> </FONT><I><FONT FACE="Times New Roman" SIZE=2>имя_базового_типа</font></I><B><FONT SIZE=2> RANGE</font></B> <I><FONT FACE="Times New Roman" SIZE=2>диапазон_индексов</font></I><B><FONT SIZE=2>;</font></b></P>
+<I></I><P ALIGN="JUSTIFY"><FONT FACE="Times New Roman" SIZE=2><I>диапазон_индексов</i></font><FONT FACE="Times New Roman" SIZE=2> определяется следующим образом:</font></P>
+<I></I><P ALIGN="CENTER"><FONT SIZE=2><I>m</i></font><FONT SIZE=2> <B>TO</B> <I>n</I> </font></P><FONT SIZE=2>
+<P ALIGN="CENTER"><I>n</i> <B>DOWNTO</B> <I>m</I> </P>
+</FONT><P ALIGN="JUSTIFY"><FONT FACE="Times New Roman" SIZE=2>где </font><I><FONT SIZE=2>m</font></I><FONT SIZE=2>, <I>n</I> – </FONT><FONT FACE="Times New Roman" SIZE=2>целочисленные константы, </FONT><I><FONT SIZE=2>m</font></I><FONT SIZE=2> &lt;= <I>n</I>.</font></P>
+
+<B><FONT FACE="Times New Roman" SIZE=2><P>Пример</P>
+</font></B><P><FONT FACE="Times New Roman" SIZE=2>Предположим что разработчик желает создать сигнал </font><I><FONT SIZE=2>A</font></I> <FONT FACE="Times New Roman" SIZE=2>типа </FONT><I><FONT SIZE=2>severity</font></I><FONT FACE="Times New Roman" SIZE=2> и что </FONT><I><FONT SIZE=2>A</font></I><FONT FACE="Times New Roman" SIZE=2> может принимать значения только </FONT><I><FONT SIZE=2>OKAY</font></I><FONT SIZE=2>, <I>NOTE</I> </FONT><FONT FACE="Times New Roman" SIZE=2>и </FONT><I><FONT SIZE=2>WARNING</font></I><FONT SIZE=2>.</font></P><FONT SIZE=2>
+<P ALIGN="JUSTIFY">TYPE sevirity IS (OKAY, NOTE, WARNING, ERROR, FAILURE);</P>
+<P ALIGN="JUSTIFY">SUBTYPE go_status IS severity RANGE OKAY TO WARNING;</P>
+<P ALIGN="JUSTIFY">SIGNAL A : go_status;</P>
+</FONT><P ALIGN="JUSTIFY"><FONT FACE="Times New Roman" SIZE=2>Базовый тип и ограничение диапазона могут быть включены непосредственно в объявление объекта. Объявление сигнала </font><FONT SIZE=2>A</FONT><FONT FACE="Times New Roman" SIZE=2>, эквивалентное приведенному выше будет выглядеть следующим образом</font></P>
+<FONT SIZE=2><P ALIGN="JUSTIFY">SIGNAL A : severity RANGE OKAY TO WARNING;</P>
+</FONT><FONT FACE="Times New Roman" SIZE=2><P ALIGN="JUSTIFY">Другие примеры:</P>
+</FONT><FONT SIZE=2><P ALIGN="JUSTIFY">SUBTYPE pin_count IS INTEGER RANGE 0 TO 400;</P>
+<P ALIGN="JUSTIFY">SUBYUPE digits IS character range '0' TO '9';</P>
+<P ALIGN="JUSTIFY"></P>
+</FONT><P ALIGN="JUSTIFY"><FONT FACE="Times New Roman" SIZE=2>Подтипы, объявленные таким образом, могут также участвовать в описании ограниченных массивных типов (см. "<I>Массивы</I></font><FONT SIZE=2>").</font></P><DIR><FONT SIZE=2>
+
+</font><P><FONT FACE="Times New Roman" SIZE=2>2) Подтип может определить границы диапазона индексов для неограниченного (</font><I><FONT SIZE=2>unconstrained</font></I><FONT FACE="Times New Roman" SIZE=2>) массивного типа. В этом случае объявление подтипа выглядит следующим образом</font></P>
+</DIR><P ALIGN="CENTER">
+
+<FONT SIZE=2><B>SUBTYPE</b> </font><I><FONT FACE="Times New Roman" SIZE=2>имя_подтипа</font></I><FONT SIZE=2> <B>IS</B> </FONT><I><FONT FACE="Times New Roman" SIZE=2>имя_базового_типа</font></I><B><FONT SIZE=2> (</font></B><I><FONT FACE="Times New Roman" SIZE=2>диапазон_индексов</font></I><FONT SIZE=2> [ <B>,</B> </FONT><I><FONT FACE="Times New Roman" SIZE=2>диапазон_индексов</font></I><FONT SIZE=2>] <B>);</b></font></P>
+<I></I><P ALIGN="JUSTIFY"><FONT FACE="Times New Roman" SIZE=2><I>диапазон_индексов</i></font><FONT FACE="Times New Roman" SIZE=2> определяется следующим образом:</font></P>
+<I></I><P ALIGN="CENTER"><FONT SIZE=2><I>m</i></font><FONT SIZE=2> <B>TO</B> <I>n</I> </font></P><FONT SIZE=2>
+<P ALIGN="CENTER"><I>n</i> <B>DOWNTO</B> <I>m</I> </P>
+</FONT><P ALIGN="JUSTIFY"><FONT FACE="Times New Roman" SIZE=2>где </font><I><FONT SIZE=2>m</font></I><FONT SIZE=2>, <I>n</I> – </FONT><FONT FACE="Times New Roman" SIZE=2>целочисленные константы, </FONT><I><FONT SIZE=2>m</font></I><FONT SIZE=2> &lt;= <I>n</I>.</font></P><FONT SIZE=2>
+<P ALIGN="JUSTIFY"></P>
+</FONT><FONT FACE="Times New Roman" SIZE=2><P ALIGN="JUSTIFY">Такое использование подтипа может быть удобно при наличии большого числа объектов некоторого типа с одинаковыми ограничениями на индексы.</P>
+<B><P ALIGN="JUSTIFY">Пример</P>
+</B></FONT><FONT SIZE=2><P ALIGN="JUSTIFY">TYPE bit6_data IS ARRAY (POSITIVE RANGE &lt;&gt;) OF bit6;</P>
+<P ALIGN="JUSTIFY">SUBTYPE data_store IS bit6_data (63 DOWNTO 0);</P>
+<P ALIGN="JUSTIFY">SIGNAL A_reg, B_reg,C_reg : data_store;</P>
+<P ALIGN="JUSTIFY">VARIABLE temp : data_store;</P>
+<P ALIGN="JUSTIFY"></P>
+</FONT><P ALIGN="JUSTIFY"><FONT FACE="Times New Roman" SIZE=2>В языке имеются два предопределенных числовых подтипа</font><FONT SIZE=2> <I>natural</I> </FONT><FONT FACE="Times New Roman" SIZE=2>и </FONT><I><FONT SIZE=2>positive</font></I><FONT FACE="Times New Roman" SIZE=2>, которые определены как:</font></P>
+<FONT SIZE=2><P ALIGN="JUSTIFY">SUBTYPE NATURAL IS INTEGER RANGE 0 TO highest_integer;</P>
+<P ALIGN="JUSTIFY">SUBTYPE POSITIVE IS INTEGER RANGE 1 TO highest_integer;</P>
+<P ALIGN="JUSTIFY"></P>
+<P ALIGN="JUSTIFY">&nbsp;</P>
+</FONT><B><P>&nbsp;</P>
+<P>4.4. <FONT FACE="Times New Roman">Операторы </FONT>VHDL</P>
+<FONT FACE="Times New Roman"><P>4.4.1. Основы синтаксиса</P>
+</font></B><P ALIGN="JUSTIFY"><FONT FACE="Times New Roman" SIZE=2>Исходный текст программы на </font><FONT SIZE=2>VHDL </FONT><FONT FACE="Times New Roman" SIZE=2>состоит из последовательностей операторов, записанных с учетом следующих правил:</font></P><FONT FACE="Times New Roman" SIZE=2>
+
+<UL>
+<P ALIGN="JUSTIFY"><LI>каждый оператор – это последовательность слов, содержащих буквы английского алфавита, цифры и знаки пунктуации</LI><p></P>
+<P ALIGN="JUSTIFY"><LI>слова разделяются произвольным количеством пробелов, табуляций и переводов строки</LI><p></P>
+<P ALIGN="JUSTIFY"><LI>операторы разделяются символами “;”</LI><p></P>
+<P ALIGN="JUSTIFY"><LI>в некоторых операторах могут встречаться списки объектов, разделяемые символами “,” или “;”</LI><p></P></UL>
+
+<P ALIGN="JUSTIFY">Комментарии могут быть включены в текст программы с помощью двух подряд идущих символов “--”. После появления этих символов весь текст до конца строки считается комментарием.</P>
+<P ALIGN="JUSTIFY">Для указания системы счисления для констант могут быть применены спецификаторы:</P>
+
+<UL>
+<P ALIGN="JUSTIFY"><LI>B – двоичная система счисления, например B”0011”</LI><p></P>
+<P ALIGN="JUSTIFY"><LI>О– восьмеричная система счисления, например O”3760”</LI><p></P>
+<P ALIGN="JUSTIFY"><LI>Н – шестнадцатеричная система счисления, например Н”F6A0”</LI><p></P></UL>
+
+</FONT><FONT FACE="Arial" SIZE=2><P ALIGN="JUSTIFY"></P>
+</FONT><B><FONT FACE="Times New Roman"><P>4.4.2. Объекты</P>
+</font></B><P ALIGN="JUSTIFY"><FONT FACE="Times New Roman" SIZE=2>Объекты являются контейнерами для хранения различных значений в рамках модели. Идентификаторы объектов содержать буквы, цифры и знаки подчеркивания. Идентификаторы должны начинаться с буквы, не должны заканчиваться знаком подчеркивания, и знаки подчеркивания не могут идти подряд. Прописные и строчные буквы в </font><FONT SIZE=2>VHDL</FONT><FONT FACE="Times New Roman" SIZE=2> не различаются. Все объекты должны быть явно объявлены перед использованием, за исключением переменной цикла в операторе </FONT><B><I><FONT SIZE=2>for</font></i></B><FONT FACE="Times New Roman" SIZE=2>, которая объявляется по умолчанию.</font></P><P ALIGN="JUSTIFY">
+<FONT FACE="Times New Roman" SIZE=2>Каждый объект характеризуется типом и классом. Типы разделяются на предопределенные в </font><FONT SIZE=2>VHDL</FONT><FONT FACE="Times New Roman" SIZE=2> и определяемые пользователем. Тип показывает, какого рода данные может содержать объект. Класс показывает, что можно сделать с данными, содержащимися в объекте. В </FONT><FONT SIZE=2>VHDL </FONT><FONT FACE="Times New Roman" SIZE=2>определены следующие классы объектов:</font></P><UL>
+
+<FONT FACE="Times New Roman" SIZE=2>
+</font><B><I><FONT SIZE=2><P ALIGN="JUSTIFY"></font></i></B><LI><FONT SIZE=2><I><B>Constant </b></i></font><FONT FACE="Times New Roman" SIZE=2>– константы. Значение константы определяется при ее объявлении и не может быть изменено. Константы могут иметь любой из поддерживаемых типов данных.</font></LI><FONT FACE="Times New Roman" SIZE=2><p></P>
+</FONT><B><I><FONT SIZE=2><P ALIGN="JUSTIFY"></font></i></B><LI><FONT SIZE=2><I><B>Variable </b></i></font><FONT FACE="Times New Roman" SIZE=2>– переменные. Значение, хранимое в переменной, меняется везде, где встречается присваивание данной переменной. Переменные могут иметь любой из поддерживаемых типов данных.</font></LI><FONT FACE="Times New R<FONT FACE="Times New Roman" SIZE=2><p></P>
+</FONT><B><I><FONT SIZE=2><P ALIGN="JUSTIFY"></font></i></B><LI><FONT SIZE=2><I><B>Signal </b></i></font><FONT FACE="Times New Roman" SIZE=2>– сигналы. Сигналы представляют значения, передаваемые по проводам и определяемые присвоением сигналов (отличным от присвоения переменных). Сигналы могут иметь ограниченный набор типов (обычно </FONT><I><FONT SIZE=2>bit</font></I><FONT SIZE=2>, <I>bit_vector</I>, <I>std_logic</I>, <I>std_logic_vector</I>, <I>integer</I></FONT><FONT FACE="Times New Roman" SIZE=2>, и, возможно, другие, в зависимости от среды разработки).</font></LI><FONT FACE="Times New Roman" SIZE=2><p></P></font></UL><FONT FACE="Times New Roman" SIZE=2>
+
+<P ALIGN="JUSTIFY">Повторное использование присваивания сигналов в наборе параллельных операторов не допускается. В наборе последовательных операторов такое присваивание допустимо и даст значение сигнала, соответствующее последнему по порядку присваиванию.</P>
+<P ALIGN="JUSTIFY">Синтаксис объявления объектов:</P>
+</FONT><FONT SIZE=2><P ALIGN="JUSTIFY"></P>
+</FONT><B></B><P ALIGN="JUSTIFY"><FONT FACE="Courier New" SIZE=2><B>Constant </b></font><FONT FACE="Courier New" SIZE=2>{ name [, name] } : Type [ ( index_range [ , index_range ] ) ] := initial_value;</font></P><FONT FACE="Courier New" SIZE=2>
+<P ALIGN="JUSTIFY"><B>Variable </b>{ name [, name] } : Type [ ( index_range [ , index_range ] ) ] [ := initial_value ];</P>
+<P ALIGN="JUSTIFY"><B>Signal </b>{ name [, name] } : Type [ ( index_range ) ];</P>
+</FONT><FONT SIZE=2><P ALIGN="JUSTIFY"></P>
+</FONT><P ALIGN="JUSTIFY"><FONT FACE="Times New Roman" SIZE=2>Диапазон значений индексов задается в виде </font><I><FONT SIZE=2>int_value <B>to</B> int_value </font></I><FONT FACE="Times New Roman" SIZE=2>или </FONT><I><FONT SIZE=2>int_value <B>downto</B> int_value.</font></i></P>
+<B>
+<FONT FACE="Times New Roman"><P>4.4.3. Атрибуты</P>
+</font></B><P><FONT FACE="Times New Roman" SIZE=2>Атрибуты (или иначе свойства) определяют ктеристики объектов, к которым они относятся. Стандарт </font><FONT SIZE=2>VHDL</FONT><FONT FACE="Times New Roman" SIZE=2> предусматривает как предопределенные, так и определяемые пользователем атрибуты, однако современные инструментальные средства в большинстве своем поддерживают только предопределенные атрибуты. Для обращения к атрибутам объекта используется символ “</FONT><FONT SIZE=2>’</FONT><FONT FACE="Times New Roman" SIZE=2>” (например </FONT><I><FONT SIZE=2>A1’left</font></I><FONT SIZE=2>).</font></P>
+<P><FONT FACE="Times New Roman" SIZE=2>В </font><FONT SIZE=2>VHDL</FONT><FONT FACE="Times New Roman" SIZE=2> определены следующие атрибуты:</font></P>
+<P><FONT SIZE=2>‘left – </font><FONT FACE="Times New Roman" SIZE=2>левая граница диапазона индексов массива</font></P><FONT FACE="Times New Roman" SIZE=2>
+<P>‘right – правая граница диапазона индексов массива</P>
+</FONT><P><FONT SIZE=2>‘low – </font><FONT FACE="Times New Roman" SIZE=2>нижняя граница диапазона индексов массива</font></P>
+<P><FONT SIZE=2>‘high</font><FONT FACE="Times New Roman" SIZE=2> – верхняя граница диапазона индексов массива</font></P><FONT FACE="Times New Roman" SIZE=2>
+<P>‘range – диапазон индексов массива</P>
+<P>‘reverse_range – обращенный диапазон индексов массива</P>
+</FONT><P><FONT SIZE=2>‘le</font><FONT FACE="Times New Roman" SIZE=2>ngth – ширина диапазона индексов массива</font></P>
+<FONT SIZE=2>
+</FONT><FONT FACE="Times New Roman" SIZE=2><P>4.4.4. Компоненты</P>
+</FONT><P><FONT FACE="Times New Roman" SIZE=2>Объявление компонента определяет интерфейс к модели на </font><FONT SIZE=2>VHDL (<B><I>entity</i></B> </FONT><FONT FACE="Times New Roman" SIZE=2>и</FONT><FONT SIZE=2> <B><I>architecture</i></B>)</FONT><FONT FACE="Times New Roman" SIZE=2>, описанной в другом файле. Обычно объявление компонента совпадает с соответствующим объявлением </FONT><B><I><FONT SIZE=2>entity</font></i></B><FONT SIZE=2>. </FONT><FONT FACE="Times New Roman" SIZE=2>Они могут различаться только значениями по умолчанию. Эти значения используются, когда какой-либо из отводов компонента остается не присоединенным (ключевое слово </FONT><B><I><FONT SIZE=2>open</font></i></B><FONT SIZE=2>)</FONT><FONT FACE="Times New Roman" SIZE=2> при установке компонента в схему.</font></P><P>
+<FONT FACE="Times New Roman" SIZE=2>Оператор объявления компонента может находиться внутри объявления </font><B><I><FONT SIZE=2>architecture </font></i></B><FONT FACE="Times New Roman" SIZE=2>или в заголовке пакета (</FONT><B><I><FONT SIZE=2>package</font></i></B><FONT SIZE=2>)</FONT><FONT FACE="Times New Roman" SIZE=2>. Соответствующие компоненту объявления </FONT><B><I><FONT SIZE=2>entity </font></i></B><FONT FACE="Times New Roman" SIZE=2>и</FONT><FONT SIZE=2> <B><I>architecture </i></B></FONT><FONT FACE="Times New Roman" SIZE=2>не обязательно должны существовать в момент анализа схемы. В момент моделирования или синтеза должны существовать объявления </FONT><FONT SIZE=2>entity </FONT><FONT FACE="Times New Roman" SIZE=2>и</FONT><FONT SIZE=2> architecture </FONT><FONT FACE="Times New Roman" SIZE=2>для компонентов</FONT><FONT SIZE=2>, </FONT><FONT FACE="Times New Roman" SIZE=2>которые не только объявлены, но и установлены в схему. Это позволяет, например, конструктору задать объявления библиотечных элементов, а реальное их описание (объявления </FONT><FONT SIZE=2>entity </FONT><FONT FACE="Times New Roman" SIZE=2>и</FONT><FONT SIZE=2> architecture</FONT><FONT FACE="Times New Roman" SIZE=2>) задавать по мере использования этих элементов в конструкции.</font></P><FONT FACE="Times New Roman" SIZE=2>
+<P>Объявление компонента записывается следующим образом:</P>
+</FONT><FONT FACE="Arial" SIZE=2><P ALIGN="JUSTIFY"></P>
+</FONT><FONT FACE="Courier New" SIZE=2><P ALIGN="JUSTIFY">Component name</P>
+<P ALIGN="JUSTIFY">&#9;[ port( port_list ); ]</P>
+<P ALIGN="JUSTIFY">end component;</P>
+</FONT><B>
+<FONT FACE="Times New Roman"><P>4.4.5. Выражения</P>
+</font></B><P ALIGN="JUSTIFY"><FONT FACE="Times New Roman">Выражения могут содержать следующие операторы: преобразование типа, </font><B><I>and</i></B>, <B><I>or</i></B>, <B><I>nand</i></B>, <B><I>nor</i></B>, <B><I>xor</i></B>, =, /=, &lt;, &lt;=, &gt;, &gt;=, +, -, &amp;, *, /, <B><I>mod</i></B>, <B><I>rem</i></B>, <B><I>abs</i></B>, <B><I>not</i></B>.</P>
+<FONT FACE="Times New Roman"><P ALIGN="JUSTIFY">В зависимости от избранной САПР при синтезе может поддерживаться подмножество приведенных выше операторов. Порядок вычисления выражений определяется приоритетом операторов:</P>
+</FONT><P ALIGN="JUSTIFY"></P>
+<B></B><P ALIGN="JUSTIFY"><I><B>and</b></i>, <B><I>or</i></B>, <B><I>nand</i></B>, <B><I>nor</i></B>, <B><I>xor</i></B> – <FONT FACE="Times New Roman">самый низкий приоритет</font></P>
+<P ALIGN="JUSTIFY">=, /=, &lt;, &lt;=, &gt;, &gt;=</P>
+<FONT FACE="Times New Roman"><P ALIGN="JUSTIFY">+, -, &amp; (бинарные)</P>
+<P ALIGN="JUSTIFY">+, - (унарные)</P>
+</FONT><P ALIGN="JUSTIFY">*, /, <B><I>mod</i></B>, <B><I>rem</i></b></P><B></B><P ALIGN="JUSTIFY">
+<I><B>abs</b></i>, <B><I>not</i></B><FONT FACE="Times New Roman"> – высший приоритет</font></P>
+<P ALIGN="JUSTIFY"></P>
+<FONT FACE="Times New Roman"><P ALIGN="JUSTIFY">Операторы с более высоким приоритетом выполняются раньше. Чтобы изменить такой порядок используются скобки.</P>
+<P ALIGN="JUSTIFY">При моделировании (но не при синтезе) схемы возможно также описание формы сигнала в виде выражения. Записывается оно следующим образом:</P>
+</FONT><I><P ALIGN="JUSTIFY"></P>
+</I><FONT FACE="Courier New" SIZE=2><P ALIGN="JUSTIFY">Value_expression [ <B>after </B>time_expression ]</P>
+<P ALIGN="JUSTIFY">{ , value_expression [ <B>after </B>time_expression ] }</P>
+</FONT><P ALIGN="JUSTIFY"></P>
+<FONT FACE="Times New Roman"><P ALIGN="JUSTIFY">Операторы</P>
+<P ALIGN="JUSTIFY">С помощью операторов описывается алгоритм, определяющий функционирование схемы. Они могут находиться в теле функции, процедуры или процесса.</P>
+</FONT><P ALIGN="JUSTIFY"></P>
+<B></B><P ALIGN="JUSTIFY"><I><B>Wait until </b></i><I>condition;</i></P>
+<FONT FACE="Times New Roman"><P ALIGN="JUSTIFY">Приостанавливает выполнение процесса, содержащего данный оператор до момента выполнения условия.</P>
+</FONT><I><P ALIGN="JUSTIFY"></P>
+<P ALIGN="JUSTIFY">Signal &lt;= expression</P>
+</I><FONT FACE="Times New Roman"><P ALIGN="JUSTIFY">Оператор присваивания сигнала устанавливает его значение равным выражению справа.</P>
+</FONT><I><P ALIGN="JUSTIFY"></P>
+<P ALIGN="JUSTIFY">Variable := expression</P>
+</I><FONT FACE="Times New Roman"><P ALIGN="JUSTIFY">Оператор присваивания устанавливает значение переменной равным выражению справа.</P>
+</FONT><I><P ALIGN="JUSTIFY"></P>
+<P ALIGN="JUSTIFY">Procedure_name ( parameter { , parameter } )</P>
+</I><FONT FACE="Times New Roman"><P ALIGN="JUSTIFY">Оператор вызова процедуры состоит из имени процедуры и списка фактических параметров.</P>
+</FONT><FONT FACE="Courier New" SIZE=2><P ALIGN="JUSTIFY"></P>
+<P ALIGN="JUSTIFY">If condition then</P>
+<P ALIGN="JUSTIFY">&#9;Sequence_of_statements</P>
+<P ALIGN="JUSTIFY">{ Elsif condition then</P>
+<P ALIGN="JUSTIFY">&#9;Sequence_of_statements }</P>
+</FONT><FONT FACE="Arial" SIZE=2><P ALIGN="JUSTIFY">[ else</P>
+<P ALIGN="JUSTIFY">&#9;sequence_of_statements ]</P>
+<P ALIGN="JUSTIFY">end if ;</P>
+</FONT><FONT SIZE=2><P ALIGN="JUSTIFY"></P>
+</FONT><P ALIGN="JUSTIFY"><FONT FACE="Times New Roman" SIZE=2>Оператор </font><B><I><FONT SIZE=2>if </font></i></B><FONT FACE="Times New Roman" SIZE=2>используется для ветвления алгоритма по различным условиям.</font></P>
+<FONT FACE="Courier New" SIZE=2><P ALIGN="JUSTIFY"></P>
+<P ALIGN="JUSTIFY">Case expression is</P>
+<P ALIGN="JUSTIFY">&#9;When choices_list =&gt; sequence_of_statements;</P>
+<P ALIGN="JUSTIFY">&#9;{ When choices_list =&gt; sequence_of_statements; }</P>
+<P ALIGN="JUSTIFY">&#9;When others =&gt; sequence_of_statements;</P>
+<P ALIGN="JUSTIFY">End case;</P>
+</FONT>
+<P ALIGN="JUSTIFY"><FONT FACE="Times New Roman" SIZE=2>Оператор </font><B><I><FONT SIZE=2>case</font></i></B><FONT FACE="Times New Roman" SIZE=2> подобно оператору </FONT><B><I><FONT SIZE=2>if </font></i></B><FONT FACE="Times New Roman" SIZE=2>задает ветвление алгоритма. Значения в списках разделяются символом “</FONT><FONT SIZE=2>|</FONT><FONT FACE="Times New Roman" SIZE=2>”. Когда значение выражения встречается в одном из списков значений, выполняется соответствующая последовательность операторов. Если значение выражения не присутствует ни в одном из списков, то выполняется список операторов, соответствующий ветви </FONT><B><I><FONT SIZE=2>when others</font></i></B><FONT SIZE=2>.</font></P>
+<FONT FACE="Arial" SIZE=2><P ALIGN="JUSTIFY"></P>
+<I><P ALIGN="JUSTIFY">[ loop_label : ]</P>
+<P ALIGN="JUSTIFY"><B>for </b>loop_index_variable <B>in </B>range <B>loop</b></P>
+<P ALIGN="JUSTIFY">&#9;sequence_of_statements</P>
+<P ALIGN="JUSTIFY"><B>end loop</b> [ loop_label ] ;</P>
+</I><P ALIGN="JUSTIFY"></P>
+</FONT><P ALIGN="JUSTIFY"><FONT FACE="Times New Roman" SIZE=2>Оператор цикла позволяет многократно выполнить последовательность операторов. Диапазон значений задается в виде </font><I><FONT SIZE=2>value1 <B>to </B>value2 </font></I><FONT FACE="Times New Roman" SIZE=2>или </FONT><I><FONT SIZE=2>value1 <B>downto </B>value2</font></I><FONT FACE="Times New Roman" SIZE=2>. Переменная цикла последовательно принимает значения из заданного диапазона. Количество итераций равно количеству значений в диапазоне.</font></P>
+<FONT FACE="Arial" SIZE=2><P ALIGN="JUSTIFY"></P>
+<B></B><P ALIGN="JUSTIFY"><I><B>Return </b></i><I>expression ;</i></P>
+</FONT><FONT FACE="Arial" SIZE=2><P ALIGN="JUSTIFY">Этот оператор возвращает значение из функции.</P>
+</FONT><FONT FACE="Arial" SIZE=2><P ALIGN="JUSTIFY"></P>
+<B><I><P ALIGN="JUSTIFY">Null</P>
+</i></B></FONT><FONT FACE="Arial" SIZE=2><P ALIGN="JUSTIFY">Пустой оператор, не выполняет никаких действий.</P>
+</FONT><B>
+<P>4.5. <FONT FACE="Times New Roman">Интерфейс и тело объекта.</font></P>
+</B><P><FONT FACE="Times New Roman" SIZE=2>Полное </font><FONT SIZE=2>VHDL</FONT><FONT FACE="Times New Roman" SIZE=2>- описание объекта состоит как минимум из двух отдельных описаний: описание интерфейса объекта и описание тела объекта (описание архитектуры).</font></P><P>
+<FONT FACE="Times New Roman" SIZE=2>Интерфейс описывается в объявлении объекта </font><B><FONT SIZE=2>entity declaration </font></B><FONT FACE="Times New Roman" SIZE=2>и определяет входы и выходы объекта, его входные и выходные порты </FONT><B><FONT SIZE=2>ports</font></B> <FONT FACE="Times New Roman" SIZE=2>и параметры настройки </FONT><B><FONT SIZE=2>generic</font></B><FONT SIZE=2>.</FONT><FONT FACE="Times New Roman" SIZE=2> Параметры настройки отражают тот факт, что некоторые объекты могут иметь управляющие входы, с помощью которых может производиться настройка экземпляров объектов в частности, задаться временем задержки.</font></P><P>
+<FONT FACE="Times New Roman" SIZE=2>Например, у объекта</font><FONT SIZE=2> Q1 </FONT><FONT FACE="Times New Roman" SIZE=2>три входных порта Х1, Х2, Х3 и два выхода У1, У2. Описание его интерфейса на </FONT><FONT SIZE=2>VHDL </FONT><FONT FACE="Times New Roman" SIZE=2>имеет вид:</font></P>
+<FONT SIZE=2>
+</FONT><FONT FACE="Courier New" SIZE=2><P ALIGN="JUSTIFY">Entity Q1 is</P>
+<P ALIGN="JUSTIFY">      Port (X1, X2, X3: in real; Y1, Y2: out real);</P>
+<P ALIGN="JUSTIFY">End Q1.</P>
+</FONT><I><FONT SIZE=2>
+<P>&nbsp;</P>
+</font></I><FONT FACE="Times New Roman" SIZE=2><P>Порты объекта характеризуются направлением потока информации. Они могут быть:</P>
+
+</FONT><UL><LI>
+<FONT FACE="Times New Roman" SIZE=2>входными (</font><FONT SIZE=2>in)</font></LI>
+<LI><FONT FACE="Times New Roman" SIZE=2>выходными (</font><FONT SIZE=2>out)</font></LI>
+<LI><FONT FACE="Times New Roman" SIZE=2>двунаправленными (</font><FONT SIZE=2>inout)</font></LI>
+<LI><FONT FACE="Times New Roman" SIZE=2>двунаправленными буферными (</font><FONT SIZE=2>buffer)</font></LI>
+<LI><FONT FACE="Times New Roman" SIZE=2>связными (</font><FONT SIZE=2>linkage)</font></LI>
+<FONT FACE="Times New Roman" SIZE=2><LI>А также имеют тип, характеризующий значения поступающих на них сигналов:</LI>
+</FONT><LI><FONT FACE="Times New Roman" SIZE=2>целый (</font><FONT SIZE=2>integer)</font></LI>
+<LI><FONT FACE="Times New Roman" SIZE=2>вещественный (</font><FONT SIZE=2>real)</font></LI>
+<LI><FONT FACE="Times New Roman" SIZE=2>битовый (</font><FONT SIZE=2>bit)</font></LI>
+<LI><FONT FACE="Times New Roman" SIZE=2>символьный</font><FONT SIZE=2> (character)</font></LI></UL>
+
+
+<P><FONT FACE="Times New Roman" SIZE=2>Тело объекта специфицирует его структуру или поведение. Его описание по терминологии </font><FONT SIZE=2>VHDL </FONT><FONT FACE="Times New Roman" SIZE=2>содержится в описании его архитектуры </FONT><B><FONT SIZE=2>architecture. </font></b></P>
+<P><FONT SIZE=2>VHDL</font><FONT FACE="Times New Roman" SIZE=2> позволяет отождествлять с одним и тем же интерфейсом несколько архитектур. Это связано с тем, что в процессе проектирования происходит проработка архитектуры объекта: переход от структурной схемы к электрической принципиальной,  от поведенческого к структурному описанию.</FONT> </P>
+
+<P><FONT FACE="Times New Roman" SIZE=2>Средства</font><FONT SIZE=2> VHDL </FONT><FONT FACE="Times New Roman" SIZE=2>для отображения структур цифровых систем базируются на представлении о том, что описываемый объект </FONT><B><FONT SIZE=2>entity</font></B><FONT FACE="Times New Roman" SIZE=2> представляет собой структуру</FONT><FONT SIZE=2> </FONT><FONT FACE="Times New Roman" SIZE=2>из</FONT><FONT SIZE=2> </FONT><FONT FACE="Times New Roman" SIZE=2>компонент</FONT><FONT SIZE=2> <B>component </B></FONT><FONT FACE="Times New Roman" SIZE=2>соединяемых</FONT><FONT SIZE=2> </FONT><FONT FACE="Times New Roman" SIZE=2>друг с другом линиями связи. Каждая компонента, в свою очередь, является объектом и может состоять из компонент низшего уровня (иерархия объектов). Взаимодействуют объекты путем передачи сигналов</FONT><FONT SIZE=2> <B>signal</B></FONT><FONT FACE="Times New Roman" SIZE=2>  по линиям связи. Линии</FONT><FONT SIZE=2> </FONT><FONT FACE="Times New Roman" SIZE=2>связи</FONT><FONT SIZE=2> </FONT><FONT FACE="Times New Roman" SIZE=2>подключаются к входным и выходным</FONT><FONT SIZE=2> </FONT><FONT FACE="Times New Roman" SIZE=2>портам компонент. В </FONT><FONT SIZE=2>VHDL </FONT><FONT FACE="Times New Roman" SIZE=2>сигналы отождествляются с линиями связи.</font></P><FONT FACE="Times New Roman" SIZE=2>
+<P>Имена сигналов и имена линий связи совпадают (они отождествляются). Для сигналов (линий), связывающих компоненты друг с другом, необходимо указывать индивидуальные имена.</P>
+</FONT><FONT SIZE=2>
+</FONT><P><FONT FACE="Times New Roman" SIZE=2>Описание  структуры объекта строится как описание связей конкретных компонент, каждая из которых имеет имя, тип и карты портов. Карта портов </font><B><FONT SIZE=2>port map</font></B> <FONT FACE="Times New Roman" SIZE=2>определяет соответствие портов компонент поступающим на них сигналам, можно интерпретировать карту портов как разъем, на который приходят сигналы и в который вставляется объект-компонента.</font></P><P>
+<FONT FACE="Times New Roman" SIZE=2>Принятая в </font><FONT SIZE=2>VHDL </FONT><FONT FACE="Times New Roman" SIZE=2>форма описания связей конкретных компонент имеет следующий вид:</font></P>
+<FONT SIZE=2>
+</FONT><FONT FACE="Courier New" SIZE=2><P ALIGN="JUSTIFY">Имя: тип связи (сигнал, порт). </P>
+</FONT><FONT SIZE=2>
+</FONT><P><FONT FACE="Times New Roman" SIZE=2>Например, описание связей</font><I><FONT SIZE=2> </font></I><FONT FACE="Times New Roman" SIZE=2>объекта </FONT><FONT SIZE=2>Q1</FONT><FONT FACE="Times New Roman" SIZE=2>, представленного  на рис. 3 выглядит следующим образом:</font></P>
+<I><FONT SIZE=2>
+</font></I><FONT FACE="Courier New" SIZE=2><P ALIGN="JUSTIFY">К1: SM port map (X1, X2, S);</P>
+</FONT><FONT FACE="Courier New" SIZE=2><P ALIGN="JUSTIFY">K3: M port map (S, Y1);</P>
+<P ALIGN="JUSTIFY">K2: SM port map (S, X3, Y2);</P>
+</FONT><FONT SIZE=2>
+</FONT><P><FONT FACE="Times New Roman" SIZE=2>Здесь К1, К2, К3- имена компонент; </font><FONT SIZE=2>SM,M</FONT><FONT FACE="Times New Roman" SIZE=2>- типы компонент; Х1, Х2, Х3, </FONT><FONT SIZE=2>S, Y1,Y2</FONT><FONT FACE="Times New Roman" SIZE=2>- имена сигналов, связанных с портами.</font></P><P>
+<FONT FACE="Times New Roman" SIZE=2>Полное </font><FONT SIZE=2>VHDL</FONT><FONT FACE="Times New Roman" SIZE=2> описание архитектуры </FONT><FONT SIZE=2>STRUCTURA </FONT><FONT FACE="Times New Roman" SIZE=2>объекта </FONT><FONT SIZE=2>Q1 </FONT><FONT FACE="Times New Roman" SIZE=2>имеет вид:</font></P>
+<FONT FACE="Courier New" SIZE=2><P ALIGN="JUSTIFY"></P>
+<P ALIGN="JUSTIFY">Architecture STRUCTURA of Q1 is</P>
+<P ALIGN="JUSTIFY">Component SM port (A, B: in real; C: out real);</P>
+<P ALIGN="JUSTIFY">End component;</P>
+<P ALIGN="JUSTIFY">Component M port (E: in real; D: out real);</P>
+<P ALIGN="JUSTIFY">End component;</P>
+<P ALIGN="JUSTIFY">Signal S: real;</P>
+<P ALIGN="JUSTIFY">Begin</P>
+<P ALIGN="JUSTIFY">K1: SM port map (X1, X2, S);</P>
+<P ALIGN="JUSTIFY">K3: M port map (S, Y1);</P>
+<P ALIGN="JUSTIFY">K2: SM port map (S, X3, Y2);</P>
+<P ALIGN="JUSTIFY">End  STRUCTURA;</P>
+</FONT><B><FONT SIZE=2>
+</font></B><FONT SIZE=2><P>&nbsp;</P>
+</FONT><P><FONT FACE="Times New Roman" SIZE=2>Средства </font><FONT SIZE=2>VHDL</FONT><FONT FACE="Times New Roman" SIZE=2> для отображения поведения описываемых архитектур строится на представлении их как совокупности параллельно взаимодействующих процессов. Понятие процесса </FONT><B><FONT SIZE=2>process</font></B><FONT FACE="Times New Roman" SIZE=2> относится к базовым понятиям языка </FONT><FONT SIZE=2>VHDL.</font></P>
+<FONT FACE="Times New Roman" SIZE=2><P>Архитектура включает в себя описание одного или нескольких параллельных процессов. Описание процесса состоит из последовательности операторов, отображающих действия по переработке информации. Все операторы внутри процесса выполняются последовательно. Процесс может находиться в одном из двух состояний- либо пассивном, когда процесс ожидает прихода сигналов запуска или наступления соответствующего момента времени, либо активном- когда процесс исполняется.</P>
+<P>Процессы взаимодействуют путем обмена сигналами. </P>
+</FONT><FONT SIZE=2>
+</FONT><FONT FACE="Times New Roman" SIZE=2><P>В общем случае в поведенческом описании состав процессов не обязательно соответствует составу компонент, как это имеет место в структурном описании</P>
+</FONT><FONT SIZE=2>
+</FONT><P><FONT FACE="Times New Roman" SIZE=2>Поведение </font><FONT SIZE=2>VHDL- </FONT><FONT FACE="Times New Roman" SIZE=2>объектов воспроизводится на ЭВМ, и приходится учитывать особенности воспроизведения параллельных процессов на однопроцессорной ЭВМ. Особая роль в синхронизации процессов отводится механизму событийного воспроизведения модельного времени </FONT><B><FONT SIZE=2>now.</font></b></P>
+<P><FONT FACE="Times New Roman" SIZE=2>Когда процесс вырабатывает новое значение сигнала перед его посылкой на линию связи, говорят, что он вырабатывает будущее сообщение </font><B><FONT SIZE=2>transaction</font></B><FONT FACE="Times New Roman" SIZE=2>. С каждой линией связи (сигналом) может быть связано множество будущих сообщений. Множество сообщений для сигнала называется его драйвером </FONT><B><FONT SIZE=2>driver</font></B><FONT SIZE=2>.</font></P>
+<FONT FACE="Times New Roman" SIZE=2><P>Т.о., драйвер сигнала - это множество пар: время – значение (множество планируемых событий).</P>
+</FONT><P><FONT SIZE=2>VHDL </font><FONT FACE="Times New Roman" SIZE=2>реализует механизм воспроизведения модельного времени, состоящий из циклов. На первой стадии цикла вырабатываются новые значения сигналов. На второй стадии процессы реагируют на изменения сигналов и переходят в активную фазу. Эта стадия завершается, когда все процессы перейдут снова в состояние ожидания. После этого модельное время становится равным времени ближайшего запланированного события, и все повторяется.</font></P><P>
+<FONT FACE="Times New Roman" SIZE=2>Особый случай представляет ситуация, когда в процессах отсутствуют операторы задержки. Для этого в </font><FONT SIZE=2>VHDL </FONT><FONT FACE="Times New Roman" SIZE=2>предусмотрен механизм так называемой дельта - задержки.</font></P><P>
+<FONT FACE="Times New Roman" SIZE=2>В случае дельта – задержек новый цикл моделирования не связан с увеличением модельного времени. В приведенном выше примере новое значение сигнала У1 вырабатывается через дельта- задержку после изменения сигнала </font><FONT SIZE=2>S.</font></P>
+<P><FONT FACE="Times New Roman" SIZE=2>Другая способность </font><FONT SIZE=2>VHDL</FONT><FONT FACE="Times New Roman" SIZE=2>- процессов связана с так называемыми разрешенными </FONT><B><FONT SIZE=2>resolved</font></B><FONT FACE="Times New Roman" SIZE=2> сигналами. Если несколько процессов изменяют один и тот же сигнал, (сигнал имеет несколько драйверов), в описании объектов может указываться функция разрешения. Эта функция объединяет значения из разных драйверов и вырабатывает одно. Это позволяет, например, особенности работы нескольких элементов на общую шину.</font></P><P>
+<FONT FACE="Times New Roman" SIZE=2>В языке </font><FONT SIZE=2>VHDL</FONT><FONT FACE="Times New Roman" SIZE=2> для наиболее часто используемых видов процессов – процессов межрегистровых передач – введена компактная форма записи.</font></P>
+<I><FONT SIZE=2>
+</font></I><P><FONT FACE="Times New Roman" SIZE=2>Полное описание архитектуры </font><FONT SIZE=2>POVEDENIE</FONT><FONT FACE="Times New Roman" SIZE=2> объекта </FONT><FONT SIZE=2>Q1</FONT><FONT FACE="Times New Roman" SIZE=2> в этом случае имеет следующий вид:</font></P>
+<FONT FACE="Courier New" SIZE=2><P ALIGN="JUSTIFY">Architecture POVEDENIE of Q1 is</P>
+<P ALIGN="JUSTIFY">Signal S: real;</P>
+<P ALIGN="JUSTIFY">Begin</P>
+<P ALIGN="JUSTIFY">Y1&lt;=S;</P>
+<P ALIGN="JUSTIFY">Y2&lt;=S+X3 after 10 ns;</P>
+<P ALIGN="JUSTIFY">S&lt;=X3+X2 after 10 ns;</P>
+<P ALIGN="JUSTIFY">End POVEDENIE;</P>
+</FONT><B>
+<P>&nbsp;</P>
+<P>4.5.1<FONT FACE="Times New Roman">Описание простого объекта.</font></P>
+</B><P ALIGN="JUSTIFY"><FONT FACE="Times New Roman" SIZE=2>Для иллюстрации возможностей </font><FONT SIZE=2>VHDL</FONT><FONT FACE="Times New Roman" SIZE=2> рассмотрим пример проектирования простой комбинационной схемы, назовем ее объект </FONT><FONT SIZE=2>F. </FONT><FONT FACE="Times New Roman" SIZE=2>Объект проекта</FONT><FONT SIZE=2> F</FONT><FONT FACE="Times New Roman" SIZE=2> имеет два входа А1 и А2 и два выхода В1 и В2.</font></P>
+<B><FONT SIZE=2><P ALIGN="JUSTIFY"></P>
+</FONT><P><FONT FACE="Times New Roman">4.5.2 Объявление объекта проекта </font>F.</P>
+</B><FONT FACE="Courier New" SIZE=2><P ALIGN="JUSTIFY"></P>
+<P ALIGN="JUSTIFY">Entity F is</P>
+<I><P ALIGN="JUSTIFY">Port (A1, A2: in BIT; B1, B2: out BIT)</P>
+</I></FONT>
+<P ALIGN="JUSTIFY"><FONT FACE="Times New Roman" SIZE=2>Сигналы принимают значения 1 или 0 в соответствии с</font><FONT SIZE=2> </FONT><FONT FACE="Times New Roman" SIZE=2>таблицей истинности.</font></P>
+<FONT FACE="Courier New" SIZE=2><P ALIGN="JUSTIFY"></P></FONT>
+</TD>
+</TR>
+</TABLE>
+<br><center>
+<TABLE BORDER CELLSPACING=1 CELLPADDING=7 WIDTH=515>
+<TR><TD WIDTH="50%" VALIGN="TOP" COLSPAN=2>
+<P ALIGN="JUSTIFY"><FONT FACE="Courier New" SIZE=2> </font><FONT FACE="Courier New" SIZE=2>Входы</FONT></TD>
+<TD WIDTH="50%" VALIGN="TOP" COLSPAN=2>
+<FONT FACE="Courier New" SIZE=2><P ALIGN="JUSTIFY">Выходы</FONT></TD>
+</TR>
+<TR><TD WIDTH="25%" VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=2><P ALIGN="JUSTIFY">А1</FONT></TD>
+<TD WIDTH="25%" VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=2><P ALIGN="JUSTIFY">А2</FONT></TD>
+<TD WIDTH="25%" VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=2><P ALIGN="JUSTIFY">В1</FONT></TD>
+<TD WIDTH="25%" VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=2><P ALIGN="JUSTIFY">В2</FONT></TD>
+</TR>
+<TR><TD WIDTH="25%" VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=2><P ALIGN="JUSTIFY">0</FONT></TD>
+<TD WIDTH="25%" VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=2><P ALIGN="JUSTIFY">0</FONT></TD>
+<TD WIDTH="25%" VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=2><P ALIGN="JUSTIFY">0</FONT></TD>
+<TD WIDTH="25%" VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=2><P ALIGN="JUSTIFY">1</FONT></TD>
+</TR>
+<TR><TD WIDTH="25%" VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=2><P ALIGN="JUSTIFY">0</FONT></TD>
+<TD WIDTH="25%" VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=2><P ALIGN="JUSTIFY">1</FONT></TD>
+<TD WIDTH="25%" VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=2><P ALIGN="JUSTIFY">0</FONT></TD>
+<TD WIDTH="25%" VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=2><P ALIGN="JUSTIFY">1</FONT></TD>
+</TR>
+<TR><TD WIDTH="25%" VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=2><P ALIGN="JUSTIFY">1</FONT></TD>
+<TD WIDTH="25%" VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=2><P ALIGN="JUSTIFY">0</FONT></TD>
+<TD WIDTH="25%" VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=2><P ALIGN="JUSTIFY">0</FONT></TD>
+<TD WIDTH="25%" VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=2><P ALIGN="JUSTIFY">1</FONT></TD>
+</TR>
+<TR><TD WIDTH="25%" VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=2><P ALIGN="JUSTIFY">1</FONT></TD>
+<TD WIDTH="25%" VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=2><P ALIGN="JUSTIFY">1</FONT></TD>
+<TD WIDTH="25%" VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=2><P ALIGN="JUSTIFY">1</FONT></TD>
+<TD WIDTH="25%" VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=2><P ALIGN="JUSTIFY">0</FONT></TD>
+</TR>
+</TABLE>
+<br></center>
+<TABLE CELLSPACING=0 CELLPADDING=0  BORDER=0  align=center width=750>
+<TR>
+	<TD class=body width=750>
+<U><FONT SIZE=2>
+</font></U><B><FONT FACE="Times New Roman"><P>4.5.3. Поведенческое описание архитектуры</P>
+</font></B><P ALIGN="JUSTIFY"><FONT FACE="Times New Roman" SIZE=2>Вариант описания архитектуры </font><FONT SIZE=2>BEHAVIOR</FONT><FONT FACE="Times New Roman" SIZE=2> объекта </FONT><FONT SIZE=2>F</FONT><FONT FACE="Times New Roman" SIZE=2> использует условный оператор </FONT><B><FONT SIZE=2>if</font></B><FONT FACE="Times New Roman" SIZE=2> языка </FONT><FONT SIZE=2>VHDL</FONT><FONT FACE="Times New Roman" SIZE=2> и учитывает, что только при обоих входах  А1 и А2, равных 1, выходы В1=1 и В2=0. В остальных случаях наоборот В1=0 и В2=1</font></P>
+<FONT SIZE=2><P ALIGN="JUSTIFY"></P>
+</FONT><FONT FACE="Courier New" SIZE=2><P ALIGN="JUSTIFY">Architecture BEHAVIOR of  F is</P>
+<P ALIGN="JUSTIFY">Begin</P>
+<P ALIGN="JUSTIFY">Process</P>
+<P ALIGN="JUSTIFY">Begin</P>
+<P ALIGN="JUSTIFY">Wait on (A1, A2)</P>
+<P ALIGN="JUSTIFY">If  (A1=’1’) and (A2=’1’)</P>
+<P ALIGN="JUSTIFY">Then B1&lt;=’1’; B2&lt;=’0’;</P>
+<P ALIGN="JUSTIFY">End if;</P>
+<P ALIGN="JUSTIFY">End process;</P>
+<P ALIGN="JUSTIFY">End;</P>
+</FONT><FONT SIZE=2><P ALIGN="JUSTIFY"></P>
+</FONT><P ALIGN="JUSTIFY"><FONT FACE="Times New Roman" SIZE=2>В каждом процессе может быть только 1 оператор </font><B><FONT SIZE=2>wait on.</font></B><FONT FACE="Times New Roman" SIZE=2> Второй вариант поведенческого описания архитектуры объекта </FONT><FONT SIZE=2>F</FONT><FONT FACE="Times New Roman" SIZE=2>, назовем его </FONT><FONT SIZE=2>BEHAVIOR_F,</FONT><FONT FACE="Times New Roman" SIZE=2> использует выбор </FONT><B><FONT SIZE=2>case</font></B><FONT FACE="Times New Roman" SIZE=2> языка </FONT><FONT SIZE=2>VHDL</FONT><FONT FACE="Times New Roman" SIZE=2> и учитывает то свойство функции </FONT><FONT SIZE=2>F</FONT><FONT FACE="Times New Roman" SIZE=2>, что для первых трех строк ее значение не меняется. В заголовке процесса указан список чувствительности процесса </FONT><B><FONT SIZE=2>process (A1, A2).</font></B><FONT FACE="Times New Roman" SIZE=2> Это указание эквивалентно оператору </FONT><B><FONT SIZE=2>wait on (A1, A2)</font></B><FONT FACE="Times New Roman" SIZE=2> в начале описания процесса.</font></P>
+<B><FONT SIZE=2>
+</font></B><FONT FACE="Courier New" SIZE=2><P ALIGN="JUSTIFY">Architecture BEHAVIOR_F of F is</P>
+<P ALIGN="JUSTIFY">Begin</P>
+<P ALIGN="JUSTIFY">Process (A1,A2);</P>
+<P ALIGN="JUSTIFY">Begin</P>
+</FONT><FONT FACE="Courier New" SIZE=2><P ALIGN="JUSTIFY">--&amp;-операция</P>
+</FONT><FONT FACE="Courier New" SIZE=2><P ALIGN="JUSTIFY">case  (A1&amp; A2) is</P>
+</FONT><FONT FACE="Courier New" SIZE=2><P ALIGN="JUSTIFY">--первые три строки таблицы</P>
+</FONT><FONT FACE="Courier New" SIZE=2><P ALIGN="JUSTIFY">when “00”/ “01”/ “10”=&gt; B1&lt;=’0’; B2&lt;=’1’</P>
+</FONT><FONT FACE="Courier New" SIZE=2><P ALIGN="JUSTIFY">--последняя строка таблицы</P>
+</FONT><FONT FACE="Courier New" SIZE=2><P ALIGN="JUSTIFY">when “11” =&gt; B1&lt;=‘1’; B2&lt;=’0’</P>
+<P ALIGN="JUSTIFY">end case</P>
+<P ALIGN="JUSTIFY">end process</P>
+<P ALIGN="JUSTIFY">end BEHAVIOR_F;</P>
+</FONT><B>
+<FONT FACE="Times New Roman" SIZE=2><P>4.5.4. Потоковая форма</P>
+</font></B><P ALIGN="JUSTIFY"><FONT FACE="Times New Roman" SIZE=2>В процессе проектирования объекта </font><FONT SIZE=2>F</FONT><FONT FACE="Times New Roman" SIZE=2> могут быть предложены различные варианты его функциональных схем:</font></P><P>
+<FONT FACE="Times New Roman" SIZE=2>Описание архитектуры объекта </font><FONT SIZE=2>F</FONT><FONT FACE="Times New Roman" SIZE=2> может быть таким:</font></P>
+
+<FONT FACE="Courier New" SIZE=2><P ALIGN="JUSTIFY">Architecture F_A of F is</P>
+<P ALIGN="JUSTIFY">Begin</P>
+</FONT><FONT FACE="Courier New" SIZE=2><P ALIGN="JUSTIFY">--каждому вентилю сопоставлен оператор назначения сигнала</P>
+</FONT><FONT FACE="Courier New" SIZE=2><P ALIGN="JUSTIFY">B1&lt;= A1 and A2;</P>
+<P ALIGN="JUSTIFY">B2&lt;= not (A1 and A2);</P>
+<P ALIGN="JUSTIFY">End;</P>
+</FONT><FONT SIZE=2><P ALIGN="JUSTIFY"></P>
+</FONT><P ALIGN="JUSTIFY"><FONT FACE="Times New Roman" SIZE=2>Здесь каждому элементу сопоставлен процесс, отображающий последовательность преобразования входной информации и передачи ее на выход. Процесс представлен в форме оператора параллельного назначения сигнала. Операторы назначения сигнала </font><B><FONT SIZE=2>(&lt;=) </font></B><FONT FACE="Times New Roman" SIZE=2>срабатывают параллельно при изменении хотя бы одного из сигналов в своих правых частях.</font></P><P ALIGN="JUSTIFY">
+<FONT FACE="Times New Roman" SIZE=2>Другой вариант описания архитектуры </font><FONT SIZE=2>F_B. </FONT><FONT FACE="Times New Roman" SIZE=2>Здесь вентили включены последовательно.</font></P>
+<FONT SIZE=2><P ALIGN="JUSTIFY"></P>
+</FONT><FONT FACE="Courier New" SIZE=2><P ALIGN="JUSTIFY"> Architecture F_B of F is</P>
+<P ALIGN="JUSTIFY">Signal X: bit</P>
+<P ALIGN="JUSTIFY">Begin</P>
+<P ALIGN="JUSTIFY">B2&lt;= not (X);</P>
+<P ALIGN="JUSTIFY">X &lt;= A1 and A2;</P>
+<P ALIGN="JUSTIFY">B1 &lt;= XB1 &lt;= X;</P>
+<P ALIGN="JUSTIFY">End;</P>
+</FONT><FONT SIZE=2><P ALIGN="JUSTIFY"></P>
+</FONT><P ALIGN="JUSTIFY"><FONT FACE="Times New Roman" SIZE=2>Промежуточный сигнал Х введен в описание архитектуры </font><FONT SIZE=2>F_B </FONT><FONT FACE="Times New Roman" SIZE=2>объекта </FONT><FONT SIZE=2>F</FONT><FONT FACE="Times New Roman" SIZE=2> потому, что в описании интерфейса объекта </FONT><FONT SIZE=2>F</FONT><FONT FACE="Times New Roman" SIZE=2> порт В1 объявлен выходным, то есть с него нельзя считывать сигнал и запись </FONT><FONT SIZE=2>B2&lt;= not(B1)</FONT><FONT FACE="Times New Roman" SIZE=2> была бы не корректной.</font></P><P ALIGN="JUSTIFY">
+<FONT FACE="Times New Roman" SIZE=2>Сигнал </font><FONT SIZE=2>B2 </FONT><FONT FACE="Times New Roman" SIZE=2>вырабатывается только после изменения сигнала Х. Оператор </FONT><FONT SIZE=2>B2&lt;= not(X)</FONT><FONT FACE="Times New Roman" SIZE=2> сработает только тогда, когда изменится сигнал Х, то есть после оператора </FONT><FONT SIZE=2>X&lt;= A1 and A2</FONT><FONT FACE="Times New Roman" SIZE=2>, т. к. он реагирует только на изменение сигнала в своей правой части. С учетом задержки Е1=10 нс., а Е2=5нс описание архитектуры будет иметь вид </font></P>
+<FONT FACE="Courier New" SIZE=2><P ALIGN="JUSTIFY"></P>
+<P ALIGN="JUSTIFY">Architecture F_B_TIME of F is</P>
+<P ALIGN="JUSTIFY">Signal X: bit</P>
+<P ALIGN="JUSTIFY">Begin</P>
+</FONT><FONT FACE="Courier New" SIZE=2><P ALIGN="JUSTIFY">--задержка на В1- 10 нс.</P>
+<P ALIGN="JUSTIFY">--задержка на В2- 5 нс.</P>
+</FONT><FONT FACE="Courier New" SIZE=2><P ALIGN="JUSTIFY">B1&lt;=X;</P>
+<P ALIGN="JUSTIFY">B2&lt;= not (X) after 5 ns;</P>
+<P ALIGN="JUSTIFY">X&lt;= A1 and A2 after 10 ns;</P>
+<P ALIGN="JUSTIFY">End;</P>
+</FONT><FONT SIZE=2><P ALIGN="JUSTIFY"></P>
+</FONT><FONT FACE="Times New Roman" SIZE=2><P ALIGN="JUSTIFY">Через 10 нс. после изменения одного из входных сигналов (А1 или А2) может измениться выходной сигнал В1, и с задержкой 5 нс. после него изменится В2.</P>
+</FONT><B>
+<FONT FACE="Times New Roman"><P>4.5.5. Структурное описание архитектуры.</P>
+</font></B><FONT FACE="Times New Roman" SIZE=2><P ALIGN="JUSTIFY">Описание архитектуры представляет собой структуру объекта как композицию  компонент, соединенных между собой и обменивающихся сигналами. Функции, реализуемые компонентами в явном виде, в отличие от предыдущих примеров в структурном описании не указываются. Структурное описание включает описание интерфейсов компонент, из которых состоит схема и их связей. Полные ( интерфейс + архитектура ) описания объектов- компонент должны быть ранее помещены в проектируемую библиотеку, подключенную к структурному описанию архитектуры.</P>
+</FONT><FONT SIZE=2><P ALIGN="JUSTIFY"></P>
+</FONT><FONT FACE="Courier New" SIZE=2><P ALIGN="JUSTIFY">Library work;</P>
+<P ALIGN="JUSTIFY"> use work.all</P>
+</FONT><FONT FACE="Courier New" SIZE=2><P ALIGN="JUSTIFY">--подключение рабочей библиотеки work, содержащей описание объекта соответствующего компоненте INE2</P>
+<P ALIGN="JUSTIFY">Architecture СХЕМ_F_C of F is </P>
+</FONT><P ALIGN="JUSTIFY"><FONT FACE="Courier New" SIZE=2>-</font><FONT FACE="Courier New" SIZE=2>-ниже интерфейсы компоненты INE2</font></P>
+<FONT FACE="Courier New" SIZE=2><P ALIGN="JUSTIFY">Component INE2</P>
+<P ALIGN="JUSTIFY">Port (X1, X2: in bit; Y: out bit);</P>
+<P ALIGN="JUSTIFY">End component;</P>
+</FONT><FONT FACE="Courier New" SIZE=2><P ALIGN="JUSTIFY">--ниже описание связей экземпляров компонент</P>
+</FONT><FONT FACE="Courier New" SIZE=2><P ALIGN="JUSTIFY">Signal X: bit;</P>
+<P ALIGN="JUSTIFY">Begin</P>
+<P ALIGN="JUSTIFY">E1: INE2 port map (A1, A2, X);</P>
+<P ALIGN="JUSTIFY">E2: INE2 port map (X, X, B1);</P>
+<P ALIGN="JUSTIFY">B2&lt;= X;</P>
+<P ALIGN="JUSTIFY">End;</P>
+</FONT>
+<P ALIGN="JUSTIFY"><FONT FACE="Times New Roman" SIZE=2>В описании архитектуры СХЕМ</font><FONT SIZE=2>_F_C</FONT><FONT FACE="Times New Roman" SIZE=2> объекта </FONT><FONT SIZE=2>F</FONT><FONT FACE="Times New Roman" SIZE=2> сначала указан интерфейс компонент, из которых строится схема. Это компоненты типа </FONT><FONT SIZE=2>INE2</FONT><FONT FACE="Times New Roman" SIZE=2> с двумя входными и одним выходным портом. Затем после </FONT><I><FONT SIZE=2>begin </font></I><FONT FACE="Times New Roman" SIZE=2>идут операторы конкретизации компонент. Для каждого экземпляра компоненты следуют: ее имя или карта портов, указывающая соответствие портов экземпляра компоненты поступающим на них сигналам. Например, для компоненты по имени Е1 типа </FONT><FONT SIZE=2>INE2</FONT><FONT FACE="Times New Roman" SIZE=2> на порт Х1 подан сигнал А1, на порт Х2- сигнал А2. Порядок конкретизации безразличен, так как это параллельные операторы. Для того чтобы описание </FONT><FONT SIZE=2>F</FONT><FONT FACE="Times New Roman" SIZE=2> было полным, в данном случае в рабочей библиотеке проекта </FONT><FONT SIZE=2>work </FONT><FONT FACE="Times New Roman" SIZE=2>необходимо иметь описание интерфейса и архитектуры некоторого объекта, сопоставляемого компоненте </FONT><FONT SIZE=2>INE2</FONT><FONT FACE="Times New Roman" SIZE=2>. Обозначим этот объект в библиотеке как </FONT><FONT SIZE=2>LA3</FONT><FONT FACE="Times New Roman" SIZE=2>. Его описание:</font></P>
+<FONT FACE="Courier New" SIZE=2><P ALIGN="JUSTIFY"></P>
+<P ALIGN="JUSTIFY">Entity LA3 is</P>
+<P ALIGN="JUSTIFY">Port (X, Y: in bit; Z: out bit);</P>
+<P ALIGN="JUSTIFY">End LA3;</P>
+<P ALIGN="JUSTIFY">Architecture DF_LA3 of LA3 is</P>
+<P ALIGN="JUSTIFY">Begin</P>
+<P ALIGN="JUSTIFY">Z&lt;= not (X and Y) after 10ns;</P>
+<P ALIGN="JUSTIFY">End;</P>
+</FONT><FONT SIZE=2><P ALIGN="JUSTIFY"></P>
+</FONT><P ALIGN="JUSTIFY"><FONT FACE="Times New Roman" SIZE=2>У объекта </font><FONT SIZE=2>LA3</FONT><FONT FACE="Times New Roman" SIZE=2> может быть насколько архитектур. В примерах дан вариант потокового описания архитектуры </FONT><FONT SIZE=2>DF_LA3 </FONT><FONT FACE="Times New Roman" SIZE=2>объекта </FONT><FONT SIZE=2>LA3</FONT><FONT FACE="Times New Roman" SIZE=2>, который содержит оператор назначения сигналу </FONT><FONT SIZE=2>Z </FONT><FONT FACE="Times New Roman" SIZE=2>инверсного значения конъюнкции сигналов </FONT><FONT SIZE=2>X</FONT><FONT FACE="Times New Roman" SIZE=2> и </FONT><FONT SIZE=2>Y </FONT><FONT FACE="Times New Roman" SIZE=2>с задержкой 10 нс.</font></P>
+<B><FONT SIZE=2><P ALIGN="JUSTIFY"></P>
+</FONT><FONT FACE="Times New Roman"><P>4.6. Описание конфигурации.</P>
+</font></B><P ALIGN="JUSTIFY"><FONT FACE="Times New Roman" SIZE=2>Конфигурацию можно рассматривать как аналог списка компонентов для проекта. Оператор конфигурации (идентифицируемый ключевым словом </font><FONT SIZE=2>“configuration”</FONT><FONT FACE="Times New Roman" SIZE=2>), определяет, какие реализации должны быть использованы, и позволяет изменять связи компонентов в вашем проекте во время моделирования и синтеза. </font></P><FONT FACE="Times New Roman" SIZE=2>
+<P ALIGN="JUSTIFY"> Конфигурации не являются обязательными, независимо от того, насколько сложен описываемый проект. При отсутствии конфигурации, стандарт VHDL определяет набор правил, который обеспечивает конфигурацию по умолчанию; например, в случае, когда предусмотрено более одной реализации для блока, последняя скомпилированная реализация получит приоритет, и будет связана с объектом.</P>
+</FONT><P ALIGN="JUSTIFY"><FONT FACE="Times New Roman" SIZE=2>Обозначение типа компоненты в описании архитектуры СХЕМ_</font><FONT SIZE=2>F</FONT><FONT FACE="Times New Roman" SIZE=2>_С объекта </FONT><FONT SIZE=2>F</FONT><FONT FACE="Times New Roman" SIZE=2> и обозначение соответствующего объекта проекта в библиотеке могут не соответствовать друг другу. Связывание обозначений осуществляется в форме объявления конфигурации. Для того чтобы задать информацию о том, что использованная при описании архитектуры СХЕМ_</FONT><FONT SIZE=2>F</FONT><FONT FACE="Times New Roman" SIZE=2>_С объекта </FONT><FONT SIZE=2>F</FONT><FONT FACE="Times New Roman" SIZE=2> компонента </FONT><FONT SIZE=2>INE2</FONT><FONT FACE="Times New Roman" SIZE=2> соответствует библиотечному объекту </FONT><FONT SIZE=2>LA3</FONT><FONT FACE="Times New Roman" SIZE=2> и варианту его архитектуры под названием</FONT><FONT SIZE=2> DF_LA3</FONT><FONT FACE="Times New Roman" SIZE=2>, необходимо объявить конфигурацию </FONT><B><FONT SIZE=2>configuration</font></B><FONT FACE="Times New Roman" SIZE=2>. Конфигурация </FONT><FONT SIZE=2>V1</FONT><FONT FACE="Times New Roman" SIZE=2> указывает, что из рабочей библиотеки проекта </FONT><B><FONT SIZE=2>library work</font></B><FONT FACE="Times New Roman" SIZE=2> для архитектуры СХЕМ_</FONT><FONT SIZE=2>F_C</FONT><FONT FACE="Times New Roman" SIZE=2> объекта </FONT><FONT SIZE=2>F</FONT><FONT FACE="Times New Roman" SIZE=2> для компонент с именами Е1 и Е2 типа </FONT><FONT SIZE=2>INE2</FONT><FONT FACE="Times New Roman" SIZE=2> следует использовать архитектуру </FONT><FONT SIZE=2>DF_LA3</FONT><FONT FACE="Times New Roman" SIZE=2> объекта</FONT><FONT SIZE=2> LA3.</font></P><FONT SIZE=2>
+<B>
+</B></FONT><FONT FACE="Courier New" SIZE=2><P ALIGN="JUSTIFY">Library WORK</P>
+</FONT><FONT FACE="Courier New" SIZE=2><P ALIGN="JUSTIFY">--подключается рабочая библиотека проекта</P>
+</FONT><FONT FACE="Courier New" SIZE=2><P ALIGN="JUSTIFY"> configuration V1 of F is</P>
+</FONT><FONT FACE="Courier New" SIZE=2><P ALIGN="JUSTIFY">--конфигурация по имени V1 объекта F</P>
+</FONT><FONT FACE="Courier New" SIZE=2><P ALIGN="JUSTIFY">use WORK. all;</P>
+</FONT><FONT FACE="Courier New" SIZE=2><P ALIGN="JUSTIFY"> --используются все (all) компоненты библиотеки WORK</P>
+<P ALIGN="JUSTIFY">for СХЕМ_F_C</P>
+<P ALIGN="JUSTIFY">--для архитектуры СХЕМ_F_C</P>
+<P ALIGN="JUSTIFY">--компоненты Е1, Е2 соответствуют объекту LA3 с архитектурой DF_LA3 из библиотеки WORK</P>
+</FONT><FONT FACE="Courier New" SIZE=2><P ALIGN="JUSTIFY">for E1,E2: INE2</P>
+<P ALIGN="JUSTIFY">use entity LA3 (DF_LA3);</P>
+<P ALIGN="JUSTIFY">end for;</P>
+<P ALIGN="JUSTIFY">end for;</P>
+<P ALIGN="JUSTIFY">end V1;</P>
+<P ALIGN="JUSTIFY"></P>
+</FONT><B><FONT FACE="Times New Roman"><P>4.7. Векторные сигналы и регулярные структуры. </P>
+</font></B><FONT SIZE=2><P ALIGN="JUSTIFY"></P>
+</FONT><P ALIGN="JUSTIFY"><FONT FACE="Times New Roman" SIZE=2>Одним из средств повышения компактности описаний цифровых устройств является использование векторных представлений сигналов и операций над ними. Например, пусть некоторый объект </font><FONT SIZE=2>FV</FONT><FONT FACE="Times New Roman" SIZE=2> выполняет туже функцию, что и объект </FONT><FONT SIZE=2>F</FONT><FONT FACE="Times New Roman" SIZE=2>, но над 20- разрядными двоичными векторами </FONT><FONT SIZE=2>AV1</FONT><FONT FACE="Times New Roman" SIZE=2> и </FONT><FONT SIZE=2>AV2.</font></P>
+<FONT FACE="Times New Roman" SIZE=2><P ALIGN="JUSTIFY">Его описание определяет порты как двоичные векторы:</P>
+</FONT><B><FONT SIZE=2>
+</font></B><FONT FACE="Courier New" SIZE=2><P ALIGN="JUSTIFY">Entity FV is</P>
+<P ALIGN="JUSTIFY">Port (AV1, AV2: in bit_vector (1 to 20);</P>
+<P ALIGN="JUSTIFY">  BV1, BV2: out bit_vector (1 to 20));</P>
+<P ALIGN="JUSTIFY">End FV1;</P>
+</FONT>
+<P><FONT FACE="Times New Roman" SIZE=2>Поведенческое описание архитектуры </font><FONT SIZE=2>FV</FONT><FONT FACE="Times New Roman" SIZE=2> в потоковой форме использует операции над битовыми векторами.</font></P>
+<FONT SIZE=2>
+</FONT><FONT FACE="Courier New" SIZE=2><P ALIGN="JUSTIFY">Architecture BECHAV_FV of FV is</P>
+<P ALIGN="JUSTIFY">Begin</P>
+<P ALIGN="JUSTIFY">BV2&lt;= not (AV1 and AV2);</P>
+<P ALIGN="JUSTIFY">BV1&lt;= AV1 and AV2;</P>
+<P ALIGN="JUSTIFY">End BECHAV_FV;</P>
+</FONT>
+<P><FONT FACE="Times New Roman" SIZE=2>Структурное описание архитектуры </font><FONT SIZE=2>FV</FONT><FONT FACE="Times New Roman" SIZE=2> для варианта реализации объекта </FONT><FONT SIZE=2>FV</FONT><FONT FACE="Times New Roman" SIZE=2> как совокупности объектов </FONT><FONT SIZE=2>F</FONT><FONT FACE="Times New Roman" SIZE=2>, представленное ниже, выполнено с использованием оператора генерации конкретизации. Это позволяет повысить компактность описаний регулярных фрагментов схем.</font></P>
+<FONT FACE="Courier New" SIZE=2><P ALIGN="JUSTIFY"></P>
+<P ALIGN="JUSTIFY">Architecture STRUCT_FV of FV is</P>
+<P ALIGN="JUSTIFY">Component F port (X1, X2: in bit; Y1, Y2: out bit);</P>
+<P ALIGN="JUSTIFY">End component;</P>
+<P ALIGN="JUSTIFY">Begin</P>
+</FONT><FONT FACE="Courier New" SIZE=2><P ALIGN="JUSTIFY">--первая компонента конкретизирована обычным способом с использованием позиционного соответствия сигналов портам</P>
+</FONT><FONT FACE="Courier New" SIZE=2><P ALIGN="JUSTIFY">K1: F port map (AV1 (1), AV2 (1), BV1 (1), BV2 (1));</P>
+</FONT><FONT FACE="Courier New" SIZE=2><P ALIGN="JUSTIFY">--вторая компонента конкретизирована с использованием ключевого способа указания соответствия сигналов ее портам</P>
+</FONT><FONT FACE="Courier New" SIZE=2><P ALIGN="JUSTIFY">K2: F port map (AV1 ( 2)=&gt;X1, BV1 ( 2)=&gt;Y1, AV2 (2)=&gt;X2, BV2 (2) =&gt;Y2 );</P>
+</FONT><FONT FACE="Courier New" SIZE=2><P ALIGN="JUSTIFY">--компоненты К3 - К20 конкретизированы с использованием оператора генерации, позволяющего компактно описывать регулярные фрагменты схем</P>
+</FONT><FONT FACE="Courier New" SIZE=2><P ALIGN="JUSTIFY">for I in 3 to 20 generate</P>
+<P ALIGN="JUSTIFY">K( I ): F port map ( AV1 ( 1 ), AV2 (1), BV1 (1), BV2 (1) );</P>
+<P ALIGN="JUSTIFY">End generate;</P>
+<P ALIGN="JUSTIFY">End STRUCT_FV;</P>
+</FONT><FONT SIZE=2><P ALIGN="JUSTIFY"></P>
+</FONT><B><FONT FACE="Times New Roman"><P>4.8. Задержки сигналов и параметры настройки.</P>
+</font></B><FONT FACE="Times New Roman" SIZE=2><P ALIGN="JUSTIFY">Объект с задержкой можно представить как бы состоящим из двух- идеального элемента и элемента задержки.</P>
+</FONT><P ALIGN="JUSTIFY"><FONT FACE="Times New Roman" SIZE=2>В языке </font><FONT SIZE=2>VHDL </FONT><FONT FACE="Times New Roman" SIZE=2>встроены две модели задержек – инерциальная и транспортная.</font></P><P ALIGN="JUSTIFY">
+<FONT FACE="Times New Roman" SIZE=2>Инерциальная модель</font><I><FONT SIZE=2> </font></I><FONT FACE="Times New Roman" SIZE=2>предполагает</FONT><FONT SIZE=2>, </FONT><FONT FACE="Times New Roman" SIZE=2>что элемент не реагирует на сигналы, длительность которых меньше порога, равного времени задержки элемента. Транспортная модель лишена этого ограничения.</font></P><P ALIGN="JUSTIFY">
+<FONT FACE="Times New Roman" SIZE=2>Инерциальная модель по умолчанию встроена в оператор назначения сигнала языка </font><FONT SIZE=2>VHDL</FONT><FONT FACE="Times New Roman" SIZE=2>. Например, оператор назначения</FONT><I><FONT SIZE=2> Y&lt;=X1 and X2 after 10 ns;</font></I> <FONT FACE="Times New Roman" SIZE=2>описывает работу вентиля 2И и соответствует инерциальной модели. Указание на использование транспортной модели обеспечивается ключевым словом </FONT><B><FONT SIZE=2>transport</font></B><FONT FACE="Times New Roman" SIZE=2> в правой части оператора назначения. Например, оператор</FONT><I><FONT SIZE=2> YT&lt;=transport X1 and X2 after 10 ns;</font></I> <FONT FACE="Times New Roman" SIZE=2>отображает транспортную модель задержки вентиля.</font></P><FONT FACE="Times New Roman" SIZE=2>
+<P ALIGN="JUSTIFY">Задержка может быть задана не константой, а выражением, значение которого может конкретизироваться для каждого экземпляра объекта, используемого как компонента. Для этого ее следует задать как параметр настройки в описании интерфейса объекта.</P>
+<P ALIGN="JUSTIFY">Приведенное ниже описание объекта 12 включает описание интерфейса и тела 12 с инерциальной задержкой, заданной как параметр настройки</P>
+</FONT><I><FONT SIZE=2><P ALIGN="JUSTIFY"></P>
+</font></I><FONT FACE="Courier New" SIZE=2><P ALIGN="JUSTIFY">Entity 12 is</P>
+</FONT><FONT FACE="Courier New" SIZE=2><P ALIGN="JUSTIFY">--параметр настройки Т по умолчанию равен 10 нс</P>
+</FONT><FONT FACE="Courier New" SIZE=2><P ALIGN="JUSTIFY">Generic (T: time = 10 ns);</P>
+<P ALIGN="JUSTIFY">Port ( X1, X2: in bit; Y: out bit );</P>
+<P ALIGN="JUSTIFY">End 12;</P>
+<P ALIGN="JUSTIFY">Architecture A1_inert of 12 is</P>
+<P ALIGN="JUSTIFY">Begin</P>
+<P ALIGN="JUSTIFY">Y&lt;= X1 and X2 after T;</P>
+<P ALIGN="JUSTIFY">End A1_inert;</P>
+<P ALIGN="JUSTIFY">Architecture A1_transport of 12 is </P>
+<P ALIGN="JUSTIFY">Begin</P>
+<P ALIGN="JUSTIFY">Y&lt;= transport X1and X2 after 10 ns;</P>
+<P ALIGN="JUSTIFY">End;</P>
+</FONT><FONT SIZE=2><P ALIGN="JUSTIFY"></P>
+</FONT><FONT FACE="Times New Roman" SIZE=2><P ALIGN="JUSTIFY">Ниже представлен вариант описания архитектуры иллюстрирующей возможность использования параметра настройки (задержка Е1 равна 5 нс., Е2- 20 нс.) и возможность совмещения структурного и поведенческого описаний в одной архитектуре:</P>
+</FONT><FONT SIZE=2><P ALIGN="JUSTIFY"></P>
+</FONT><FONT FACE="Courier New" SIZE=2><P ALIGN="JUSTIFY">Architecture MIX_8_a of F is</P>
+<P ALIGN="JUSTIFY">Component 12</P>
+<P ALIGN="JUSTIFY">Generic (T: time);</P>
+<P ALIGN="JUSTIFY">Port (X1, X2: in bit; Y: out bit );</P>
+<P ALIGN="JUSTIFY">End component;</P>
+<P ALIGN="JUSTIFY">Begin</P>
+<P ALIGN="JUSTIFY">E1: 12 generic map (5 ns );</P>
+<P ALIGN="JUSTIFY"> Port map ( A1, A2, B1);</P>
+<P ALIGN="JUSTIFY">E2: B2&lt;= not ( A1 and A2 ) after 20 ns;</P>
+<P ALIGN="JUSTIFY">End;</P>
+</FONT><FONT SIZE=2><P ALIGN="JUSTIFY"></P>
+</FONT><FONT FACE="Times New Roman" SIZE=2><P ALIGN="JUSTIFY">Более сложной представляется ситуация, когда необходимо отобразить в описании архитектуры объекта тот факт, что задержки фронта и среза сигналов не совпадают или зависят от путей прохождения сигналов в схеме и ее предыдущего состояния.</P>
+</FONT><FONT SIZE=2><P ALIGN="JUSTIFY"></P>
+</FONT><FONT FACE="Times New Roman" SIZE=2><P ALIGN="JUSTIFY">Одним из вариантов описания инерциального поведения вентиля 2И с разными задержками фронта и среза может быть следующим:</P>
+</FONT><B><FONT SIZE=2>
+</font></B><FONT FACE="Courier New" SIZE=2><P ALIGN="JUSTIFY">Architecture INERT of 12 is</P>
+<P ALIGN="JUSTIFY">Begin</P>
+<P ALIGN="JUSTIFY">Process ( X1, X2 );</P>
+<P ALIGN="JUSTIFY">Variable Z: bit;</P>
+<P ALIGN="JUSTIFY">Begin</P>
+</FONT><FONT FACE="Courier New" SIZE=2><P ALIGN="JUSTIFY">--выход идеального вентиля</P>
+</FONT><FONT FACE="Courier New" SIZE=2><P ALIGN="JUSTIFY">Z=X1 and X2;</P>
+<P ALIGN="JUSTIFY"> if Z=’ 1’ and Z’DELAYED=’ 0’ then</P>
+</FONT><FONT FACE="Courier New" SIZE=2><P ALIGN="JUSTIFY">--срез</P>
+</FONT><FONT FACE="Courier New" SIZE=2><P ALIGN="JUSTIFY">Y&lt;=’ 0’ after 3 ns</P>
+<P ALIGN="JUSTIFY">End  if;</P>
+<P ALIGN="JUSTIFY">End process;</P>
+<P ALIGN="JUSTIFY">End;</P>
+</FONT><FONT SIZE=2><P ALIGN="JUSTIFY"></P>
+</FONT><P ALIGN="JUSTIFY"><FONT FACE="Times New Roman" SIZE=2>Атрибут </font><FONT SIZE=2>Z’DELAYED</FONT><FONT FACE="Times New Roman" SIZE=2> дает предыдущее значение сигнала.</font></P><FONT FACE="Times New Roman" SIZE=2>
+<P ALIGN="JUSTIFY">При описании более сложных ситуаций следует учитывать особенности реализации механизма учета задержек сигналов в VHDL. С сигналом ассоциируется драйвер- множество сообщений о планируемых событиях в форме пар время- значение сигнала.</P>
+<P ALIGN="JUSTIFY">В случае транспортной задержки, если новое сообщение имеет время большее, чем все ранее запланированные, оно включается в драйвер последним. В противном случае предварительно уничтожаются все сообщения, запланированные на большее время.</P>
+<P ALIGN="JUSTIFY">В случае инерциальной задержки также происходит уничтожение всех сообщений, запланированных на большее время. Однако разница в том, что происходит анализ событий, запланированных на меньшее время, и если значение сигнала отличается от нового , то они уничтожаются.</P>
+</FONT><B><FONT SIZE=2><P ALIGN="JUSTIFY"></P>
+</FONT><FONT FACE="Times New Roman"><P>4.9. Атрибуты сигналов и контроль запрещенных ситуаций.</P>
+</font></B><FONT FACE="Times New Roman" SIZE=2><P ALIGN="JUSTIFY">Описания систем могут содержать информацию о запрещенных ситуациях, например, недопустимых комбинациях сигналов на входах объектов, рекомендуемых длительностях или частотах импульсов и т. п. Например, в вентиле 2И возникает риск сбоя в ситуациях, когда фронт одного сигнала перекрывает срез другого.</P>
+</FONT><I><FONT SIZE=2><P ALIGN="JUSTIFY"></P>
+</font></I><FONT FACE="Times New Roman" SIZE=2><P ALIGN="JUSTIFY">Входные сигналы Х1 и Х2 изменяются в противоположном направлении, и время их перекрытия меньше необходимого, допустим равного 10 нс.</P>
+</FONT><P ALIGN="JUSTIFY"><FONT FACE="Times New Roman" SIZE=2>Средством отображения информации о запрещенных ситуациях в языке </font><FONT SIZE=2>VHDL </FONT><FONT FACE="Times New Roman" SIZE=2>является оператор утверждения (оператор контроля, оператор аномалии) </FONT><B><FONT SIZE=2>assert</font></B><FONT FACE="Times New Roman" SIZE=2>. В нем помимо контролируемого условия, которое не должно быть нарушено, т. е. должно быть истинным, записывается сообщение </FONT><B><FONT SIZE=2>report</font></B><FONT FACE="Times New Roman" SIZE=2> о нарушении и уровень серьезности ошибки </FONT><B><FONT SIZE=2>severity</font></B><FONT SIZE=2>.</font></P>
+<P ALIGN="JUSTIFY"><FONT FACE="Times New Roman" SIZE=2>Для приведенного примера в описании архитектуры вентиля 2И может быть вставлено утверждение о том, что все будет нормально, если внутренний сигнал </font><FONT SIZE=2>Z</FONT><FONT FACE="Times New Roman" SIZE=2> будет равен 1 не менее чем 10 нс., иначе идет сообщение об ошибке.</font></P><FONT FACE="Times New Roman" SIZE=2>
+<P ALIGN="JUSTIFY">Для этого необходимо, чтобы в момент среза сигнала его задержанное на 10 нс. значение было равно 1. Если оно равно 0, то длительность сигнала меньше 10 нс.</P>
+</FONT><P ALIGN="JUSTIFY"><FONT FACE="Times New Roman" SIZE=2>Время предыдущего события в сигнале </font><FONT SIZE=2>Z</FONT><FONT FACE="Times New Roman" SIZE=2> можно получить атрибутом</FONT><FONT SIZE=2> LAST_EVENT.</font></P><FONT SIZE=2>
+<P ALIGN="JUSTIFY"></P>
+</FONT><FONT FACE="Courier New" SIZE=2><P ALIGN="JUSTIFY">Architecture C1 of 12 is</P>
+<P ALIGN="JUSTIFY">Signal Z: bit =’0’;</P>
+<P ALIGN="JUSTIFY">Begin</P>
+<P ALIGN="JUSTIFY">Process ( X1, X2 );</P>
+<P ALIGN="JUSTIFY">Z&lt;= X1 and X2;</P>
+<P ALIGN="JUSTIFY">Assert not (Z=’0’ and  not Z’STABLE and Z’DELAYED (10 ns)= ‘0’)</P>
+</FONT><FONT FACE="Courier New" SIZE=2><P ALIGN="JUSTIFY">Report ”риск сбоя в 1 в вентиле 12”</P>
+</FONT><FONT FACE="Courier New" SIZE=2><P ALIGN="JUSTIFY">Severity worning;</P>
+<P ALIGN="JUSTIFY">Y&lt;= transport Z after 10 ns;</P>
+<P ALIGN="JUSTIFY">End C1;</P>
+</FONT>
+<FONT FACE="Times New Roman" SIZE=2><P ALIGN="JUSTIFY">Более полное представление о предопределенных атрибутах сигналов можно получить из таблицы 4.1 Помимо предопределенных, пользователь может вводить дополнительные атрибуты для сигналов и других типов данных.</P>
+</FONT><FONT SIZE=2><P ALIGN="JUSTIFY"></P>
+</FONT><I></I><P ALIGN="JUSTIFY"><FONT FACE="Times New Roman"><I>Таблица 4.1. </i></font><FONT FACE="Times New Roman">Предопределенные атрибуты сигналов</font></P>
+<FONT SIZE=2><P ALIGN="JUSTIFY"> </P></FONT>
+</TD>
+</TR>
+</TABLE>
+<br><center>
+<TABLE BORDER CELLSPACING=1 CELLPADDING=7 WIDTH=515>
+<TR><TD WIDTH="33%" VALIGN="TOP">
+<FONT FACE="Times New Roman" SIZE=2><P ALIGN="JUSTIFY">Пример</FONT></TD>
+<TD WIDTH="33%" VALIGN="TOP">
+<FONT FACE="Times New Roman" SIZE=2><P ALIGN="JUSTIFY">Тип результата</FONT></TD>
+<TD WIDTH="33%" VALIGN="TOP">
+<FONT FACE="Times New Roman" SIZE=2><P ALIGN="JUSTIFY"> Пояснения</FONT></TD>
+</TR>
+<TR><TD WIDTH="33%" VALIGN="TOP">
+<FONT FACE="Times New Roman" SIZE=2><P ALIGN="JUSTIFY">S’QUIET(Т)</FONT></TD>
+<TD WIDTH="33%" VALIGN="TOP">
+<FONT SIZE=2><P ALIGN="JUSTIFY">  Boolean</FONT></TD>
+<TD WIDTH="33%" VALIGN="TOP">
+<P ALIGN="JUSTIFY"><FONT SIZE=2>TRUE</font><FONT FACE="Times New Roman" SIZE=2>, если сигнал S   пассивен на интервале Т.</FONT></TD>
+</TR>
+<TR><TD WIDTH="33%" VALIGN="TOP">
+<FONT SIZE=2><P ALIGN="JUSTIFY"> S’TRANSACTION</FONT></TD>
+<TD WIDTH="33%" VALIGN="TOP">
+<FONT SIZE=2><P ALIGN="JUSTIFY"> Bit</FONT></TD>
+<TD WIDTH="33%" VALIGN="TOP">
+<P ALIGN="JUSTIFY"><FONT SIZE=2> </font><FONT FACE="Times New Roman" SIZE=2>Инвертируется </FONT><FONT SIZE=2>S</FONT><FONT FACE="Times New Roman" SIZE=2> каждый   раз, когда </FONT><FONT SIZE=2>S</FONT><FONT FACE="Times New Roman" SIZE=2> активен  (изменяется)</FONT></TD>
+</TR>
+<TR><TD WIDTH="33%" VALIGN="TOP">
+<FONT SIZE=2><P ALIGN="JUSTIFY">S’STABLE(T) </FONT></TD>
+<TD WIDTH="33%" VALIGN="TOP">
+<FONT SIZE=2><P ALIGN="JUSTIFY">Boolean  </FONT></TD>
+<TD WIDTH="33%" VALIGN="TOP">
+<P ALIGN="JUSTIFY"><FONT SIZE=2>TRUE,</font><FONT FACE="Times New Roman" SIZE=2> если не было  событий за интервал Т.</FONT></TD>
+</TR>
+<TR><TD WIDTH="33%" VALIGN="TOP">
+<FONT SIZE=2><P ALIGN="JUSTIFY">S’DELAYED(T)</FONT></TD>
+<TD WIDTH="33%" VALIGN="TOP">
+<FONT SIZE=2><P ALIGN="JUSTIFY">Signal  </FONT></TD>
+<TD WIDTH="33%" VALIGN="TOP">
+<P ALIGN="JUSTIFY"><FONT FACE="Times New Roman" SIZE=2>Предыдущее значение S в момент</font><FONT SIZE=2> NOW-T</FONT></TD>
+</TR>
+<TR><TD WIDTH="33%" VALIGN="TOP">
+<FONT SIZE=2><P ALIGN="JUSTIFY">S’ACTIVE</FONT></TD>
+<TD WIDTH="33%" VALIGN="TOP">
+<FONT SIZE=2><P ALIGN="JUSTIFY">  Boolean </FONT></TD>
+<TD WIDTH="33%" VALIGN="TOP">
+<P ALIGN="JUSTIFY"><FONT SIZE=2> TRUE,</font><FONT FACE="Times New Roman" SIZE=2> если сигнал активен</FONT></TD>
+</TR>
+<TR><TD WIDTH="33%" VALIGN="TOP">
+<FONT SIZE=2><P ALIGN="JUSTIFY">S’LAST_ACTIVE</FONT></TD>
+<TD WIDTH="33%" VALIGN="TOP">
+<FONT SIZE=2><P ALIGN="JUSTIFY"> Time</FONT></TD>
+<TD WIDTH="33%" VALIGN="TOP">
+<FONT FACE="Times New Roman" SIZE=2><P ALIGN="JUSTIFY">  Время, когда сигнал последний раз был активен</FONT></TD>
+</TR>
+<TR><TD WIDTH="33%" VALIGN="TOP">
+<FONT SIZE=2><P ALIGN="JUSTIFY">S’EVENT </FONT></TD>
+<TD WIDTH="33%" VALIGN="TOP">
+<FONT SIZE=2><P ALIGN="JUSTIFY">Boolean </FONT></TD>
+<TD WIDTH="33%" VALIGN="TOP">
+<P ALIGN="JUSTIFY"><FONT SIZE=2> TRUE</font><FONT FACE="Times New Roman" SIZE=2>, если</FONT><FONT SIZE=2> </FONT><FONT FACE="Times New Roman" SIZE=2>происходит cобытие в </FONT><FONT SIZE=2>S</FONT></TD>
+</TR>
+<TR><TD WIDTH="33%" VALIGN="TOP">
+<FONT SIZE=2><P ALIGN="JUSTIFY">S’LAST_VALUE </FONT></TD>
+<TD WIDTH="33%" VALIGN="TOP">
+<FONT SIZE=2><P ALIGN="JUSTIFY"> Signal </FONT></TD>
+<TD WIDTH="33%" VALIGN="TOP">
+<P ALIGN="JUSTIFY"><FONT SIZE=2> </font><FONT FACE="Times New Roman" SIZE=2>Значение сигнала перед</FONT><FONT SIZE=2> </FONT><FONT FACE="Times New Roman" SIZE=2>последним событием в нем</FONT></TD>
+</TR>
+<TR><TD WIDTH="33%" VALIGN="TOP">
+<FONT SIZE=2><P ALIGN="JUSTIFY">S’LAST_EVENT </FONT></TD>
+<TD WIDTH="33%" VALIGN="TOP">
+<FONT SIZE=2><P ALIGN="JUSTIFY"> Time</FONT></TD>
+<TD WIDTH="33%" VALIGN="TOP">
+<P ALIGN="JUSTIFY"><FONT SIZE=2> </font><FONT FACE="Times New Roman" SIZE=2>Время последнего события  в </FONT><FONT SIZE=2>S</FONT></TD>
+</TR>
+</TABLE>
+<br></center>
+<TABLE CELLSPACING=0 CELLPADDING=0  BORDER=0  align=center width=750>
+<TR>
+	<TD class=body width=750>
+<FONT SIZE=2><P ALIGN="JUSTIFY"></P>
+</FONT><B><FONT FACE="Times New Roman"><P>4.10. Алфавит моделирования и пакеты.</P>
+</font></B><P ALIGN="JUSTIFY"><FONT FACE="Times New Roman" SIZE=2>Описание пакета VHDL задается ключевым словом </font><B><FONT SIZE=2>package</font></B> <FONT FACE="Times New Roman" SIZE=2>и используется, чтобы собирать часто используемые элементы конструкции для использования глобально в других проектах. Пакет можно рассматривать как общую область хранения, используемую, чтобы хранить такие вещи как описания типов, констант, и глобальные подпрограммы. Объекты, определенные в пределах пакета можно использовать в любом другом проекте на VHDL, и можно откомпилировать в библиотеки для дальнейшего повторного использования.</font></P><FONT FACE="Times New Roman" SIZE=2>
+<P ALIGN="JUSTIFY"> Пакет может состоять из двух основных частей: описания пакета и дополнительного тела пакета. Описание пакета может содержать следующие элементы:</P>
+
+<UL>
+
+<UL>
+<P ALIGN="JUSTIFY"><LI> Объявления типов и подтипов</LI><p></P>
+<P ALIGN="JUSTIFY"><LI> Объявления констант</LI><p></P>
+<P ALIGN="JUSTIFY"><LI> Глобальные описания сигналов</LI><p></P>
+<P ALIGN="JUSTIFY"><LI> Объявления процедур и функций</LI><p></P>
+<P ALIGN="JUSTIFY"><LI> Спецификация атрибутов</LI><p></P>
+<P ALIGN="JUSTIFY"><LI> Объявления файлов</LI><p></P>
+<P ALIGN="JUSTIFY"><LI> Объявления компонентов</LI><p></P>
+<P ALIGN="JUSTIFY"><LI> Объявления псевдонимов</LI><p></P>
+<P ALIGN="JUSTIFY"><LI> операторы включения</LI><p></P></UL>
+</UL>
+
+<P ALIGN="JUSTIFY"> Пункты, появляющиеся в пределах описания пакета могут стать видимыми в других проектах с помощью оператора включения. </P>
+</FONT><P ALIGN="JUSTIFY"><FONT FACE="Times New Roman" SIZE=2> Если пакет содержит описания подпрограмм (функций или процедур) или определяет одну или более задерживаемых констант (константы, чья величина не задана), то в дополнение к описанию необходимо тело пакета. Тело пакета (которое определяется с использованием комбинации ключевых слов </font><FONT SIZE=2>“package body”</FONT><FONT FACE="Times New Roman" SIZE=2>), должно иметь то же имя как соответствующее описание пакета, но может располагаться в любом месте проекта (оно не обязано располагаться немедленно после описания пакета). </font></P><FONT FACE="Times New Roman" SIZE=2>
+<P ALIGN="JUSTIFY">  Отношение между описанием и телом пакета отчасти напоминает отношение между описанием и реализацией элемента (тем не менее, может быть только одно тело пакета для каждого описания пакета). В то время как описание пакета обеспечивает информацию, необходимую для использования элементов, определенных в пределах этого пакета( список параметров для глобальной процедуры, или имя определенного типа или подтипа), фактическое поведение таких объектов, как процедуры и функции, должно определяться в пределах тела пакета.</P></FONT> 
+<P ALIGN="JUSTIFY"><FONT FACE="Times New Roman" SIZE=2>Приведенные выше описания объекта </font><FONT SIZE=2>F</FONT><FONT FACE="Times New Roman" SIZE=2> базировались на стандартных средствах языка </FONT><FONT SIZE=2>VHDL</FONT><FONT FACE="Times New Roman" SIZE=2>- сигналы представлялись в алфавите </FONT><FONT SIZE=2>‘ 1’, ‘ 0 ’</FONT><FONT FACE="Times New Roman" SIZE=2>, логические операции И, ИЛИ, НЕ также определялись в этом алфавите. Во многих случаях приходиться описывать поведение объектов в других алфавитах. Например, в реальных схемах сигнал кроме значений ‘1’ и ‘0’ может принимать значение высокого импеданса </FONT><FONT SIZE=2>‘Z’</FONT><FONT FACE="Times New Roman" SIZE=2> (на выходе буферных элементов) и неопределенное значение </FONT><FONT SIZE=2>‘X’</FONT><FONT FACE="Times New Roman" SIZE=2>, например, отражая неизвестное начальное состояние триггеров.</font></P><P ALIGN="JUSTIFY">
+<FONT FACE="Times New Roman" SIZE=2>Переход к другим алфавитам осуществляется в </font><FONT SIZE=2>VHDL</FONT><FONT FACE="Times New Roman" SIZE=2> с помощью пакетов. У пакета, как и у объекта проекта, различают объявление интерфейса </FONT><B><FONT SIZE=2>package</font></B><FONT FACE="Times New Roman" SIZE=2> и объявление тела объекта </FONT><B><FONT SIZE=2>package body</font></B><FONT SIZE=2>.</font></P>
+<P ALIGN="JUSTIFY"><FONT FACE="Times New Roman" SIZE=2>Ниже приводиться пример пакета Р4 для описания объектов в четырехзначном алфавите представления сигналов (</font><FONT SIZE=2>‘X’, ‘0’, ‘1’, ‘Z’)</FONT><FONT FACE="Times New Roman" SIZE=2>, Х- значение не определено, </FONT><FONT SIZE=2>Z</FONT><FONT FACE="Times New Roman" SIZE=2>- высокий импеданс. В этом пакете приводится тип </FONT><FONT SIZE=2>KONTAKT</FONT><FONT FACE="Times New Roman" SIZE=2> для представления сигналов в четырехзначном алфавите, и определяются функции </FONT><FONT SIZE=2>NOT</FONT><FONT FACE="Times New Roman" SIZE=2> и </FONT><FONT SIZE=2>AND</FONT><FONT FACE="Times New Roman" SIZE=2> над ними.</font></P><P ALIGN="JUSTIFY">
+<FONT FACE="Times New Roman" SIZE=2>В ТТЛ логике высокий импеданс на входе воспринимается как 1, что учитывается в таблице функции </font><FONT SIZE=2>AND.</font></P>
+<FONT FACE="Times New Roman" SIZE=2><P ALIGN="JUSTIFY">Ниже следует объявление пакета Р4:</P>
+</FONT><FONT FACE="Courier New" SIZE=2><P ALIGN="JUSTIFY"></P>
+<P ALIGN="JUSTIFY">Package P4 is</P>
+</FONT><FONT FACE="Courier New" SIZE=2><P ALIGN="JUSTIFY">--перечислимый тип</P>
+</FONT><FONT FACE="Courier New" SIZE=2><P ALIGN="JUSTIFY">type KONTAKT is (‘X’, ‘0’, ‘1’, ‘Z’ );</P>
+<P ALIGN="JUSTIFY">function “NOT” (X: in KONTAKT) return KONTAKT;</P>
+<P ALIGN="JUSTIFY">function “AND” (X1, X2: in KONTAKT) return KONTAKT;</P>
+<P ALIGN="JUSTIFY">end P4;</P>
+<P ALIGN="JUSTIFY"></P>
+</FONT><FONT FACE="Times New Roman" SIZE=2><P ALI<P ALIGN="JUSTIFY">Ниже следует объявление тела пакета Р4:</P>
+</FONT><FONT SIZE=2><P ALIGN="JUSTIFY"></P>
+</FONT><FONT FACE="Courier New" SIZE=2><P ALIGN="JUSTIFY">Package body P4 is</P>
+<P ALIGN="JUSTIFY">Function “NOT” (A: in KONTAKT) return KONTAKT is</P>
+<P ALIGN="JUSTIFY">Begin</P>
+<P ALIGN="JUSTIFY">  If A=’X’ then return ‘X’</P>
+<P ALIGN="JUSTIFY">Else if A=’1’ then return ‘0’</P>
+<P ALIGN="JUSTIFY">Else if A=’0’ then return ‘1’</P>
+<P ALIGN="JUSTIFY">Else return ‘Z’</P>
+<P ALIGN="JUSTIFY">End if;</P>
+<P ALIGN="JUSTIFY">End “NOT”;</P>
+<P ALIGN="JUSTIFY">Function “AND” ( A1, A2: in KONTAKT ) return KONTAKT is</P>
+<P ALIGN="JUSTIFY">Begin</P>
+<P ALIGN="JUSTIFY"> If (A1=’0’ ) or (A2=’X’ ) then return to ‘0’</P>
+<P ALIGN="JUSTIFY">Else if (A1= ‘X’ ) or (A2=’0’ ) or (A2= ’X’) and (A1=’0’ ) then return  ‘X’</P>
+<P ALIGN="JUSTIFY">Else return to’1’</P>
+<P ALIGN="JUSTIFY">End if;</P>
+<P ALIGN="JUSTIFY">End “AND”;</P>
+<P ALIGN="JUSTIFY">End P4;</P>
+</FONT><FONT SIZE=2><P ALIGN="JUSTIFY"></P>
+</FONT><P ALIGN="JUSTIFY"><FONT FACE="Times New Roman" SIZE=2>Пример использования пакета Р4 при описании объекта </font><FONT SIZE=2>F_P4</FONT><FONT FACE="Times New Roman" SIZE=2>. Этот объект отличается от </FONT><FONT SIZE=2>F</FONT><FONT FACE="Times New Roman" SIZE=2>, т. к. у него другой интерфейс.</font></P>
+<FONT SIZE=2><P ALIGN="JUSTIFY"></P>
+</FONT><FONT FACE="Courier New" SIZE=2><P ALIGN="JUSTIFY">--подключается ( use) пакет Р4, все его функции (ALL)</P>
+</FONT><FONT FACE="Courier New" SIZE=2><P ALIGN="JUSTIFY">use P4.ALL;</P>
+<P ALIGN="JUSTIFY">entity F_P4 is</P>
+<P ALIGN="JUSTIFY">port (A1, A2: in KONTAKT; B1, B2: out KONTAKT )</P>
+<P ALIGN="JUSTIFY">end F_P4;</P>
+</FONT><P ALIGN="JUSTIFY"><FONT FACE="Courier New" SIZE=2>Описание архитектуры F_P4_a</font> </P><FONT FACE="Courier New" SIZE=2>
+<P ALIGN="JUSTIFY">Architecture F_P4_a of  F is</P>
+<P ALIGN="JUSTIFY">Begin</P>
+<P ALIGN="JUSTIFY">B2&lt;= not ( A1 and A2 );</P>
+<P ALIGN="JUSTIFY">B1&lt;= A1 and A2;</P>
+<P ALIGN="JUSTIFY">End F_P4_a;</P>
+</FONT>
+<FONT FACE="Times New Roman" SIZE=2><P ALIGN="JUSTIFY">Из этого примера видно, что в ряде случаев изменение алфавита моделирования не требует внесения изменений в описания объектов.</P>
+</FONT><P ALIGN="JUSTIFY"><FONT FACE="Times New Roman" SIZE=2>Например, переход к семизначному алфавиту (</font><FONT SIZE=2>‘0’, ‘1’, ‘X’, ‘Z’, ‘F’, ‘S’, ‘R’),</FONT><FONT FACE="Times New Roman" SIZE=2> где тип </FONT><FONT SIZE=2>KONTAKT</FONT><FONT FACE="Times New Roman" SIZE=2> имеет дополнительные значения: </FONT><FONT SIZE=2>F</FONT><FONT FACE="Times New Roman" SIZE=2>- фронт, </FONT><FONT SIZE=2>S</FONT><FONT FACE="Times New Roman" SIZE=2>- срез, </FONT><FONT SIZE=2>R</FONT><FONT FACE="Times New Roman" SIZE=2>- риск сбоя, потребует только создания нового пакета и подключения его к объявлению объекта </FONT><FONT SIZE=2>F_P4</FONT><FONT FACE="Times New Roman" SIZE=2>. Изменение в других частях описаний объекта проекта не потребуется.</font></P>
+<FONT SIZE=2><P ALIGN="JUSTIFY"></P>
+</FONT><B><FONT FACE="Times New Roman"><P>4.11. Описание монтажного  “или” и общей шины.</P>
+</font></B><P ALIGN="JUSTIFY"><FONT FACE="Times New Roman" SIZE=2>В цифровой аппаратуре</font><FONT SIZE=2> </FONT><FONT FACE="Times New Roman" SIZE=2>используются монтажные ИЛИ (И) и двунаправленные шины на элементах с тремя состояниями выхода.</font></P>
+<FONT SIZE=2><P ALIGN="JUSTIFY"></P>
+</FONT><FONT FACE="Times New Roman" SIZE=2><P ALIGN="JUSTIFY">Монтажное ИЛИ:</P>
+</FONT><FONT FACE="Courier New" SIZE=2><P ALIGN="JUSTIFY"></P>
+<P ALIGN="JUSTIFY">Signal Y: WIRED_OR bit;</P>
+<P ALIGN="JUSTIFY">K1: process</P>
+<P ALIGN="JUSTIFY">Begin</P>
+<P ALIGN="JUSTIFY">Y&lt;= X1 and X2</P>
+<P ALIGN="JUSTIFY">End process K1;</P>
+<P ALIGN="JUSTIFY">K2: process</P>
+<P ALIGN="JUSTIFY">Y&lt;= X3 and X4;</P>
+<P ALIGN="JUSTIFY">End process K2;</P>
+</FONT><FONT SIZE=2><P ALIGN="JUSTIFY"></P>
+</FONT><FONT FACE="Times New Roman" SIZE=2><P ALIGN="JUSTIFY">Общая шина на элементах с трех стабильными выходами:</P>
+</FONT><I><FONT SIZE=2><P ALIGN="JUSTIFY"></P>
+</font></I><FONT FACE="Courier New" SIZE=2><P ALIGN="JUSTIFY">Type A3 is (‘0’, ‘1’, ‘Z’);</P>
+<P ALIGN="JUSTIFY">Signal D: CHIN A3;</P>
+<P ALIGN="JUSTIFY">C1: process</P>
+<P ALIGN="JUSTIFY">Begin</P>
+<P ALIGN="JUSTIFY"> If E1=’0’ then D&lt;=’ Z’</P>
+<P ALIGN="JUSTIFY">Else D&lt;= X1 and X2</P>
+<P ALIGN="JUSTIFY">End if;</P>
+<P ALIGN="JUSTIFY">End process C1;</P>
+<P ALIGN="JUSTIFY">C2: process</P>
+<P ALIGN="JUSTIFY"> If E2=’0’ then D&lt;=’Z’</P>
+<P ALIGN="JUSTIFY">Else D&lt;= X3 and X4</P>
+<P ALIGN="JUSTIFY">End process C2;</P>
+</FONT><FONT SIZE=2><P ALIGN="JUSTIFY"></P>
+</FONT><FONT FACE="Times New Roman" SIZE=2><P ALIGN="JUSTIFY">Если каждой компоненте (К1, К2) схемы сопоставить процесс, то имеем два параллельных процесса, каждый из которых вырабатывает свой выходной сигнал.</P>
+</FONT><P ALIGN="JUSTIFY"><FONT FACE="Times New Roman" SIZE=2>В языке </font><FONT SIZE=2>VHDL</FONT><FONT FACE="Times New Roman" SIZE=2> предусмотрен механизм разрешения конфликтов, возможных в подобных ситуациях, когда сигнал имеет несколько драйверов. Функция разрешения обычно описывается в пакете, а ее имя указывается при описании соответствующего сигнала. Например, тело функции</FONT><I><FONT SIZE=2> </font></I><FONT FACE="Times New Roman" SIZE=2>разрешения WIRED_OR (монтажное ИЛИ) имеет следующий вид:</font></P>
+<B><FONT SIZE=2>
+</font></B><FONT FACE="Courier New" SIZE=2><P ALIGN="JUSTIFY">Function WIRED_OR (INPUTS: bit_vector) return bit is</P>
+<P ALIGN="JUSTIFY">Begin</P>
+<P ALIGN="JUSTIFY">For I in INPUTS’RANGE loop</P>
+<P ALIGN="JUSTIFY">If INPUTS( I ) = ‘1’ then</P>
+<P ALIGN="JUSTIFY">Return ‘1’ ;</P>
+<P ALIGN="JUSTIFY">End if;</P>
+<P ALIGN="JUSTIFY">End loop;</P>
+<P ALIGN="JUSTIFY">Return ‘0’;</P>
+<P ALIGN="JUSTIFY">End;</P>
+</FONT><FONT SIZE=2><P ALIGN="JUSTIFY"></P>
+</FONT><P ALIGN="JUSTIFY"><FONT FACE="Times New Roman" SIZE=2>Драйверы сигнала </font><FONT SIZE=2>INPUTS</FONT><FONT FACE="Times New Roman" SIZE=2> неявно рассматриваются как массив, границы которого определяются атрибутом </FONT><FONT SIZE=2>‘RANGE.</font></P>
+<P ALIGN="JUSTIFY"><FONT FACE="Times New Roman" SIZE=2>Функция сканирует драйверы сигнала и, если хоть один из них равен</font><FONT SIZE=2> ‘1’</FONT><FONT FACE="Times New Roman" SIZE=2>, возвращает значение </FONT><FONT SIZE=2>‘1’</FONT><FONT FACE="Times New Roman" SIZE=2>, иначе </FONT><FONT SIZE=2>‘0’.</font></P>
+<P ALIGN="JUSTIFY"><FONT FACE="Times New Roman" SIZE=2>Функция разрешения </font><FONT SIZE=2>SHIN</FONT><FONT FACE="Times New Roman" SIZE=2> для шины</FONT><I><FONT SIZE=2> </font></I><FONT FACE="Times New Roman" SIZE=2>на элементах с тремя с тремя состояниями выходами может быть такой</FONT><FONT SIZE=2>:</font></P><FONT SIZE=2>
+<P ALIGN="JUSTIFY"></P>
+</FONT><FONT FACE="Courier New" SIZE=2><P ALIGN="JUSTIFY">Type A3 is (‘0’, ‘1’, ‘Z’);</P>
+<P ALIGN="JUSTIFY"> Type VA3 is array ( integer range &lt;&gt; of A3 );</P>
+<P ALIGN="JUSTIFY">Function SHIN (signal X: VA3 ) return A3 is</P>
+<P ALIGN="JUSTIFY">Variable VIXOD: A3:= ‘Z’;</P>
+<P ALIGN="JUSTIFY">Begin</P>
+<P ALIGN="JUSTIFY">For I in X’RANGE loop</P>
+<P ALIGN="JUSTIFY">  I f X( I) /= ‘Z’ then</P>
+<P ALIGN="JUSTIFY">VIXOD:= X ( I);</P>
+<P ALIGN="JUSTIFY">Exit;</P>
+<P ALIGN="JUSTIFY">End if;</P>
+<P ALIGN="JUSTIFY">End loop;</P>
+<P ALIGN="JUSTIFY">Return VIXOD; </P>
+<P ALIGN="JUSTIFY">End SHIN;</P>
+</FONT><FONT SIZE=2><P ALIGN="JUSTIFY"></P>
+</FONT><P ALIGN="JUSTIFY"><FONT FACE="Times New Roman" SIZE=2>Предполагается, что может быть включен, (то есть, не равен </font><FONT SIZE=2>‘Z’</FONT><FONT FACE="Times New Roman" SIZE=2>) только один из драйверов входных сигналов.</FONT> </P>
+<FONT SIZE=2><P ALIGN="JUSTIFY"></P>
+</FONT><B><P><FONT FACE="Times New Roman">4.12. Организации, поддерживающие развитие </font>vhdl </P>
+</B><FONT SIZE=2>
+</FONT><P><FONT FACE="Times New Roman" SIZE=2>       Министерство обороны США в начале 80-х годов финансировало разработку многоуровнего языка VHDL, стандартизовало его и обязало своих поставщиков цифровых микросхем представлять в составе документации их описание на VHDL. Это можно рассматривать как важный, но только первый шаг к обязательности формальных моделей для всех видов выпускаемой электронной техники</font><FONT SIZE=2>.</FONT><FONT FACE="Times New Roman" SIZE=2> В связи с возлагаемой на VHDL особой ролью, интерес к нему в США и в Европе огромен, созданы Американская и Европейская группы, занимающиеся всем комплексом вопросов, связанных с внедрением VHDL, как то:</font></P><FONT FACE="Times New Roman" SIZE=2>
+
+<UL>
+<LI>уточнение семантики языка, </LI>
+<LI>разработка методологии описания различных классов ЦУ,</LI>
+<LI> разработка внутренних форматов представления VHDL-моделей в САПР для обеспечения совместимости разрабатываемых продуктов, </LI>
+<LI>создание анализаторов, позволяющих контролировать синтаксис и семантику VHDL-моделей,</LI>
+<LI> создание справочно-обучающих систем и резидентных справочников по VHDL, позволяющих писать VHDL- модели под управлением и контролем системы ,</LI>
+<LI>  создание мощных систем моделирования, использующих в качестве входного VHDL. </LI></UL>
+
+</FONT><FONT SIZE=2>
+</FONT><P><FONT FACE="Times New Roman" SIZE=2>Спонсорами работ по развитию VHDL являются: Air</font><FONT SIZE=2> Force Wright Aeronautical Laboratories, Avionics Laboratory, Air Force Systems Command, United States Air Force, Wright-Patterson Air Force Base , Ohio 45433. </font></P>
+<FONT FACE="Times New Roman" SIZE=2><P>В России работы по языку VHDL поддерживаются Российским научно-исследовательским институтом информационных систем (РосНИИИС), Московским институтом электронного машиностроения (кафедра "Специализированные вычислительные комплексы" МИЭМ), Томским политехниеским университом (кафедра"Вычислительной техники"), Международный центр по информатике и электронике, НИИ "Квант", Ассоциация заинтересованных в применении VHDL.</P>
+</FONT><FONT SIZE=2><P ALIGN="JUSTIFY"></P></FONT>
+</TD>
+</TR>
+</TABLE>
+
+
+<br>
+<TABLE CELLSPACING=0 CELLPADDING=0  BORDER=0  align=center width=750>
+<TR>
+	<TD class=body width=750 colspan=3>
+<br>
+
+
+</TD>
+</TR>
+<TR>
+	<TD WIDTH=182 background="../i/oba_l_dn.gif"><MAP NAME="map_dn">
+<AREA SHAPE="CIRCLE" COORDS="41, 14, 12" HREF="http://www.sm.bmstu.ru/sm5/n4/oba.html" target=_top>
+<AREA SHAPE="CIRCLE" COORDS="68, 14, 12" HREF="#top" target=_top>
+<AREA SHAPE="CIRCLE" COORDS="95, 14, 12" HREF="http://www.sm.bmstu.ru/sm5/n4/map.html" target=_top>
+<AREA SHAPE="CIRCLE" COORDS="122, 14, 12" HREF="http://www.sm.bmstu.ru/sm5/n4/copy.html" target=_top>
+<AREA SHAPE="CIRCLE" COORDS="149, 14, 12" HREF="mailto:steshenk@sm.bmstu.ru">
+</MAP><IMG SRC="../i/m5nav_dn.gif" WIDTH=182 HEIGHT=59 BORDER=0 usemap="#map_dn"> </TD>
+	<TD WIDTH=568 colspan=2 background="../i/oba_l_dn.gif">&#160;</TD>
+</TR>
+</TABLE>
+
+
+<!-- 
+<A HREF="../ist.html"  ONMOUSEOVER="window.status = 'Back'; return true"  ONMOUSEOUT="window.status = ' '; return true">
+<A HREF="../copy.html"   ONMOUSEOVER =" window.status = 'Copyright'; return true"   ONMOUSEOUT=" window.status = ''; return true">
+<A HREF="http://archimed.da.ru"     ONMOUSEOVER=" window.status = 'Archimed'; return true"   ONMOUSEOUT=
+
+
+ >
+-->
+</center></body></html>
+<!-- This document saved from http://www.sm.bmstu.ru/sm5/n4/oba/gl4.html -->
